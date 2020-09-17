@@ -1,9 +1,12 @@
 import { AppProps } from 'next/app';
 import { FC } from 'react';
 import GoogleFonts from 'next-google-fonts';
+import 'reset-css/sass/_reset.scss';
+
 import 'styles/theme.scss';
 
 export const _App: FC<AppProps> = ({ pageProps, Component }) => {
+  
   return (
     <>
       <style jsx global>{`

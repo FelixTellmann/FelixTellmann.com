@@ -12,6 +12,7 @@ class MyDocument extends Document {
         <Head>
         </Head>
         <body>
+          <script src="/colorTheme.js" />
           <Main />
           <NextScript />
         </body>
