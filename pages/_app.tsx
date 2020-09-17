@@ -1,12 +1,10 @@
-import { AppProps } from "next/app";
-import { FC } from "react";
+import { AppProps } from 'next/app';
+import { FC } from 'react';
 
-
-export const _App: FC = ({ pageProps, Component }) => {
+export const _App: FC<AppProps> = ({ pageProps, Component }) => {
   return (
     <>
-        <Component {...pageProps} />
-      
+      <Component {...pageProps} />
     </>
   );
 };
