@@ -1,0 +1,21 @@
+{
+  "name": "felixtellmann-com",
+  "version": "1.0.0",
+  "repository": "https://github.com/FelixTellmann/FelixTellmann.com.git",
+  "author": "FelixTellmann <felix@tellmann.co.za>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "@types/node": "^14.10.3",
+    "@types/react": "^16.9.49",
+    "next": "^9.5.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^4.0.2"
+  }
+}

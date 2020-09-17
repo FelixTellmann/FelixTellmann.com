@@ -1,0 +1,7 @@
+.idea
+.next
+node_modules
+.env
+.env.local
+.jest-test-results.json
+.mdx-data
