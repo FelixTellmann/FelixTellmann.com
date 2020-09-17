@@ -25,6 +25,7 @@
     "next-compose-plugins": "^2.2.0",
     "next-google-fonts": "^1.2.1",
     "node-sass": "^4.14.1",
+    "reset-css": "^5.0.1",
     "sass-loader": "^10.0.2",
     "sass-resources-loader": "^2.1.0",
     "styled-jsx-plugin-sass": "^1.0.0",

@@ -5,13 +5,15 @@ export const Index: FC = () => {
     <div>Welcome to our Next Project</div>
     <style jsx>{`
       div {
+        max-width: 700px;
         display: flex;
         align-items: center;
-        text-align: center;
+        justify-content: center;
         margin: 10rem auto;
-        max-width: 700px;
+        text-align: center;
+
         &:hover, &:focus, &:active {
-            background-color: yellow;
+          background-color: yellow;
         }
       }
     `}</style>

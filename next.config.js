@@ -1,7 +1,7 @@
 const withPlugins = require('next-compose-plugins');
 const SCSS = require('@zeit/next-sass');
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 
 module.exports = withPlugins(
   [
@@ -26,18 +26,19 @@ module.exports = withPlugins(
             }
           }
         },
-        {
+        fs.readdirSync(path.join(process.cwd(), 'styles')).filter((file) => file.match(/^_.*\.scss$/)).length > 0 ? {
           enforce: 'pre',
           test: /.scss$/,
           loader: 'sass-resources-loader',
           options: {
-            resources: fs.readdirSync(path.join(process.cwd(), 'styles')).length > 0 &&
+            resources:
               fs
                 .readdirSync(path.join(process.cwd(), 'styles'))
                 .filter((file) => file.match(/^_.*\.scss$/))
                 .map((file) => './styles/' + file)
+
           }
-        }
+        } : {}
       );
       config.resolve.extensions = ['.ts', '.js', '.jsx', '.tsx', '.svg', '.scss'];
       return config;
