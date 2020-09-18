@@ -1,50 +1,20 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import useColorTheme from 'use-color-theme';
+import Box from '../components/Box';
 
 export const Index: FC = () => {
+  const [test, setTest] = useState(0)
   
   const colorTheme = useColorTheme('light-theme', { classNames: ['light-theme', 'dark-theme', 'another-theme'] });
   
   return <>
     <div onClick={() => { colorTheme.toggle(); }}>Welcome to our Next Project</div>
+    <Box p={4} bg={'red'} fontWeight={'700'} fontSize={24} className="hello">Hello World</Box>
+    <Box p={test} bg={'red'} fontWeight={'700'} fontSize={[24,12]} onClick={()=>setTest(test+1)}>Hello World</Box>
     <style jsx global>{`
-      #__next div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10rem;
-        text-align: center;
-        width: 100vw;
-        height: 100vh;
+      .hello {
+        background: pink;
       }
-
-      .light-theme {
-        #__next {
-          div {
-            background-color: lightgrey;
-            color: #1c1c1c;
-          }
-        }
-      }
-
-      .dark-theme {
-        #__next {
-          div {
-            background-color: #1c1c1c;
-            color: lightgrey;
-          }
-        }
-      }
-
-      .another-theme {
-        #__next {
-          div {
-            background-color: #b2c6cf;
-            color: #000a40;
-          }
-        }
-      }
-
     `}</style>
   </>;
 };
