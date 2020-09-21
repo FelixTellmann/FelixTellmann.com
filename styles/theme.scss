@@ -1,23 +1,26 @@
 .light-theme {
   --color-background: #fff;
   --color-body: #1c1c1c;
+  --color-button: #e2e8f0;
+  --color-button-secondary: #edf2f7;
+  --color-header: #1a202c;
+  --color-header-backdrop-filter: saturate(180%) blur(2rem);
+  --color-header-background: transparent;
   --color-primary: #1ec4ee;
 }
 
 .dark-theme {
-  --color-background: #1c1c1c;
+  --color-background: #171923;
   --color-body: #fff;
+  --color-button: rgb(255, 255, 255, 0.16);
+  --color-button-secondary: rgb(255, 255, 255, 0.08);
+  --color-header: #fff;
+  --color-header-backdrop-filter: saturate(100%) blur(2rem);
+  --color-header-background: rgba(23, 25, 35, 0.6);
   --color-primary: #ee601e;
-}
-.another-theme {
-  --color-background: #1e3b5f;
-  --color-body: #cdf8f8;
-  --color-primary: #b931f3;
 }
 
 :root {
-  --color-background: #fff;
-  --color-body: #1c1c1c;
   --font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, sans-serif;
   --p: 1.6rem;
 }

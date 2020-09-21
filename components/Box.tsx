@@ -1,19 +1,20 @@
-import { FC } from 'react';
+import { createElement, FC, FunctionComponent, ReactHTMLElement } from 'react';
 import { CSS, useStyledSystem } from 'use-styled-system';
+import { css } from 'styled-jsx/css';
 
 type BoxProps = {
   className?: string
   onClick?: Function
+  as?: string | FC<{className: string}>
 }
 
-export const Box: FC<BoxProps & CSS> = ({ children, className = '', ...props }) => {
+export const Box: FC<BoxProps & CSS> = ({ as = 'div', children, className = '', ...props }) => {
   
   const { styleJsx, cleanProps } = useStyledSystem(props, { Space: true, Layout: true, Color: true });
+  const { className: cssClass, styles } = css.resolve`${styleJsx}`;
   return <>
-    <div className={className} {...cleanProps}>{children}</div>
-    <style jsx>{`
-        ${styleJsx}
-    `}</style>
+    {createElement(as, { className: `${cssClass} ${className}`, ...cleanProps }, children)}
+    {styles}
   </>;
 };
 

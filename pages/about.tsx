@@ -8,8 +8,7 @@ export const Index: FC = () => {
   
   
   return <>
-    <Text as="h1" fontSize={8} fontWeight={700} letterSpacing={'-0.05em'} p={4}>A simple text component</Text>
-    <Text as="h1" fontSize={8} fontWeight={700} letterSpacing={'-0.05em'} p={4}>A simple text component</Text>
+    <Text as="h1" fontSize={8} fontWeight={700} letterSpacing={'-0.05em'} p={4}>About page</Text>
   </>;
 };
 
