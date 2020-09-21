@@ -1,3 +1,20 @@
+.light-theme {
+  --color-background: #fff;
+  --color-body: #1c1c1c;
+  --color-primary: #1ec4ee;
+}
+
+.dark-theme {
+  --color-background: #1c1c1c;
+  --color-body: #fff;
+  --color-primary: #ee601e;
+}
+.another-theme {
+  --color-background: #1e3b5f;
+  --color-body: #cdf8f8;
+  --color-primary: #b931f3;
+}
+
 :root {
   --color-background: #fff;
   --color-body: #1c1c1c;

@@ -33,7 +33,8 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
           font-family: var(--font-family);
           font-size: var(--p);
         }
-      
+
+
       `}</style>
       <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
       <Component {...pageProps} />

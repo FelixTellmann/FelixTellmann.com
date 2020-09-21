@@ -8,7 +8,7 @@ type BoxProps = {
 
 export const Box: FC<BoxProps & CSS> = ({ children, className = '', ...props }) => {
   
-  const { styleJsx, cleanProps } = useStyledSystem(props, {Padding: true, All: true}, 10);
+  const { styleJsx, cleanProps } = useStyledSystem(props, { Space: true, Layout: true, Color: true });
   return <>
     <div className={className} {...cleanProps}>{children}</div>
     <style jsx>{`
