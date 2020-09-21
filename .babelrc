@@ -10,7 +10,7 @@
               "styled-jsx-plugin-sass",
               {
                 "sassOptions": {
-                  "outputStyle": "nested"
+                  "outputStyle": "expanded"
                 }
               }
             ]
