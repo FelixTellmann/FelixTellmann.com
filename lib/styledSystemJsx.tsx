@@ -95,10 +95,11 @@ import {
   VerticalAlignProperty,
   VisibilityProperty,
   WidthProperty,
-  ZIndexProperty
+  ZIndexProperty,
 } from 'csstype';
 
-export type Margin = {
+
+export type Margin<TLength = string | number> = {
   margin?: MarginProperty<any>
   marginTop?: MarginTopProperty<any>
   marginRight?: MarginRightProperty<any>
@@ -114,7 +115,8 @@ export type Margin = {
   mx?: MarginLeftProperty<any> & MarginRightProperty<any>
   my?: MarginTopProperty<any> & MarginBottomProperty<any>
 }
-export type Padding = {
+
+export type Padding<TLength = string | number> = {
   padding?: PaddingProperty<any>
   paddingTop?: PaddingTopProperty<any>
   paddingRight?: PaddingRightProperty<any>
@@ -122,7 +124,7 @@ export type Padding = {
   paddingLeft?: PaddingLeftProperty<any>
   paddingX?: PaddingLeftProperty<any> & PaddingRightProperty<any>
   paddingY?: PaddingTopProperty<any> & PaddingBottomProperty<any>
-  p?: PaddingProperty<any>
+  p?: PaddingProperty<TLength>
   pt?: PaddingTopProperty<any>
   pr?: PaddingRightProperty<any>
   pb?: PaddingBottomProperty<any>
@@ -406,28 +408,46 @@ export default function toStyledJsxProperties(props) {
       return value / 10 + 'rem';
     }
     if (typeof value === 'string') {
-      return value.match(/(px)$/) ? +value.replace('px', '') / 10 + 'rem' : value;
+      return value.match(/(px)$/) ? +value.replace('px', '') / 10 + 'rem' : value.toString();
     }
     return value.toString();
   };
   const toCssProperty = (key, value) => key.replace(/([A-Z])/g, (match) => '-' + match.toLowerCase()) + ': ' + convertValue(value) + ';\n';
+  const pushStringTo = (acc: (string | unknown)[],key: string, returnArray= [0,0,0], breakPoint = 0)=> {
+    if (cssShorhandCompound.hasOwnProperty(key)) {
+      acc.push(toCssProperty(cssShorhandCompound[key][1], returnArray[breakPoint]));
+      acc.push(toCssProperty(cssShorhandCompound[key][0], returnArray[breakPoint]));
+    } else if (CssShorthandMatch.hasOwnProperty(key)) {
+      acc.push(toCssProperty(CssShorthandMatch[key], returnArray[breakPoint]));
+    } else {
+      acc.push(toCssProperty(key, returnArray[breakPoint]));
+    }
+  }
   
   return Object.entries(props)
     .reduce((acc, [key, value], i, array) => {
       if (!CssProperties.includes(key)) return acc;
+      let returnValue = []
+      
       if (Array.isArray(value)) {
-        /*TODO: Check for what happens if value is typeof Array!!*/
-        typeof window !== "undefined" ?  window.innerWidth > 768 ? (value = value[1]) : (value = value[0]) :( value = value[1]);
+        for (let i = 0; i < 3 ; i++) {
+          returnValue.push(value.length > i ? value[i] : value[value.length - 1])
+        }
+      } else {
+        returnValue = [value, value, value]
+      }
+      if (typeof window === 'undefined') {
+        pushStringTo(acc, key, returnValue, 0)
+      } else {
+        if (window.innerWidth < 768) {
+          pushStringTo(acc, key, returnValue, 0)
+        } else if (window.innerWidth < 960) {
+          pushStringTo(acc, key, returnValue, 1)
+        } else {
+          pushStringTo(acc, key, returnValue, 2)
+        }
       }
       
-      if (cssShorhandCompound.hasOwnProperty(key)) {
-        acc.push(toCssProperty(cssShorhandCompound[key][1], value));
-        acc.push(toCssProperty(cssShorhandCompound[key][0], value));
-      } else if (CssShorthandMatch.hasOwnProperty(key)) {
-        acc.push(toCssProperty(CssShorthandMatch[key], value));
-      } else {
-        acc.push(toCssProperty(key, value));
-      }
       return acc;
     }, []).join('');
 }
