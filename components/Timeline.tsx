@@ -39,7 +39,7 @@ export const TimelineGroup: FC<TimelineGroupProps> = ({ title, items }) => {
     <Box as='section' key={title}>
       <Text as="h3" fontSize={[20, 4]} fontWeight={700} lineHeight={1.4} mb={10}>{title}</Text>
       <Box as={'ul'}>
-        {items.map(props => <TimelineItem {...props} />)}
+        {items.map((props, index) => <TimelineItem key={index} {...props} />)}
       </Box>
     </Box>
   </>;

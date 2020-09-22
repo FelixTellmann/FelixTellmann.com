@@ -1,24 +1,13 @@
 import hydrate from 'next-mdx-remote/hydrate';
 import Box from 'components/Box';
 
-import Link from 'next/link';
-
 export default function PostPage({ children, frontMatter }) {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
   
   return (
     <>
-      <header>
-        <nav>
-          <Link href="/">
-            <a>👈 Go back home</a>
-          </Link>
-        </nav>
-      </header>
-      <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && <p className="description">{frontMatter.description}</p>}
-      </div>
+      <h1>{frontMatter.title}</h1>
+      {frontMatter.description && <p className="description">{frontMatter.description}</p>}
       <main className="mdx">{content}</main>
       
       <style jsx global>{`

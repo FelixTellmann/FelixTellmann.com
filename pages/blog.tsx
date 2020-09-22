@@ -4,6 +4,8 @@ import Input from '../components/Input';
 import { FiSearch } from 'react-icons/fi';
 import { getAllPostsSlug, getSinglePostData } from '../lib/getBlogPosts';
 import matter from 'gray-matter';
+import BlogPreview from '../components/BlogPreview';
+import Box from '../components/Box';
 
 type BlogProps = {
   postData: {
@@ -24,10 +26,12 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
   
   return <>
     <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>{INTRO.title}</Text>
-    <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={[3, 4]}>{INTRO.description}</Text>
-    <Input placeholder="Search Articles" icon={<FiSearch />} />
-    
-    
+    <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={3}>{INTRO.description}</Text>
+    <Box mb={5}><Input placeholder="Search Articles" icon={<FiSearch />} /></Box>
+    <Text as="h2" fontSize={30} fontWeight={700} lineHeight={1.25} mb={3}>Most Popular</Text>
+    {postData.map(({ slug, frontMatter: { title, excerpt } }) => <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />)}
+  
+  
   </>;
 };
 

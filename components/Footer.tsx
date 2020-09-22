@@ -22,7 +22,7 @@ export const Footer: FC<FooterProps> = ({ socialNav, footerNav }) => {
         {socialNav.map(({ title, href, target }) => <Button key={href} title={title} href={href} large icon target={target} mx={1} />)}
       </Box>
       <Box d={'flex'} justify={'center'}>
-        {footerNav.map(({ title, href }) => <Link href={href} title={title} small p={1} m={1} />)}
+        {footerNav.map(({ title, href }) => <Link key={href} href={href} title={title} small p={1} m={1} />)}
       </Box>
     </Box>
   </>;
