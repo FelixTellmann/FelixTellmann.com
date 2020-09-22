@@ -3,7 +3,7 @@ import { CSS, useStyledSystem } from 'use-styled-system';
 import { css } from 'styled-jsx/css';
 
 type BoxProps = {
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'code' | 'blockquote'
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'code' | 'blockquote' | 'a'
   className?: string
   onClick?: Function
 }

@@ -7,7 +7,10 @@ body,
   --color-header: #1a202c;
   --color-header-backdrop-filter: saturate(180%) blur(2rem);
   --color-header-background: transparent;
+  --color-link: #3b3b3b;
+  --color-link-hover: #626262;
   --color-primary: #1ec4ee;
+  --color-text: #1c1c1c;
 }
 
 .dark-theme {
@@ -18,7 +21,10 @@ body,
   --color-header: #fff;
   --color-header-backdrop-filter: saturate(100%) blur(2rem);
   --color-header-background: rgba(23, 25, 35, 0.6);
+  --color-link: rgba(255, 255, 255, 0.80);
+  --color-link-hover: rgb(255, 255, 255, 0.68);
   --color-primary: #ee601e;
+  --color-text: #fff;
 }
 
 :root {

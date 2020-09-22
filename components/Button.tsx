@@ -5,20 +5,25 @@ import { Decor, Layout, Space, useStyledSystem } from 'use-styled-system';
 type ButtonProps = {
   onClick?: (event: MouseEvent) => void
   href?: string
-  title: string | any
+  target?: string
+  title: string | JSX.Element
   icon?: boolean
   className?: string
   secondary?: boolean
+  small?: boolean
+  large?: boolean
 };
 
-export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, className = '', href, title, icon, secondary, children, ...props }) => {
+export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
   
   const { styleJsx, cleanProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
-  const classNames = `button ${icon ? 'icon' : ''} ${secondary ? 'secondary' : ''} ${className}`.trim();
+  const classNames = `button ${icon ? 'icon' : ''} ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large
+                                                                                                             ? 'large'
+                                                                                                             : ''} ${className}`.trim();
   return <>
     {
       href
-      ? <Link href={href}><a className={classNames} onClick={onClick}>{title}</a></Link>
+      ? <Link href={href}><a target={target} className={classNames} onClick={onClick}>{title}</a></Link>
       : <button className={classNames} onClick={onClick}>{title}</button>
     }
     <style jsx>{`
@@ -40,8 +45,20 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
         font-family: inherit;
         white-space: nowrap;
         text-decoration: none;
-        transition: color 0.25s, background-color 0.25s ;
+        transition: color 0.25s, background-color 0.25s;
         appearance: none;
+
+        &.small {
+          min-width: 3.2rem;
+          height: 3.2rem;
+          font-size: 1.4rem;
+        }
+
+        &.large {
+          min-width: 4.8rem;
+          height: 4.8rem;
+          font-size: 1.8rem;
+        }
 
         &.icon {
           padding: 0;
@@ -58,7 +75,7 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
         &:hover {
           background-color: var(--color-button)
         }
-        
+
         ${styleJsx}
       }
     `}</style>
