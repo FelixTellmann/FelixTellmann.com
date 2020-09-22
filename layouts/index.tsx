@@ -1,70 +1,113 @@
 import hydrate from 'next-mdx-remote/hydrate';
 import Box from 'components/Box';
+import Text from '../components/Text';
+import { FC } from 'react';
+import Avatar from '../components/Avatar';
 
-export default function PostPage({ children, frontMatter }) {
+type LayoutProps = {
+  frontMatter: {
+    title: string
+    author?: string
+    author_url?: string
+    author_avatar_url?: string
+    published_at?: string
+    reading_time?: string
+    views?: string
+    image?: string
+  }
+}
+
+export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', author_url, author_avatar_url, published_at, views, reading_time, image } }) => {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
   
   return (
     <>
-      <h1>{frontMatter.title}</h1>
-      {frontMatter.description && <p className="description">{frontMatter.description}</p>}
-      <main className="mdx">{content}</main>
-      
+      {title && <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={3}>{title}</Text>}
+      <Box d={'flex'} direction={['column', 'row']} mb={5}>
+        <Box d={'flex'} align={'center'}>
+          {author_avatar_url && <Avatar src={author_avatar_url} alt={author ? author : ''} size={24} />}
+          {(author || published_at) &&
+          <Text as="p" fontSize={1} color={'--color-text'} ml={2} lineHeight={1.6}>
+            {author}{author && published_at ? ' / ' : ''}{published_at}
+          </Text>}
+        </Box>
+        <Box d={'flex'} align={'center'} justify={['flex-start', 'flex-end']} flex={1}>
+          <Text as="p" fontSize={1} color={'--color-subdued'} ml={2} lineHeight={1.6}>
+            {reading_time ? reading_time : ''}{views ? views : ''}
+          </Text>
+        </Box>
+      </Box>
+      <article className="mdx">{content}</article>
       <style jsx global>{`
         .mdx {
-          h1 {
-            margin: 0 0 10px 0;
-            font-size: var(--h1);
-            font-weight: 700;
-            line-height: 1.1;
-          }
-
-          h2 {
-            margin: 0 0 10px 0;
-            font-size: var(--h2);
-            font-weight: 700;
-            line-height: 1.2;
-          }
-
-          h3 {
-            margin: 0 0 10px 0;
-            font-size: var(--h3);
-            font-weight: 700;
-            line-height: 1.3;
-          }
-
-          h4 {
-            margin: 0 0 10px 0;
-            font-size: var(--h4);
-            font-weight: 700;
-            line-height: 1.4;
-          }
-
-          h5 {
-            margin: 0 0 8px 0;
-            font-size: var(--h5);
-            font-weight: 600;
-            line-height: 1.3;
-          }
-
-          h6 {
-            display: flex;
-            align-items: center;
-            margin: 0 0 10px 0;
-            font-size: var(--h6);
-            font-weight: 600;
-            line-height: 1.4;
+          --h2: 2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          margin: 0 auto 6.4rem auto;
+          line-height: 1.5;
+          @media screen and (min-width: 600px) {
+            --h2: 2.4rem;
           }
 
           p {
-            margin: 0 0 15px 0;
-            color: var(--color-text);
-            font-size: var(--p);
-            line-height: 1.6;
-            word-break: break-word;
+            margin-top: 1.6rem;
+            margin-bottom: 3.2rem;
+            font-size: 1.6rem;
+            line-height: 1.625;
           }
+
+          h2 {
+            margin-top: 2em;
+            margin-bottom: 1em;
+            font-size: var(--h2);
+            font-weight: 700;
+            line-height: 1.25;
+            scroll-margin-top: 100px;
+          }
+
+          a {
+            outline: none;
+            color: var(--color-mdx-link);
+            line-height: 1.5;
+            text-decoration: none;
+
+            &:hover, &:focus, &:active {
+              text-decoration: underline;
+            }
+          }
+
+          ul {
+            margin-bottom: 3.2rem;
+            margin-left: 0.8rem;
+            padding-top: 0.8rem;
+            padding-left: 1.6rem;
+            list-style-type: disc;
+          }
+
+          li {
+            padding-bottom: 0.25rem;
+          }
+
+          strong {
+            font-weight: 700;
+          }
+
         }
       `}</style>
     </>
   );
-}
+};
+
+export default Layout;
+
+export const getStaticProps = async ({ params: { slug } }) => {
+  
+  console.log(slug);
+  return {
+    props: {
+      slug
+    }
+  };
+};

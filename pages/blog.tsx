@@ -66,12 +66,15 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
   return <>
     <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>{INTRO.title}</Text>
     <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={3}>{INTRO.description}</Text>
-    <Box mb={5}><Input placeholder="Search Articles" icon={<FiSearch />} onChange={search} /></Box>
+    <Box mb={5}>
+      <Input placeholder="Search Articles" icon={<FiSearch />} onChange={search} />
+    </Box>
     <Text as="h2" fontSize={30} fontWeight={700} lineHeight={1.25} mb={3}>Recent Posts</Text>
-    {filteredPostData.map(({ slug, frontMatter: { title, excerpt } }) => <BlogPreview key={slug}
-                                                                                      slug={slug}
-                                                                                      title={title}
-                                                                                      excerpt={excerpt} />)}
+    {
+      filteredPostData.map(({ slug, frontMatter: { title, excerpt } }) => (
+        <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />)
+      )
+    }
   </>;
 };
 
