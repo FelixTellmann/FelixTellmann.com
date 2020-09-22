@@ -6,7 +6,7 @@ type ButtonProps = {
   onClick?: (event: MouseEvent) => void
   href?: string
   target?: string
-  title: string | JSX.Element
+  title?: string | JSX.Element
   icon?: boolean
   className?: string
   secondary?: boolean
@@ -23,8 +23,8 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
   return <>
     {
       href
-      ? <Link href={href}><a target={target} className={classNames} onClick={onClick}>{title}</a></Link>
-      : <button className={classNames} onClick={onClick}>{title}</button>
+      ? <Link href={href}><a target={target} className={classNames} onClick={onClick}>{title ? title : children}</a></Link>
+      : <button className={classNames} onClick={onClick}>{title ? title : children}</button>
     }
     <style jsx>{`
       .button {
@@ -34,7 +34,7 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 1.6rem 0.8rem;
+        padding: 1.6rem;
         border: 0;
         border-radius: 0.4rem;
         outline: none;
@@ -43,6 +43,7 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
         user-select: none;
         color: inherit;
         font-family: inherit;
+        line-height: 1.2;
         white-space: nowrap;
         text-decoration: none;
         transition: color 0.25s, background-color 0.25s;

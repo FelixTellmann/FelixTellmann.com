@@ -3,6 +3,7 @@ import { CSS, useStyledSystem } from 'use-styled-system';
 import { css } from 'styled-jsx/css';
 
 type BoxProps = {
+  id?: string
   className?: string
   onClick?: Function
   as?: string | FC<{className: string}>

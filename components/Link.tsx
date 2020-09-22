@@ -1,8 +1,8 @@
 import { FC, MouseEvent } from 'react';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { Decor, Layout, Space, useStyledSystem } from 'use-styled-system';
 
-type ButtonProps = {
+type LinkProps = {
   onClick?: (event: MouseEvent) => void
   href: string
   title: string | JSX.Element
@@ -13,12 +13,12 @@ type ButtonProps = {
   large?: boolean
 };
 
-export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, secondary, small, large, children, ...props }) => {
+export const Link: FC<LinkProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, secondary, small, large, children, ...props }) => {
   
   const { styleJsx, cleanProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
   const classNames = `link ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large ? 'large' : ''} ${className}`.trim();
   return <>
-    <Link href={href}><a target={target} className={classNames} onClick={onClick}>{title}</a></Link>
+    <NextLink href={href}><a target={target} className={classNames} onClick={onClick} {...cleanProps}>{title}</a></NextLink>
     
     <style jsx>{`
       .link {
@@ -46,4 +46,4 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
   </>;
 };
 
-export default Button;
+export default Link;

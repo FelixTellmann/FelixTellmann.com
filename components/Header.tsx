@@ -38,7 +38,7 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
            p={4}>
         <Link href={logo.href}><Text as={'a'} fontSize={5} fontWeight={700}>{logo.title}</Text></Link>
         <Box d={'flex'} flex={1} justify={'flex-end'}>
-          {nav.map(({ title, href }) => <Button key={href} href={href} title={title} mx={['2px', 2]} />)}
+          {nav.map(({ title, href }) => <Button key={href} href={href} title={title} mx={['2px', 2]} px={[2, 3]} />)}
         </Box>
         <Button onClick={colorTheme.toggle}
                 icon

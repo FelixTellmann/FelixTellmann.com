@@ -45,6 +45,9 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
 
         .page {
           min-height: calc(100vh - 309px);
+          max-width: 76.4rem;
+          padding: 0 3.2rem;
+          margin: 0 auto;
         }
       
       
