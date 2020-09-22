@@ -2,7 +2,6 @@ import { AppProps } from 'next/app';
 import { FC } from 'react';
 import GoogleFonts from 'next-google-fonts';
 import { FiMoon, FiSun } from 'react-icons/fi';
-import flush from 'styled-jsx/server';
 
 import 'reset-css/sass/_reset.scss';
 
@@ -13,7 +12,7 @@ import Text from '../components/Text';
 import useColorTheme from 'use-color-theme';
 
 export const _App: FC<AppProps> = ({ pageProps, Component }) => {
- 
+  
   const colorTheme = useColorTheme('light-theme', { classNames: ['light-theme', 'dark-theme'] });
   return (
     <>
@@ -48,21 +47,21 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
       
       
       `}</style>
+      <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
       <Box as="header"
-      
            mb={4}
            mt={[0, 4]}
            position={'sticky'}
            top={0}
            color={'--color-header'}
-           bg={'--color-header-background'}>
+           bg={'--color-header-background'}
+           backdropFilter={'--color-header-backdrop-filter'}>
         <Box as="nav"
              d={'flex'}
              align={'center'}
              maxW={960}
              mx={'auto'}
-             p={4}
-             backdropFilter={'--color-header-backdrop-filter'}>
+             p={4}>
           <Text fontSize={5} fontWeight={700}>FT</Text>
           <Box d={'flex'} flex={1} justify={'flex-end'}>
             <Button href="/" title={'Home'} mx={['2px', 2]} />
@@ -78,7 +77,7 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
                            style={{ filter: `drop-shadow(rgba(0, 0, 0, 0.35) 0px 0px 3px)` }} />} />
         </Box>
       </Box>
-      <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+      
       <Component {...pageProps} />
     </>
   );
