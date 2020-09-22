@@ -46,7 +46,7 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
         line-height: 1.2;
         white-space: nowrap;
         text-decoration: none;
-        transition: color 0.25s, background-color 0.25s;
+        transition: background-color 0.25s;
         appearance: none;
 
         &.small {
