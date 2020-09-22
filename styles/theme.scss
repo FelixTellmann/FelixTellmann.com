@@ -4,14 +4,18 @@ body,
   --color-body: #1c1c1c;
   --color-button: #e2e8f0;
   --color-button-secondary: #edf2f7;
+  --color-green: #00bfa5;
   --color-header: #1a202c;
   --color-header-backdrop-filter: saturate(180%) blur(2rem);
   --color-header-background: transparent;
+  --color-input-background: #f2f4fa;
+  --color-input-border: #c6c6c8;
+  --color-input-border-focus: #3182ce;
+  --color-input-border-hover: #cbd5e0;
   --color-link: #3b3b3b;
   --color-link-hover: #626262;
   --color-primary: #1ec4ee;
   --color-text: #2d3748;
-  --color-green: #00bfa5
 }
 
 .dark-theme {
@@ -19,17 +23,23 @@ body,
   --color-body: #fff;
   --color-button: rgb(255, 255, 255, 0.16);
   --color-button-secondary: rgb(255, 255, 255, 0.08);
+  --color-green: #00bfa5;
   --color-header: #fff;
   --color-header-backdrop-filter: saturate(100%) blur(2rem);
   --color-header-background: rgba(23, 25, 35, 0.6);
+  --color-input-background: rgb(255, 255, 255, 0.08);
+  --color-input-border: rgba(255, 255, 255, 0.14);
+  --color-input-border-focus: #3182ce;
+  --color-input-border-hover: rgb(255, 255, 255, 0.08);
   --color-link: rgba(255, 255, 255, 0.80);
+
   --color-link-hover: rgb(255, 255, 255, 0.68);
   --color-primary: #ee601e;
   --color-text: #a0aec0;
-  --color-green: #00bfa5
 }
 
 :root {
+  --border-radius: 0.4rem;
   --font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, sans-serif;
   --p: 1.6rem;
 }

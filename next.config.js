@@ -1,11 +1,22 @@
 const withPlugins = require('next-compose-plugins');
 const SCSS = require('@zeit/next-sass');
+const MdxEnhanced = require("next-mdx-enhanced");
 const fs = require('fs');
 const path = require('path');
 
+const mdxOptions = {
+  layoutPath: "layouts",
+  defaultLayout: true,
+  fileExtensions: ["mdx"],
+  usesSrc: false,
+};
+
+module.exports.mdxOptions = mdxOptions;
+
 module.exports = withPlugins(
   [
-    [SCSS]
+    [SCSS],
+    process.env.NODE_ENV === "development" ? [MdxEnhanced(mdxOptions)] : [MdxEnhanced],
   ],
   {
     webpack(config, { isServer }) {

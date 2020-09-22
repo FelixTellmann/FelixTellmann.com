@@ -36,7 +36,7 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
         justify-content: center;
         padding: 1.6rem;
         border: 0;
-        border-radius: 0.4rem;
+        border-radius: var(--border-radius);
         outline: none;
         background-color: unset;
         cursor: pointer;
