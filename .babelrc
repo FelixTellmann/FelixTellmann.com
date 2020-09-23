@@ -28,6 +28,7 @@
           "public": "./public"
         }
       }
-    ]
+    ],
+    "react-optimized-image/plugin"
   ]
 }

@@ -1,22 +1,38 @@
 const withPlugins = require('next-compose-plugins');
 const SCSS = require('@zeit/next-sass');
-const MdxEnhanced = require("next-mdx-enhanced");
+const MdxEnhanced = require('next-mdx-enhanced');
 const fs = require('fs');
 const path = require('path');
+const readingTime = require('reading-time');
+const optimizedImages = require('next-optimized-images');
+
 
 const mdxOptions = {
-  layoutPath: "layouts",
+  layoutPath: 'layouts',
   defaultLayout: true,
-  fileExtensions: ["mdx"],
+  fileExtensions: ['mdx'],
   usesSrc: false,
+  remarkPlugins: [
+    require('remark-autolink-headings'),
+    require('remark-slug'),
+    require('remark-code-titles')
+  ],
+  rehypePlugins: [require('mdx-prism')],
+  extendFrontMatter: {
+    process: (mdxContent) => ({
+      wordCount: mdxContent.split(/\s+/gu).length,
+      readingTime: readingTime(mdxContent)
+    })
+  }
 };
 
 module.exports.mdxOptions = mdxOptions;
 
 module.exports = withPlugins(
   [
+    [optimizedImages, { optimizeImagesInDev: true }],
     [SCSS],
-    process.env.NODE_ENV === "development" ? [MdxEnhanced(mdxOptions)] : [MdxEnhanced],
+    process.env.NODE_ENV === 'development' ? [MdxEnhanced(mdxOptions)] : [MdxEnhanced]
   ],
   {
     webpack(config, { isServer }) {

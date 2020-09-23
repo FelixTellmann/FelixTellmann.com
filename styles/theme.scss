@@ -16,6 +16,8 @@ body,
   --color-link-hover: #626262;
   --color-mdx-link: #0178df;
   --color-primary: #1ec4ee;
+  --color-remark-code-bg: #f7fafc;
+  --color-remark-code-title-bg: #e2e8f0;
   --color-subdued: #718096;
   --color-text: #2d3748;
 }
@@ -23,7 +25,7 @@ body,
 .dark-theme {
   --color-background: #171923;
   --color-body: #fff;
-  --color-button: rgb(255, 255, 255, 0.16);
+  --color-button: rgba(255, 255, 255, 0.16);
   --color-button-secondary: rgb(255, 255, 255, 0.08);
   --color-green: #00bfa5;
   --color-header: #fff;
@@ -37,6 +39,8 @@ body,
   --color-link-hover: rgb(255, 255, 255, 0.68);
   --color-mdx-link: #60b3fb;
   --color-primary: #ee601e;
+  --color-remark-code-bg: #1a202c;
+  --color-remark-code-title-bg: #2d3748;
   --color-subdued: #718096;
   --color-text: #a0aec0;
 }

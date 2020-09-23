@@ -53,7 +53,6 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
       }
       return acc;
     }, []).filter(({ frontMatter: { title }, matchCount }) => {
-      console.log(matchCount, totalMatchCount, wordCount);
       if ((matchCount / totalMatchCount < 0.3 && totalMatchCount > 3) || (totalMatchCount / wordCount < 0.75 && wordCount > 6)) return false;
       return sanitize(title).match(matcher);
     }).sort((a, b) => {
