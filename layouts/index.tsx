@@ -40,7 +40,9 @@ export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author
       <article className="mdx">{content}</article>
       <style jsx global>{`
         .mdx {
+          --h1: 3.6rem;
           --h2: 2rem;
+          --h3: 2rem;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -48,7 +50,9 @@ export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author
           margin: 0 auto 6.4rem auto;
           line-height: 1.5;
           @media screen and (min-width: 600px) {
+            --h1: 4.8rem;
             --h2: 2.4rem;
+            --h3: 2rem;
           }
 
           p {
@@ -58,10 +62,27 @@ export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author
             line-height: 1.625;
           }
 
+          h1 {
+            margin-bottom: 1em;
+            font-size: var(--h1);
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.025em;
+          }
+
           h2 {
             margin-top: 2em;
             margin-bottom: 1em;
             font-size: var(--h2);
+            font-weight: 700;
+            line-height: 1.25;
+            scroll-margin-top: 100px;
+          }
+
+          h3 {
+            margin-top: 2em;
+            margin-bottom: 1em;
+            font-size: var(--h3);
             font-weight: 700;
             line-height: 1.25;
             scroll-margin-top: 100px;
