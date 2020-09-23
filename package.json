@@ -20,6 +20,7 @@
     "typescript": "^4.0.2"
   },
   "devDependencies": {
+    "@jsdevtools/rehype-toc": "^3.0.2",
     "@mdx-js/loader": "^1.6.18",
     "@next/mdx": "^9.5.3",
     "@zeit/next-sass": "^1.0.1",

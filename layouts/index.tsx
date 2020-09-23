@@ -20,11 +20,13 @@ type LayoutProps = {
     }
     views?: string
     image?: string
+    headings?: { level: number; heading: string; subheading: any[] }
   }
 }
 
-export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, image, ...rest } }) => {
+export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, image, headings, ...rest } }) => {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
+  console.log(headings)
   return (
     <>
       {title && <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={3}>{title}</Text>}
@@ -120,7 +122,34 @@ export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author
             font-weight: 700;
           }
 
-          
+          a.autolink-heading {
+            position: relative;
+            color: inherit;
+
+            &:after {
+              position: absolute;
+              content: '#';
+              font-size: 1em;
+              height: 100%;
+              top: 0;
+              left: 100%;
+              display: flex;
+              align-items: center;
+              margin-left: 1.6rem;
+              color: #60b3fb;
+              opacity: 0;
+              transition: opacity 0.25s;
+            }
+
+            &:hover, &:focus, &:active {
+              text-decoration: none;
+
+              &:after {
+                opacity: 1;
+              }
+            }
+
+          }
 
         }
       `}</style>
