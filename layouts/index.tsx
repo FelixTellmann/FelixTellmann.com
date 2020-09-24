@@ -24,11 +24,12 @@ type LayoutProps = {
     views?: string
     image?: string
     headings?: { level: number; heading: string; slug: string, subheading: any[] }[]
-    showHeadings?: 0 | 1 | 2 | 3
+    showHeadings?: 0 | 1 | 2
+    showHeadingsExpanded?: boolean
   }
 }
 
-export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, image, headings, showHeadings = 0, ...rest } }) => {
+export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest } }) => {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
   console.log(headings);
   return (
@@ -40,7 +41,7 @@ export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author
                       readingTime={readingTime}
                       views={views} />
       
-      <ArticleSidebar showHeadings={showHeadings} headings={headings} />
+      <ArticleSidebar showHeadings={showHeadings} headings={headings} showHeadingsExpanded={showHeadingsExpanded} />
       
       <article className="mdx">{content}</article>
       

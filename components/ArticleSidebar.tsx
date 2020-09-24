@@ -1,25 +1,31 @@
 import { FC, useEffect, useState } from 'react';
 import Box from './Box';
 import scrollTo from '../lib/scrollTo';
-import { use } from 'ast-types';
 
 type ArticleSidebarProps = {
   showHeadings: number
   headings: { level: number; heading: string; slug: string, subheading: any[] }[]
+  showHeadingsExpanded?: boolean
 };
 
-export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings }) => {
+export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings, showHeadingsExpanded }) => {
   
   const focusHeading = (event, slug) => {
     event.preventDefault();
     headings.forEach(({ slug, subheading }) => {
       observerA.unobserve(document.getElementById(slug));
+      subheading.length > 0 && subheading.forEach(({ slug }) => {
+        observerB.unobserve(document.getElementById(slug));
+      });
     });
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
     setActiveHeading(slug);
     setTimeout(() => {
       headings.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
+        subheading.length > 0 && subheading.forEach(({ slug }) => {
+          observerB.unobserve(document.getElementById(slug));
+        });
       });
       setTimeout(() => {
         setActiveHeading(slug);
@@ -27,9 +33,9 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     }, 240);
   };
   
-  const focusSubHeading = (event, slug) => {
+  const focusSubHeading = async (event, slug) => {
     event.preventDefault();
-    headings.forEach(({ slug, subheading }) => {
+    await headings.forEach(({ slug, subheading }) => {
       observerA.unobserve(document.getElementById(slug));
       subheading.length > 0 && subheading.forEach(({ slug }) => {
         observerB.unobserve(document.getElementById(slug));
@@ -54,25 +60,27 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   const [activeSubheading, setActiveSubheading] = useState(``);
   const [observerA, setObserverA] = useState<any>();
   const [observerB, setObserverB] = useState<any>();
+  const [showSidebar, setShowSidebar] = useState(false);
   
   useEffect(() => {
     setObserverA(new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry)
           if (entry.isIntersecting) {
             setActiveHeading(entry.target.id);
           }
         });
       },
       {
-        rootMargin: `0% 0% -50% 0%`,
+        rootMargin: `0% 0% -70% 0%`,
         threshold: 1.0
       }
     ));
     setObserverB(new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          if (entry.intersectionRatio === 0) {setActiveSubheading('');
+          }
           if (entry.isIntersecting) {
             setActiveSubheading(entry.target.id);
           }
@@ -80,7 +88,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
       },
       {
         rootMargin: `0% 0% -70% 0%`,
-        threshold: 1.0
+        threshold: [0, 1]
       }
     ));
   }, []);
@@ -104,22 +112,34 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     }
   }, [observerA, observerB]);
   
+  useEffect(() => {
+    setShowSidebar(window.scrollY > 400);
+ 
+    
+    window.addEventListener('scroll', () => {
+      setShowSidebar(window.scrollY > 400);
+    });
+    return window.removeEventListener('scroll', () => {
+      setShowSidebar(window.scrollY > 400);
+    });
+  }, []);
+  
   return <>
-    <aside>
-      <Box position={'sticky'} w={220} top={200} h={600} p={3}>
+    <aside className={showSidebar ? 'active' : ''}>
+      <Box position={'sticky'} w={220} top={200} minH={600} p={3}>
         <ul>
           {
-            headings.map(({ level, heading, slug, subheading }) => (
+            headings.map(({ heading, slug, subheading }) => (
                 <li key={slug} className={`heading`}>
                   <a className={slug === activeHeading ? 'active' : ''}
                      aria-label={heading}
                      onClick={(e) => focusHeading(e, slug)}>{heading}</a>
                   {showHeadings > 1 && subheading.length > 0
-                   ? <ul className={`subheading`}>
+                   ? <ul className={`subheading ${showHeadingsExpanded ? 'expanded' : ''}`}>
                      {
                        subheading.map(({ level, heading, slug, subheading }) => (
                          <li key={slug} className={`heading-${level}`}>
-                           <a className={slug === activeSubheading ? 'active' : ''}
+                           <a className={`${slug === activeSubheading ? 'active' : ''}`}
                               aria-label={heading}
                               onClick={(e) => focusSubHeading(e, slug)}>{heading}</a>
                          </li>
@@ -141,6 +161,12 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
         right: calc((100% - 764px) / 2 + 744px);
         top: 2.6rem;
         height: calc(100% - 20vh);
+        transition: opacity 0.25s;
+        opacity: 0;
+
+        &.active {
+          opacity: 1;
+        }
 
         @media screen and (min-width: 1200px) {
           display: block;
@@ -217,6 +243,10 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s;
+
+        &.expanded {
+          max-height: 350px;
+        }
 
         .heading-3 {
           min-height: 4.2rem;
