@@ -37,20 +37,26 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
           font-size: var(--p);
         }
 
+        ::selection {
+          background-color: var(--color-selection);
+        }
+
         a {
-          text-decoration: none;
-          color: inherit;
           cursor: pointer;
+          color: inherit;
+          text-decoration: none;
         }
 
         .page {
-          min-height: calc(100vh - 309px);
           max-width: 76.4rem;
-          padding: 0 3.2rem;
+          min-height: calc(100vh - 309px);
           margin: 0 auto;
+          padding: 0 3.2rem;
         }
-      
-      
+
+        #__next {
+          position: relative;
+        }
       `}</style>
       <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
       <Header

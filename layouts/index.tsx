@@ -1,9 +1,12 @@
 import hydrate from 'next-mdx-remote/hydrate';
 import Box from 'components/Box';
-import Text from '../components/Text';
 import { FC } from 'react';
-import Avatar from '../components/Avatar';
 import 'styles/prism.scss';
+import ArticleHeading from '../components/ArticleHeading';
+import Text from '../components/Text';
+import Link from '../components/Link';
+import LinkBlock from '../components/LinkBlock';
+import ArticleSidebar from '../components/ArticleSidebar';
 
 type LayoutProps = {
   frontMatter: {
@@ -20,31 +23,27 @@ type LayoutProps = {
     }
     views?: string
     image?: string
-    headings?: { level: number; heading: string; subheading: any[] }
+    headings?: { level: number; heading: string; slug: string, subheading: any[] }[]
+    showHeadings?: 0 | 1 | 2 | 3
   }
 }
 
-export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, image, headings, ...rest } }) => {
+export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, image, headings, showHeadings = 0, ...rest } }) => {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
-  console.log(headings)
+  console.log(headings);
   return (
     <>
-      {title && <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={3}>{title}</Text>}
-      <Box d={'flex'} direction={['column', 'row']} mb={5}>
-        <Box d={'flex'} align={'center'}>
-          {authorAvatarUrl && <Avatar src={authorAvatarUrl} alt={author ? author : ''} initials={author} size={24} />}
-          {(author || publishedAt) &&
-          <Text as="p" fontSize={1} color={'--color-text'} ml={2} lineHeight={1.6}>
-            {author}{author && publishedAt ? ' / ' : ''}{publishedAt}
-          </Text>}
-        </Box>
-        <Box d={'flex'} align={'center'} justify={['flex-start', 'flex-end']} flex={1}>
-          <Text as="p" fontSize={1} color={'--color-subdued'} ml={2} lineHeight={1.6}>
-            {readingTime ? readingTime.text : ''}{views ? views : ''}
-          </Text>
-        </Box>
-      </Box>
+      <ArticleHeading title={title}
+                      authorAvatarUrl={authorAvatarUrl}
+                      author={author}
+                      publishedAt={publishedAt}
+                      readingTime={readingTime}
+                      views={views} />
+      
+      <ArticleSidebar showHeadings={showHeadings} headings={headings} />
+      
       <article className="mdx">{content}</article>
+      
       <style jsx global>{`
         .mdx {
           --h1: 3.6rem;
@@ -83,7 +82,7 @@ export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author
             font-size: var(--h2);
             font-weight: 700;
             line-height: 1.25;
-            scroll-margin-top: 100px;
+            scroll-margin-top: 160px;
           }
 
           h3 {

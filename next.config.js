@@ -25,10 +25,10 @@ const mdxOptions = {
 
       return ({
         headings: mdxContent.match(/#+\s+.*/gi) && mdxContent.match(/#+\s+.*/gi).reduce((accumulator, heading) => {
-          let acc = accumulator.modifiedAcc || []
-          let modifiedAcc = []
+          let acc = accumulator.slugTree || []
+          let slugTree = []
           let duplicates = accumulator.duplicates || {}
-          let slug = heading.replace(/^#+\s+/,'').replace(' ','-').toLowerCase().trim()
+          let slug = heading.replace(/^#+\s+/,'').replace(/[\/]/gi,'').trim().replace(/\s/gi,'-').toLowerCase()
 
           if (duplicates[slug] === 0 || duplicates[slug] > 0) {
             duplicates[slug] = duplicates[slug] + 1
@@ -40,7 +40,7 @@ const mdxOptions = {
           const inputObj = {
             level: heading.split(' ')[0].length,
             heading: heading.replace(/^#+\s+/,'').trim(),
-            slug: '#' + slug,
+            slug: slug,
             subheading: []
           }
           if (acc && acc[acc.length-1] && acc[acc.length-1].level < heading.split(' ')[0].length) {
@@ -49,14 +49,14 @@ const mdxOptions = {
             } else {
               acc[acc.length-1].subheading.push(inputObj)
             }
-            modifiedAcc = [...acc]
+            slugTree = [...acc]
           } else {
-            modifiedAcc = [...acc]
-            modifiedAcc.push(inputObj);
+            slugTree = [...acc]
+            slugTree.push(inputObj);
           }
 
-          return {modifiedAcc, duplicates}
-        }, {}).modifiedAcc,
+          return {slugTree, duplicates}
+        }, {}).slugTree,
         wordCount: mdxContent.split(/\s+/gu).length,
         readingTime: readingTime(mdxContent)
       });

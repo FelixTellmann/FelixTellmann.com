@@ -29,7 +29,8 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
          top={0}
          color={'--color-header'}
          bg={'--color-header-background'}
-         backdropFilter={'--color-header-backdrop-filter'}>
+         backdropFilter={'--color-header-backdrop-filter'}
+         zIndex={1000}>
       <Box as="nav"
            d={'flex'}
            align={'center'}
