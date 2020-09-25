@@ -64,7 +64,7 @@ const mdxOptions = {
   }
 };
 
-module.exports.mdxOptions = mdxOptions;
+module.exports['mdxOptions'] = mdxOptions;
 
 module.exports = withPlugins(
   [
