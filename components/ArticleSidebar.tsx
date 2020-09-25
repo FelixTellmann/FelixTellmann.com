@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import Box from './Box';
 import scrollTo from '../lib/scrollTo';
+import { observe } from 'web-vitals/dist/lib/observe';
 
 type ArticleSidebarProps = {
   showHeadings: number
@@ -95,7 +96,16 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   }, []);
   
   useEffect(() => {
-    if (observerA && observerB) {
+    if (observerA && !observerB) {
+      headings.forEach(({ slug, subheading }) => {
+        observerA.observe(document.getElementById(slug));
+      });
+      return () => {
+        headings.forEach(({ slug, subheading }) => {
+          observerA.unobserve(document.getElementById(slug));
+        });
+      };
+    } else  if (observerA && observerB) {
       headings.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
         subheading.length > 0 && subheading.forEach(({ slug }) => {
@@ -162,7 +172,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
       aside {
         display: none;
         position: absolute;
-        right: calc((100% - 764px) / 2 + 744px);
+        right: calc((100% - 764px) / 2 + 764px);
         top: 2.6rem;
         height: calc(100% - 20vh);
         transition: opacity 0.25s;
