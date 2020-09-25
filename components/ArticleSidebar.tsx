@@ -79,7 +79,8 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     setObserverB(new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.intersectionRatio === 0) {setActiveSubheading('');
+          if (entry.intersectionRatio === 0) {
+            setActiveSubheading('');
           }
           if (entry.isIntersecting) {
             setActiveSubheading(entry.target.id);
@@ -114,7 +115,6 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   
   useEffect(() => {
     setShowSidebar(window.scrollY > 400);
- 
     
     window.addEventListener('scroll', () => {
       setShowSidebar(window.scrollY > 400);
@@ -125,35 +125,39 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   }, []);
   
   return <>
-    <aside className={showSidebar ? 'active' : ''}>
-      <Box position={'sticky'} w={220} top={200} minH={600} p={3}>
-        <ul>
-          {
-            headings.map(({ heading, slug, subheading }) => (
-                <li key={slug} className={`heading`}>
-                  <a className={slug === activeHeading ? 'active' : ''}
-                     aria-label={heading}
-                     onClick={(e) => focusHeading(e, slug)}>{heading}</a>
-                  {showHeadings > 1 && subheading.length > 0
-                   ? <ul className={`subheading ${showHeadingsExpanded ? 'expanded' : ''}`}>
-                     {
-                       subheading.map(({ level, heading, slug, subheading }) => (
-                         <li key={slug} className={`heading-${level}`}>
-                           <a className={`${slug === activeSubheading ? 'active' : ''}`}
-                              aria-label={heading}
-                              onClick={(e) => focusSubHeading(e, slug)}>{heading}</a>
-                         </li>
-                       ))
-                     }
-                   </ul>
-                   : ''}
-                </li>
+    {
+      showHeadings > 0 && headings?.length > 0
+      ? <aside className={showSidebar ? 'active' : ''}>
+        <Box position={'sticky'} w={220} top={200} minH={600} p={3}>
+          <ul>
+            {
+              headings.map(({ heading, slug, subheading }) => (
+                  <li key={slug} className={`heading`}>
+                    <a className={slug === activeHeading ? 'active' : ''}
+                       aria-label={heading}
+                       onClick={(e) => focusHeading(e, slug)}>{heading}</a>
+                    {showHeadings > 1 && subheading?.length > 0
+                     ? <ul className={`subheading ${showHeadingsExpanded ? 'expanded' : ''}`}>
+                       {
+                         subheading.map(({ level, heading, slug, subheading }) => (
+                           <li key={slug} className={`heading-${level}`}>
+                             <a className={`${slug === activeSubheading ? 'active' : ''}`}
+                                aria-label={heading}
+                                onClick={(e) => focusSubHeading(e, slug)}>{heading}</a>
+                           </li>
+                         ))
+                       }
+                     </ul>
+                     : ''}
+                  </li>
+                )
               )
-            )
-          }
-        </ul>
-      </Box>
-    </aside>
+            }
+          </ul>
+        </Box>
+      </aside>
+      : null
+    }
     <style jsx>{`
       aside {
         display: none;
