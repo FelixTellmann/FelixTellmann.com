@@ -6,9 +6,6 @@ const path = require('path');
 const optimizedImages = require('next-optimized-images');
 const mdxOptions = require('./lib/mdxOptions')
 
-
-
-
 module.exports = withPlugins(
   [
     [optimizedImages, { optimizeImagesInDev: true }],

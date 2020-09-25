@@ -31,7 +31,6 @@ type LayoutProps = {
 
 export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest } }) => {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
-  console.log(headings);
   return (
     <>
       <ArticleHeading title={title}

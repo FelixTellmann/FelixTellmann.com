@@ -12,18 +12,18 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   
   const focusHeading = (event, slug) => {
     event.preventDefault();
-    headings.forEach(({ slug, subheading }) => {
+    headings?.forEach(({ slug, subheading }) => {
       observerA.unobserve(document.getElementById(slug));
-      subheading.length > 0 && subheading.forEach(({ slug }) => {
+      subheading?.length > 0 && subheading.forEach(({ slug }) => {
         observerB.unobserve(document.getElementById(slug));
       });
     });
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
     setActiveHeading(slug);
     setTimeout(() => {
-      headings.forEach(({ slug, subheading }) => {
+      headings?.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
-        subheading.length > 0 && subheading.forEach(({ slug }) => {
+        subheading?.length > 0 && subheading.forEach(({ slug }) => {
           observerB.unobserve(document.getElementById(slug));
         });
       });
@@ -33,20 +33,20 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     }, 240);
   };
   
-  const focusSubHeading = async (event, slug) => {
+  const focusSubHeading = (event, slug) => {
     event.preventDefault();
-    await headings.forEach(({ slug, subheading }) => {
+    headings?.forEach(({ slug, subheading }) => {
       observerA.unobserve(document.getElementById(slug));
-      subheading.length > 0 && subheading.forEach(({ slug }) => {
+      subheading?.length > 0 && subheading.forEach(({ slug }) => {
         observerB.unobserve(document.getElementById(slug));
       });
     });
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
     setActiveSubheading(slug);
     setTimeout(() => {
-      headings.forEach(({ slug, subheading }) => {
+      headings?.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
-        subheading.length > 0 && subheading.forEach(({ slug }) => {
+        subheading?.length > 0 && subheading.forEach(({ slug }) => {
           observerB.observe(document.getElementById(slug));
         });
       });
@@ -72,7 +72,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
         });
       },
       {
-        rootMargin: `0% 0% -70% 0%`,
+        rootMargin: `0% 0% -60% 0%`,
         threshold: 1.0
       }
     ));
@@ -96,16 +96,16 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   
   useEffect(() => {
     if (observerA && observerB) {
-      headings.forEach(({ slug, subheading }) => {
+      headings?.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
-        subheading.length > 0 && subheading.forEach(({ slug }) => {
+        subheading?.length > 0 && subheading.forEach(({ slug }) => {
           observerB.observe(document.getElementById(slug));
         });
       });
       return () => {
-        headings.forEach(({ slug, subheading }) => {
+        headings?.forEach(({ slug, subheading }) => {
           observerA.unobserve(document.getElementById(slug));
-          subheading.length > 0 && subheading.forEach(({ slug }) => {
+          subheading?.length > 0 && subheading.forEach(({ slug }) => {
             observerB.unobserve(document.getElementById(slug));
           });
         });
