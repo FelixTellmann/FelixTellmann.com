@@ -61,7 +61,6 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   const [observerA, setObserverA] = useState<any>();
   const [observerB, setObserverB] = useState<any>();
   const [showSidebar, setShowSidebar] = useState(false);
-  const [hideSidebarOverwrite, setHideSidebarOverwrite] = useState(false);
   
   useEffect(() => {
     setObserverA(new IntersectionObserver(
