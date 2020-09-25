@@ -12,7 +12,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   
   const focusHeading = (event, slug) => {
     event.preventDefault();
-    headings?.forEach(({ slug, subheading }) => {
+    headings.forEach(({ slug, subheading }) => {
       observerA.unobserve(document.getElementById(slug));
       subheading?.length > 0 && subheading.forEach(({ slug }) => {
         observerB.unobserve(document.getElementById(slug));
@@ -21,7 +21,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
     setActiveHeading(slug);
     setTimeout(() => {
-      headings?.forEach(({ slug, subheading }) => {
+      headings.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
         subheading?.length > 0 && subheading.forEach(({ slug }) => {
           observerB.unobserve(document.getElementById(slug));
@@ -35,7 +35,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   
   const focusSubHeading = (event, slug) => {
     event.preventDefault();
-    headings?.forEach(({ slug, subheading }) => {
+    headings.forEach(({ slug, subheading }) => {
       observerA.unobserve(document.getElementById(slug));
       subheading?.length > 0 && subheading.forEach(({ slug }) => {
         observerB.unobserve(document.getElementById(slug));
@@ -44,7 +44,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
     setActiveSubheading(slug);
     setTimeout(() => {
-      headings?.forEach(({ slug, subheading }) => {
+      headings.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
         subheading?.length > 0 && subheading.forEach(({ slug }) => {
           observerB.observe(document.getElementById(slug));
@@ -96,16 +96,16 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   
   useEffect(() => {
     if (observerA && observerB) {
-      headings?.forEach(({ slug, subheading }) => {
+      headings.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
-        subheading?.length > 0 && subheading.forEach(({ slug }) => {
+        subheading.length > 0 && subheading.forEach(({ slug }) => {
           observerB.observe(document.getElementById(slug));
         });
       });
       return () => {
-        headings?.forEach(({ slug, subheading }) => {
+        headings.forEach(({ slug, subheading }) => {
           observerA.unobserve(document.getElementById(slug));
-          subheading?.length > 0 && subheading.forEach(({ slug }) => {
+          subheading.length > 0 && subheading.forEach(({ slug }) => {
             observerB.unobserve(document.getElementById(slug));
           });
         });
@@ -126,7 +126,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   
   return <>
     {
-      showHeadings > 0 && headings?.length > 0
+      showHeadings > 0 && headings.length > 0
       ? <aside className={showSidebar ? 'active' : ''}>
         <Box position={'sticky'} w={220} top={200} minH={600} p={3}>
           <ul>

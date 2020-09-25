@@ -40,7 +40,9 @@ export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author
                       readingTime={readingTime}
                       views={views} />
       
-      <ArticleSidebar showHeadings={showHeadings} headings={headings} showHeadingsExpanded={showHeadingsExpanded} />
+      {showHeadings > 0 && headings
+       ? <ArticleSidebar showHeadings={showHeadings} headings={headings} showHeadingsExpanded={showHeadingsExpanded} />
+       : null}
       
       <article className="mdx">{content}</article>
       
