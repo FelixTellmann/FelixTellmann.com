@@ -3,7 +3,7 @@ import renderToString from "next-mdx-remote/render-to-string";
 import Layout from "layouts";
 
 import { getAllPostsSlug, getSinglePostData } from "lib/getBlogPosts";
-import { mdxOptions } from "next.config";
+import { mdxOptions } from "../../next.config";
 
 export default Layout;
 
