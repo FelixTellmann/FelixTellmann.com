@@ -14,7 +14,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     event.preventDefault();
     headings.forEach(({ slug, subheading }) => {
       observerA.unobserve(document.getElementById(slug));
-      subheading?.length > 0 && subheading.forEach(({ slug }) => {
+      subheading.length > 0 && subheading.forEach(({ slug }) => {
         observerB.unobserve(document.getElementById(slug));
       });
     });
@@ -23,7 +23,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     setTimeout(() => {
       headings.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
-        subheading?.length > 0 && subheading.forEach(({ slug }) => {
+        subheading.length > 0 && subheading.forEach(({ slug }) => {
           observerB.unobserve(document.getElementById(slug));
         });
       });
@@ -37,7 +37,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     event.preventDefault();
     headings.forEach(({ slug, subheading }) => {
       observerA.unobserve(document.getElementById(slug));
-      subheading?.length > 0 && subheading.forEach(({ slug }) => {
+      subheading.length > 0 && subheading.forEach(({ slug }) => {
         observerB.unobserve(document.getElementById(slug));
       });
     });
@@ -46,7 +46,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     setTimeout(() => {
       headings.forEach(({ slug, subheading }) => {
         observerA.observe(document.getElementById(slug));
-        subheading?.length > 0 && subheading.forEach(({ slug }) => {
+        subheading.length > 0 && subheading.forEach(({ slug }) => {
           observerB.observe(document.getElementById(slug));
         });
       });
@@ -136,7 +136,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
                     <a className={slug === activeHeading ? 'active' : ''}
                        aria-label={heading}
                        onClick={(e) => focusHeading(e, slug)}>{heading}</a>
-                    {showHeadings > 1 && subheading?.length > 0
+                    {showHeadings > 1 && subheading.length > 0
                      ? <ul className={`subheading ${showHeadingsExpanded ? 'expanded' : ''}`}>
                        {
                          subheading.map(({ level, heading, slug, subheading }) => (
