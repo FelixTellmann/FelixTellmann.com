@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import Box from './Box';
 import scrollTo from '../lib/scrollTo';
-import { observe } from 'web-vitals/dist/lib/observe';
 
 type ArticleSidebarProps = {
   showHeadings: number
@@ -96,32 +95,34 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   }, []);
   
   useEffect(() => {
-    if (observerA && !observerB) {
-      headings.forEach(({ slug, subheading }) => {
+    if (observerA) {
+      headings.forEach(({ slug }) => {
         observerA.observe(document.getElementById(slug));
       });
       return () => {
-        headings.forEach(({ slug, subheading }) => {
+        headings.forEach(({ slug }) => {
           observerA.unobserve(document.getElementById(slug));
         });
       };
-    } else  if (observerA && observerB) {
-      headings.forEach(({ slug, subheading }) => {
-        observerA.observe(document.getElementById(slug));
+    }
+  }, [observerA, setObserverA, showSidebar]);
+  
+  useEffect(() => {
+    if (observerB) {
+      headings.forEach(({ subheading }) => {
         subheading.length > 0 && subheading.forEach(({ slug }) => {
           observerB.observe(document.getElementById(slug));
         });
       });
       return () => {
-        headings.forEach(({ slug, subheading }) => {
-          observerA.unobserve(document.getElementById(slug));
+        headings.forEach(({ subheading }) => {
           subheading.length > 0 && subheading.forEach(({ slug }) => {
             observerB.unobserve(document.getElementById(slug));
           });
         });
       };
     }
-  }, [observerA, observerB]);
+  }, [observerB, setObserverB, showSidebar]);
   
   useEffect(() => {
     setShowSidebar(window.scrollY > 400);
