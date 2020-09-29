@@ -48,6 +48,12 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
           text-decoration: none;
         }
 
+        hr {
+          border-color: unset;
+          border-width: 0;
+          margin: 0;
+        }
+
         .page {
           max-width: 76.4rem;
           min-height: calc(100vh - 309px);

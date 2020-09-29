@@ -9,60 +9,26 @@ type ArticleSidebarProps = {
 };
 
 export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings, showHeadingsExpanded }) => {
-  
   const focusHeading = (event, slug) => {
     event.preventDefault();
-    headings.forEach(({ slug, subheading }) => {
-      observerA.unobserve(document.getElementById(slug));
-      subheading.length > 0 && subheading.forEach(({ slug }) => {
-        observerB.unobserve(document.getElementById(slug));
-      });
-    });
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
     setActiveHeading(slug);
-    setTimeout(() => {
-      headings.forEach(({ slug, subheading }) => {
-        observerA.observe(document.getElementById(slug));
-        subheading.length > 0 && subheading.forEach(({ slug }) => {
-          observerB.unobserve(document.getElementById(slug));
-        });
-      });
-      setTimeout(() => {
-        setActiveHeading(slug);
-      }, 50);
-    }, 240);
+    setActiveSubheading('');
   };
   
   const focusSubHeading = (event, slug) => {
     event.preventDefault();
-    headings.forEach(({ slug, subheading }) => {
-      observerA.unobserve(document.getElementById(slug));
-      subheading.length > 0 && subheading.forEach(({ slug }) => {
-        observerB.unobserve(document.getElementById(slug));
-      });
-    });
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
     setActiveSubheading(slug);
-    setTimeout(() => {
-      headings.forEach(({ slug, subheading }) => {
-        observerA.observe(document.getElementById(slug));
-        subheading.length > 0 && subheading.forEach(({ slug }) => {
-          observerB.observe(document.getElementById(slug));
-        });
-      });
-      setTimeout(() => {
-        setActiveSubheading(slug);
-      }, 50);
-    }, 240);
   };
   
   const [activeHeading, setActiveHeading] = useState(``);
   const [activeSubheading, setActiveSubheading] = useState(``);
-  const [observerA, setObserverA] = useState<any>();
-  const [observerB, setObserverB] = useState<any>();
   const [showSidebar, setShowSidebar] = useState(false);
   
-  const initiateIntersectionObserver = () => {
+  useEffect(() => {
+    const ac = new AbortController();
+    let loaded = false
     let observerA = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -93,44 +59,56 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
         threshold: [0, 1]
       }
     );
-    headings.forEach(({ slug, subheading }) => {
+    headings?.forEach(({ slug, subheading }) => {
       observerA.observe(document.getElementById(slug));
       subheading.length > 0 && subheading.forEach(({ slug }) => {
         observerB.observe(document.getElementById(slug));
       });
     });
     
-    setObserverA(observerA);
-    setObserverB(observerB);
+    setShowSidebar(window.scrollY > 400);
     
-    return () => {
-      headings.forEach(({ slug, subheading }) => {
-        observerA.unobserve(document.getElementById(slug));
-        subheading.length > 0 && subheading.forEach(({ slug }) => {
-          observerB.unobserve(document.getElementById(slug));
-        });
-      });
-    };
-  };
-  
-  useEffect(() => {
     window.addEventListener('load', (e) => {
-      initiateIntersectionObserver();
+      if (!loaded) {
+        loaded = true
+        headings?.forEach(({ slug, subheading }) => {
+          observerA.observe(document.getElementById(slug));
+          subheading.length > 0 && subheading.forEach(({ slug }) => {
+            observerB.observe(document.getElementById(slug));
+          });
+        });
+      }
     }, { once: true });
     
-    return window.removeEventListener('load', (e) => {
-      initiateIntersectionObserver();
-    });
-  }, []);
-  
-  useEffect(() => {
-    setShowSidebar(window.scrollY > 400);
     window.addEventListener('scroll', () => {
       setShowSidebar(window.scrollY > 400);
+      if (!loaded) {
+        loaded = true
+        headings?.forEach(({ slug, subheading }) => {
+          observerA.observe(document.getElementById(slug));
+          subheading.length > 0 && subheading.forEach(({ slug }) => {
+            observerB.observe(document.getElementById(slug));
+          });
+        });
+      }
     });
-    return window.removeEventListener('scroll', () => {
-      setShowSidebar(window.scrollY > 400);
-    });
+    
+    return () => {
+      observerA.disconnect();
+      observerB.disconnect();
+      window.removeEventListener('scroll', () => {
+        setShowSidebar(window.scrollY > 400);
+      });
+      window.removeEventListener('scroll', () => {
+        headings?.forEach(({ slug, subheading }) => {
+          observerA.observe(document.getElementById(slug));
+          subheading.length > 0 && subheading.forEach(({ slug }) => {
+            observerB.observe(document.getElementById(slug));
+          });
+        });
+      });
+      ac.abort()
+    };
   }, []);
   
   return <>

@@ -54,7 +54,7 @@ export const Timeline: FC<TimelineProps> = ({ title, data, preview }) => {
   }, [fullTimeline]);
   
   return <>
-    {title ? <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.2} mb={3}>      {title}    </Text> : ''}
+    {title ? <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.2} mb={3}>{title}</Text> : ''}
     {timelineData.map(({ title, items }, index) => (
       <Fragment key={title}>
         <TimelineGroup title={title} items={items} />

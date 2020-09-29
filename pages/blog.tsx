@@ -7,7 +7,7 @@ import matter from 'gray-matter';
 import BlogPreview from '../components/BlogPreview';
 import Box from '../components/Box';
 
-type BlogProps = {
+export type BlogProps = {
   postData: {
     slug: string;
     frontMatter: {
@@ -21,11 +21,6 @@ type BlogProps = {
 export const Blog: FC<BlogProps> = ({ postData }) => {
   
   const [filteredPostData, setFilteredPostData] = useState(postData);
-  
-  const INTRO = {
-    title: `Blog`,
-    description: `I've been writing online since 2015, mostly about web development and tech careers. In total, I've written 63 articles on this site. Use the search below to filter by title.`
-  };
   
   const search = (event) => {
     if (event.currentTarget.value.replace(/\s/gi, '').length <= 2) {
@@ -63,12 +58,18 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
   };
   
   return <>
-    <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>{INTRO.title}</Text>
-    <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={3}>{INTRO.description}</Text>
+    <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>
+      Blog
+    </Text>
+    <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={3}>
+      I've been writing online since 2015, mostly about web development and tech careers.
+      In total, I've written 63 articles on this site. Use the search below to filter by title.
+    </Text>
     <Box mb={5}>
       <Input placeholder="Search Articles" icon={<FiSearch />} onChange={search} />
     </Box>
-    <Text as="h2" fontSize={30} fontWeight={700} lineHeight={1.25} mb={3}>Recent Posts</Text>
+    
+    <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>Recent Posts</Text>
     {
       filteredPostData.map(({ slug, frontMatter: { title, excerpt } }) => (
         <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />)

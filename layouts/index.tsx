@@ -3,9 +3,6 @@ import Box from 'components/Box';
 import { FC } from 'react';
 import 'styles/prism.scss';
 import ArticleHeading from '../components/ArticleHeading';
-import Text from '../components/Text';
-import Link from '../components/Link';
-import LinkBlock from '../components/LinkBlock';
 import ArticleSidebar from '../components/ArticleSidebar';
 
 type LayoutProps = {
