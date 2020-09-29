@@ -15,10 +15,10 @@ type LinkProps = {
 
 export const Link: FC<LinkProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, secondary, small, large, children, ...props }) => {
   
-  const { styleJsx, cleanProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
+  const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
   const classNames = `link ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large ? 'large' : ''} ${className}`.trim();
   return <>
-    <NextLink href={href}><a target={target} className={classNames} onClick={onClick} {...cleanProps}>{title}</a></NextLink>
+    <NextLink href={href}><a target={target} className={classNames} onClick={onClick} {...nonCssProps}>{title}</a></NextLink>
     
     <style jsx>{`
       .link {

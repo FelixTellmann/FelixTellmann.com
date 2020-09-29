@@ -11,10 +11,10 @@ type BoxProps = {
 
 export const Box: FC<BoxProps & CSS> = ({ as = 'div', children, className = '', ...props }) => {
   
-  const { styleJsx, cleanProps } = useStyledSystem(props, { Space: true, Layout: true, Color: true });
+  const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Color: true });
   const { className: cssClass, styles } = css.resolve`${styleJsx}`;
   return <>
-    {createElement(as, { className: `${cssClass} ${className}`, ...cleanProps }, children)}
+    {createElement(as, { className: `${cssClass} ${className}`, ...nonCssProps }, children)}
     {styles}
   </>;
 };

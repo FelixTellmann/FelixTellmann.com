@@ -16,7 +16,7 @@ type ButtonProps = {
 
 export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
   
-  const { styleJsx, cleanProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
+  const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
   const classNames = `button ${icon ? 'icon' : ''} ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large
                                                                                                              ? 'large'
                                                                                                              : ''} ${className}`.trim();
