@@ -5,12 +5,7 @@ type EaseInOutQuadOptions = {
   duration: number;
 };
 
-const easeInOutQuad = ({
-                         currentTime,
-                         start,
-                         change,
-                         duration
-                       }: EaseInOutQuadOptions) => {
+const easeInOutQuad = ({ currentTime, start, change, duration }: EaseInOutQuadOptions) => {
   let newCurrentTime = currentTime;
   newCurrentTime /= duration / 2;
   

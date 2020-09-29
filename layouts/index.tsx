@@ -40,11 +40,13 @@ export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author
                       readingTime={readingTime}
                       views={views} />
       
+      
+      
+      <article className="mdx">{content}</article>
+      
       {showHeadings > 0 && headings
        ? <ArticleSidebar showHeadings={showHeadings} headings={headings} showHeadingsExpanded={showHeadingsExpanded} />
        : null}
-      
-      <article className="mdx">{content}</article>
       
       <style jsx global>{`
         .mdx {

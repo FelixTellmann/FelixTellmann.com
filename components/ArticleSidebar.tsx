@@ -62,8 +62,8 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
   const [observerB, setObserverB] = useState<any>();
   const [showSidebar, setShowSidebar] = useState(false);
   
-  useEffect(() => {
-    setObserverA(new IntersectionObserver(
+  const initiateIntersectionObserver = () => {
+    let observerA = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -75,8 +75,9 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
         rootMargin: `0% 0% -60% 0%`,
         threshold: 1.0
       }
-    ));
-    setObserverB(new IntersectionObserver(
+    );
+    
+    let observerB = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.intersectionRatio === 0) {
@@ -91,42 +92,39 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
         rootMargin: `0% 0% -70% 0%`,
         threshold: [0, 1]
       }
-    ));
+    );
+    headings.forEach(({ slug, subheading }) => {
+      observerA.observe(document.getElementById(slug));
+      subheading.length > 0 && subheading.forEach(({ slug }) => {
+        observerB.observe(document.getElementById(slug));
+      });
+    });
+    
+    setObserverA(observerA);
+    setObserverB(observerB);
+    
+    return () => {
+      headings.forEach(({ slug, subheading }) => {
+        observerA.unobserve(document.getElementById(slug));
+        subheading.length > 0 && subheading.forEach(({ slug }) => {
+          observerB.unobserve(document.getElementById(slug));
+        });
+      });
+    };
+  };
+  
+  useEffect(() => {
+    window.addEventListener('load', (e) => {
+      initiateIntersectionObserver();
+    }, { once: true });
+    
+    return window.removeEventListener('load', (e) => {
+      initiateIntersectionObserver();
+    });
   }, []);
   
   useEffect(() => {
-    if (observerA) {
-      headings.forEach(({ slug }) => {
-        observerA.observe(document.getElementById(slug));
-      });
-      return () => {
-        headings.forEach(({ slug }) => {
-          observerA.unobserve(document.getElementById(slug));
-        });
-      };
-    }
-  }, [observerA, setObserverA, showSidebar]);
-  
-  useEffect(() => {
-    if (observerB) {
-      headings.forEach(({ subheading }) => {
-        subheading.length > 0 && subheading.forEach(({ slug }) => {
-          observerB.observe(document.getElementById(slug));
-        });
-      });
-      return () => {
-        headings.forEach(({ subheading }) => {
-          subheading.length > 0 && subheading.forEach(({ slug }) => {
-            observerB.unobserve(document.getElementById(slug));
-          });
-        });
-      };
-    }
-  }, [observerB, setObserverB, showSidebar]);
-  
-  useEffect(() => {
     setShowSidebar(window.scrollY > 400);
-    
     window.addEventListener('scroll', () => {
       setShowSidebar(window.scrollY > 400);
     });
