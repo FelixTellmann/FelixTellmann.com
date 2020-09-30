@@ -81,6 +81,19 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
 
         #__next {
           position: relative;
+
+          &:before {
+            content: ' ';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/bg-pattern.png');
+            background-size: 50%;
+            opacity: 0.7;
+          }
         }
       `}</style>
       
