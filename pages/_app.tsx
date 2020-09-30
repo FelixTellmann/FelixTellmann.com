@@ -62,6 +62,10 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
           font-style: italic;
         }
 
+        small {
+          font-size: 0.875em;
+        }
+
         .page {
           max-width: 76.4rem;
           min-height: calc(100vh - 309px);
