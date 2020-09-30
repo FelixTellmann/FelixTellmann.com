@@ -8,6 +8,8 @@ import 'styles/theme.scss';
 import Header from '../components/Header';
 import { FiFacebook, FiGithub, FiMail, FiTwitter } from 'react-icons/fi';
 import Footer from '../components/Footer';
+import { Loading } from '../components/Loading';
+import Box from '../components/Box';
 
 export const _App: FC<AppProps> = ({ pageProps, Component }) => {
   
@@ -82,22 +84,25 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
         #__next {
           position: relative;
 
-          &:before {
-            content: ' ';
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('/bg-pattern.png');
-            background-size: 50%;
-            opacity: 0.7;
-          }
+          /* &:before {
+             content: ' ';
+             display: block;
+             position: absolute;
+             left: 0;
+             top: 0;
+             width: 100%;
+             height: 100%;
+             background-image: url('/bg-pattern.png');
+             background-size: 50%;
+             opacity: 0.7;
+           }*/
         }
       `}</style>
       
       <BreakpointProvider breakPoints={[0, 600, 900, 1200]}>
+        <Box position={'absolute'} top={0} left={0} w={'100%'} h={'calc(100% + 3.2rem)'} mt={'-3.2rem'}>
+          <Loading loading={false} duration={3} width="7px" />
+        </Box>
         <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
         <Header
           logo={{ title: 'FT', href: '/' }}
