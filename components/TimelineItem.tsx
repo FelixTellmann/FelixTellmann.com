@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Box from './Box';
-import CheckIcon from 'public/icons/CheckIcon.svg';
+// @ts-ignore
+import CheckIcon from './../public/icons/CheckIcon.svg';
 import Text from './Text';
 
 export type TimelineItemProps = {

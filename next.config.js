@@ -46,7 +46,6 @@ module.exports = withPlugins(
         } : {}
       );
 
-      config.resolve.alias['public'] = path.join(__dirname, 'public');
       config.resolve.extensions = ['.ts', '.js', '.jsx', '.tsx', '.svg', '.scss'];
       return config;
     }
