@@ -1,16 +1,15 @@
-import { CSSProperties, FC } from 'react';
+import { AnchorHTMLAttributes, CSSProperties, FC } from 'react';
 import Link from 'next/link';
 
 type LinkBlockProps = {
   href: string
-  target?: string
   className?: string
   style?: CSSProperties
 };
 
-export const LinkBlock: FC<LinkBlockProps> = ({ href, target, className, style = {}, children }) => {
+export const LinkBlock: FC<LinkBlockProps & AnchorHTMLAttributes<any>> = ({ href, target, className, style = {}, children, ...props}) => {
   return <>
-    <Link href={href}><a target={target} className={className} style={style}>{children}</a></Link>
+    <Link href={href}><a target={target} className={className} style={style} {...props}>{children}</a></Link>
     <style jsx>{`
       a {
         display: block;

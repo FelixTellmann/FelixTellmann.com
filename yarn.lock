@@ -11473,10 +11473,10 @@ use-persisted-state@^0.3.0:
   dependencies:
     "@use-it/event-listener" "^0.1.2"
 
-use-styled-system@2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/use-styled-system/-/use-styled-system-2.2.3.tgz#ad9e5505e5af71af5d33eb1db2636e06f3552e04"
-  integrity sha512-BgWvKBN2eMOzj7nan3+TtPcsXbCok+uJHohgUhJeDwy2NdM+JbRNg6byzRyOn8D/LTvXEYUTSFIpRqYmFO+D6g==
+use-styled-system@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/use-styled-system/-/use-styled-system-2.2.4.tgz#8e2033ba0d250f2dbb1c1ad50207ec70e4149c29"
+  integrity sha512-LgPDDK5quoIs6Bw/UM4ot2/y880acRvlDzAjOqaJO/w6zIiN7sWiYkBHQT23w/fLiLSbQXsIZKhQrqU8kiillQ==
   dependencies:
     "@babel/core" "^7.11.6"
     "@babel/preset-env" "^7.11.5"

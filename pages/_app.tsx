@@ -54,6 +54,14 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
           margin: 0;
         }
 
+        strong {
+          font-weight: 700;
+        }
+
+        em {
+          font-style: italic;
+        }
+
         .page {
           max-width: 76.4rem;
           min-height: calc(100vh - 309px);
