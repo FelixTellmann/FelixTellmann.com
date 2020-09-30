@@ -63,20 +63,20 @@ export const Loading: FC<BorderProps> = ({ loading, duration, width }) => {
       :global(:root) {
         --border-width: 6px;
         --border-color: linear-gradient(270deg,#f50a81 25.28%,#9d09db 59.7%,#f722c9 97.75%);
+        --border-color: linear-gradient(270deg,#00bfa5 25.28%,#3182ce 59.7%,rgba(11, 197, 234, 0.67) 97.75%);
         --border-animation-delay: 2.5s;
         --border-animation-duration: 5s;
         --border-animation-loop: infinite;
       }
 
       .border {
-        position: sticky;
+        position: fixed;
         z-index: 10000;
         top: 0;
         left: 0;
         width: 100%;
-        bottom: 0;
-        right: 0;
-        min-height: 100vh;
+        height: 100vh;
+        margin-bottom: -100vh;
         background: var(--border-color);
         animation-name: border;
         animation-duration: var(--border-animation-duration);
@@ -88,7 +88,6 @@ export const Loading: FC<BorderProps> = ({ loading, duration, width }) => {
     
     `}</style>
   </>;
-  
 };
 
 
