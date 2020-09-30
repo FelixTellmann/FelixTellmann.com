@@ -62,8 +62,8 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
       Blog
     </Text>
     <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={3}>
-      I've been writing online since 2015, mostly about web development and tech careers.
-      In total, I've written 63 articles on this site. Use the search below to filter by title.
+      I've been writing online since 2014, mostly about web development, tech news, and the occasional life wisdom.
+      Use the search below to filter by title.
     </Text>
     <Box mb={5}>
       <Input placeholder="Search Articles" icon={<FiSearch />} onChange={search} />

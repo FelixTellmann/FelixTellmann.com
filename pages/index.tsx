@@ -19,10 +19,52 @@ export const Index: FC<BlogProps> = ({ postData }) => {
         title: `2020`,
         items: [
           {
-            headline: `Moved to Cape Town`,
-            description: `I'm excited to help grow the Next.js community and continue building the optimal workflow for front-end developers.`
+            headline: <>In-Progress</>,
+            description: <>Currently, I'm working on a online course focussing on holistic react applications with next.js</>
+          },
+          {
+            headline: <>Launched my new website v3.0</>,
+            description: <>Finally after a few months of design & redesigns, and other projects in the background, I got my new page up and
+              running.</>
+          },
+          {
+            headline: <>use-styled-system & use-color-theme</>,
+            description: <>Created & published two custom react hooks as npm packages, and planning the next one.</>
+          },
+          {
+            headline: <>New - <em>Old</em> - Beginnings</>,
+            description: <>Restarted my freelancing Web Development and got back in touch with clients.</>
+          },
+          {
+            headline: <>When the world stopped</>,
+            description: <>From successful restaurant to closing our doors in a matter of weeks. Its been a great journey, the uncertainty of
+              corona and the national lockdown have clarified major life-changing questions. Answering them became easy overnight.</>
+          },
+          {
+            headline: <>Best Season so far</>,
+            description: <>Grew the restaurant consistently, with the best season an a blast of a staff party to finish of the holiday
+              times.</>
           }
-        
+        ]
+      },
+      {
+        title: `2019`,
+        items: [
+          {
+            headline: <>Data Analysis -&gt; Smart-Up</>,
+            description: <>Used the restaurants sales & performance data to gather insights & to establish new training approaches for
+              Smart-Up to use internally in the restaurant. Including a deep dive into MySQL & Oracle DB.</>
+          },
+          {
+            headline: <>Restaurant v2.0</>,
+            description: <>Upgraded the concept to the fit market environment & changed the name from <u style={{ whiteSpace: 'nowrap' }}>The
+              Burger Exchange</u> to <u style={{ whiteSpace: 'nowrap' }}>The
+              Exchange</u> and shifted focus to also include a variety of woodfired grills. 🥩🔥</>
+          },
+          {
+            headline: <>Visited Namibia</>,
+            description: <>Fulfilled a lifetime dream to 4x4 drive and camp in Namibia with the best friends.</>
+          }
         ]
       }
     ];
@@ -32,7 +74,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
         title: `2018`,
         items: [
           {
-            headline: <>Opened <em>The Burger Exchange</em></>,
+            headline: <>Opened <em>The Burger Exchange</em> 🍔</>,
             description: <>Its always been a dream, or said jokingly. Now we took the steps to Make it a Reality. A 200 seater
               Restaurant with our own Concept of a trendy upmarket Burger Joint.</>
           },
@@ -56,7 +98,8 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           },
           {
             headline: <>Full-time Web Development</>,
-            description: <>Found my first clients to work on the side, and quickly grew to a full time freelancing occupation, where I got hooked on React.js</>
+            description: <>Found my first clients to work on the side, and quickly grew to a full time freelancing occupation, where I got
+              hooked on React.js</>
           },
           {
             headline: <>Almost started a Food Truck 🚚</>,
@@ -72,6 +115,11 @@ export const Index: FC<BlogProps> = ({ postData }) => {
             headline: <>Building Smart-up</>,
             description: <>I took some time to work on the marriage of my passions: Tech & Restaurants. Smart-up
               is a training platform & SaaS application for restaurant owners & managers to train their staff.</>
+          },
+          {
+            headline: <>Upgrading my coding skills</>,
+            description: <>This year was the year to pursue my interests in web development & tech professionally. I did a deep dive
+              completing the FreeCodeCamp Front-end & Back-end Certifactions.</>
           },
           {
             headline: <>Opened a Restaurant (not my own yet)</>,
@@ -220,7 +268,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           {
             headline: <>Exploring the Internet for the first time 🌐</>,
             description: <>Travelling at 28.8Kbit Modem speeds 📠🔌💾 ..., t.t.t.t.t.t.t,tick
-              eeeeeeeooohhhwwwwwaaa............Pshhhkkkkkkrrrr2ka, *ding*ding... %^&! Playing some Snowman Browser Game I will never
+              eeeeeeeooohhhwwwwwaaa............Pshhhkkkkkkrrrr2ka, *ding*ding... %^&! Playing some Snowman browser game I will never
               forget.</>
           }
         ]

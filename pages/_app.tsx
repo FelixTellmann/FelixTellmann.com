@@ -49,9 +49,9 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
         }
 
         hr {
-          border-color: unset;
-          border-width: 0;
           margin: 0;
+          border-width: 0;
+          border-color: unset;
         }
 
         strong {
@@ -60,6 +60,12 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
 
         em {
           font-style: italic;
+        }
+
+        u {
+          text-decoration-color: var(--color-subdued);
+          text-decoration-skip-ink: auto;
+          text-decoration-width: 1px;
         }
 
         small {

@@ -12,7 +12,7 @@ type TimelineProps = {
 };
 
 export const Timeline: FC<TimelineProps> = ({ title, data, preview }) => {
-  const [fullTimeline, toggleFullTimeline] = useState(true);
+  const [fullTimeline, toggleFullTimeline] = useState(false);
   const [timelineData, setTimelineData] = useState(preview ? preview : data);
   
   useEffect(() => {
