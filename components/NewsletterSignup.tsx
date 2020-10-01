@@ -8,12 +8,26 @@ type NewsletterSignupProps = {};
 export const NewsletterSignup: FC<NewsletterSignupProps> = ({}) => {
   const [submitting, setSubmitting] = useState(false)
   
-  const submit = (e, ref) => {
-    console.log(ref.current.value);
+  const submit = async (e, ref) => {
     setSubmitting(true)
-    setTimeout(() => {
-      setSubmitting(false)
-    }, 1500)
+    const res = await fetch('/api/subscribe', {
+      body: JSON.stringify({
+        email: ref.current.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    });
+  
+    setSubmitting(false)
+    const { error } = await res.json();
+    if (error) {
+     console.log(error)
+    
+      return;
+    }
+  
   };
   
   return <>
