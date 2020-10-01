@@ -9,11 +9,11 @@ type InputProps = {
   icon?: JSX.Element;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   submit?: (e: FormEvent<HTMLFormElement>, ref) => void
+  submitting?: boolean
 };
 
-export const Input: FC<InputProps & InputHTMLAttributes<any>> = ({ label, button, submit, placeholder, icon, secondary, onChange, ...props }) => {
+export const Input: FC<InputProps & InputHTMLAttributes<any>> = ({ label, button, submit, submitting = false, placeholder, icon, secondary, onChange, ...props }) => {
   const inputRef = useRef();
-  
   const submitWithRef = (e) => {
     e.preventDefault();
     if (submit) {
@@ -25,7 +25,13 @@ export const Input: FC<InputProps & InputHTMLAttributes<any>> = ({ label, button
     <>
       <form className="input-group" onSubmit={submitWithRef}>
         <input aria-label={label ? label : placeholder} placeholder={placeholder} onChange={onChange} {...props} ref={inputRef} />
-        {button ? <Button aria-label="submit" small secondary mr="-8px" fontWeight={600} fontSize={0}>{button}</Button> : null}
+        {button ? <Button aria-label="submit"
+                          small
+                          secondary
+                          mr="-8px"
+                          fontWeight={600}
+                          fontSize={0}
+                          disabled={submitting}>{button}</Button> : null}
         {icon ? icon : null}
       </form>
       <style jsx>{`
@@ -61,9 +67,11 @@ export const Input: FC<InputProps & InputHTMLAttributes<any>> = ({ label, button
           font: inherit;
           border: 0;
           background-color: unset;
-          color: inherit;
+          color: ${submitting ? `var(--color-subdued)` : `inherit`};
           appearance: none;
           outline: none;
+          pointer-events: ${submitting ? `none` : `all`};
+          
           ::placeholder {
             color: var(--color-subdued)
           }

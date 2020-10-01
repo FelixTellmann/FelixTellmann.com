@@ -14,7 +14,7 @@ type ButtonProps = {
   large?: boolean
 };
 
-export const Button: FC<ButtonProps & Space & Layout & Decor > = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
+export const Button: FC<ButtonProps & Space & Layout & Decor & ButtonHTMLAttributes<any>> = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
   
   const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
   const classNames = `button ${icon ? 'icon' : ''} ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large
@@ -23,8 +23,8 @@ export const Button: FC<ButtonProps & Space & Layout & Decor > = ({ onClick, cla
   return <>
     {
       href
-      ? <Link href={href}><a target={target} className={classNames} onClick={onClick}>{title ? title : children}</a></Link>
-      : <button className={classNames} onClick={onClick}>{title ? title : children}</button>
+      ? <Link href={href}><a target={target} className={classNames} onClick={onClick} {...nonCssProps}>{title ? title : children}</a></Link>
+      : <button className={classNames} onClick={onClick} {...nonCssProps}>{title ? title : children}</button>
     }
     <style jsx>{`
       .button {
@@ -46,8 +46,14 @@ export const Button: FC<ButtonProps & Space & Layout & Decor > = ({ onClick, cla
         line-height: 1.2;
         white-space: nowrap;
         text-decoration: none;
-        transition: background-color 0.25s;
+        opacity: 1;
+        transition: background-color 0.25s, opacity 0.2s;
         appearance: none;
+        
+        &[disabled] {
+          opacity: 0.7;
+          pointer-events: none;
+        }
         
         &:hover {
           background-color: var(--color-button)

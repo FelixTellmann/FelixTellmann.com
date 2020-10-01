@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Text from './Text';
 import Input from './Input';
 import Box from './Box';
@@ -6,9 +6,14 @@ import Box from './Box';
 type NewsletterSignupProps = {};
 
 export const NewsletterSignup: FC<NewsletterSignupProps> = ({}) => {
+  const [submitting, setSubmitting] = useState(false)
   
   const submit = (e, ref) => {
     console.log(ref.current.value);
+    setSubmitting(true)
+    setTimeout(() => {
+      setSubmitting(false)
+    }, 1500)
   };
   
   return <>
@@ -20,7 +25,7 @@ export const NewsletterSignup: FC<NewsletterSignupProps> = ({}) => {
         Get emails from me about web development, tech, and early access to new articles.
       </Text>
       <Box mt={3}>
-        <Input placeholder="Your email address" button="Subscribe" secondary type="email" autoComplete="on" submit={submit} />
+        <Input placeholder="Your email address" button="Subscribe" secondary type="email" autoComplete="on" submit={submit} submitting={submitting} />
       </Box>
     </div>
     <style jsx>{`
