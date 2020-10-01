@@ -5,7 +5,7 @@ type InputProps = {
   placeholder?: string;
   label?: string;
   secondary?: boolean
-  button?: string
+  button?: string | JSX.Element
   icon?: JSX.Element;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   submit?: (e: FormEvent<HTMLFormElement>, ref) => void

@@ -6,6 +6,8 @@ body,
   --color-border-shadow: rgba(0, 0, 0, 0.05);
   --color-button: #e2e8f0;
   --color-button-secondary: #edf2f7;
+  --color-card-highlight: #ebf8ff;
+  --color-card-highlight-border: #90cdf4;
   --color-faded: #aebcd4;
   --color-green: #00bfa5;
   --color-header: #1a202c;
@@ -24,6 +26,7 @@ body,
   --color-selection: #81e6d9;
   --color-subdued: #718096;
   --color-text: #2d3748;
+  --color-warning: #e53e3e;
 }
 
 .dark-theme {
@@ -33,6 +36,8 @@ body,
   --color-border-shadow: rgba(255, 255, 255, 0.05);
   --color-button: rgba(255, 255, 255, 0.16);
   --color-button-secondary: rgb(255, 255, 255, 0.08);
+  --color-card-highlight: #2D3748;
+  --color-card-highlight-border: #718096;;
   --color-faded: #3e4254;
   --color-green: #00bfa5;
   --color-header: #fff;

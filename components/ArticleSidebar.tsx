@@ -9,6 +9,10 @@ type ArticleSidebarProps = {
 };
 
 export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings, showHeadingsExpanded }) => {
+  const [activeHeading, setActiveHeading] = useState(``);
+  const [activeSubheading, setActiveSubheading] = useState(``);
+  const [showSidebar, setShowSidebar] = useState(false);
+  
   const focusHeading = (event, slug) => {
     event.preventDefault();
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
@@ -22,13 +26,9 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     setActiveSubheading(slug);
   };
   
-  const [activeHeading, setActiveHeading] = useState(``);
-  const [activeSubheading, setActiveSubheading] = useState(``);
-  const [showSidebar, setShowSidebar] = useState(false);
-  
   useEffect(() => {
     const ac = new AbortController();
-    let loaded = false
+    let loaded = false;
     let observerA = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -70,7 +70,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     
     window.addEventListener('load', (e) => {
       if (!loaded) {
-        loaded = true
+        loaded = true;
         headings?.forEach(({ slug, subheading }) => {
           observerA.observe(document.getElementById(slug));
           subheading.length > 0 && subheading.forEach(({ slug }) => {
@@ -80,10 +80,12 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
       }
     }, { once: true });
     
-    window.addEventListener('scroll', () => {
-      setShowSidebar(window.scrollY > 400);
+    const scrollHandler = () => {
+      if (document.getElementById('mdx-content') === null) return;
+      const { offsetHeight, offsetTop } = document.getElementById('mdx-content');
+      setShowSidebar(window.scrollY > 400 && (offsetHeight + offsetTop - window.innerHeight * 0.65) > window.scrollY);
       if (!loaded) {
-        loaded = true
+        loaded = true;
         headings?.forEach(({ slug, subheading }) => {
           observerA.observe(document.getElementById(slug));
           subheading.length > 0 && subheading.forEach(({ slug }) => {
@@ -91,23 +93,16 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
           });
         });
       }
-    });
+    }
+    
+    
+    window.addEventListener('scroll', scrollHandler);
     
     return () => {
       observerA.disconnect();
       observerB.disconnect();
-      window.removeEventListener('scroll', () => {
-        setShowSidebar(window.scrollY > 400);
-      });
-      window.removeEventListener('scroll', () => {
-        headings?.forEach(({ slug, subheading }) => {
-          observerA.observe(document.getElementById(slug));
-          subheading.length > 0 && subheading.forEach(({ slug }) => {
-            observerB.observe(document.getElementById(slug));
-          });
-        });
-      });
-      ac.abort()
+      window.removeEventListener('scroll', scrollHandler);
+      ac.abort();
     };
   }, []);
   

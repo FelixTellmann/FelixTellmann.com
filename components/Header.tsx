@@ -39,17 +39,15 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
            p={4}>
         <LinkBlock href={logo.href}><Text as={'div'} fontSize={5} fontWeight={700}>{logo.title}</Text></LinkBlock>
         <Box d={'flex'} flex={1} justify={'flex-end'}>
-          {nav.map(({ title, href }) => <Button key={href} href={href} title={title} mx={['2px', 2]} px={[2, 3]} />)}
+          {nav.map(({ title, href }) => <Button key={href} href={href} mx={['2px', 2]} px={[2, 3]}>{title}</Button>)}
         </Box>
-        <Button onClick={colorTheme.toggle}
-                icon
-                secondary
-                ml={3}
-                title={
-                  colorTheme.value === 'dark-theme'
-                  ? <FiSun style={{ filter: `drop-shadow(rgba(240, 255, 50, 0.85) 0px 0px 3px)` }} />
-                  : <FiMoon style={{ filter: `drop-shadow(rgba(0, 0, 0, 0.35) 0px 0px 3px)` }} />
-                } />
+        <Button onClick={colorTheme.toggle} icon secondary ml={3}>
+          {
+            colorTheme.value === 'dark-theme'
+            ? <FiSun style={{ filter: `drop-shadow(rgba(240, 255, 50, 0.85) 0px 0px 3px)` }} />
+            : <FiMoon style={{ filter: `drop-shadow(rgba(0, 0, 0, 0.35) 0px 0px 3px)` }} />
+          }
+        </Button>
       </Box>
     </Box>
   </>;

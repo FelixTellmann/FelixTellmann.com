@@ -6,7 +6,6 @@ type ButtonProps = {
   onClick?: (event: MouseEvent) => void
   href?: string
   target?: string
-  title?: string | JSX.Element
   icon?: boolean
   className?: string
   secondary?: boolean
@@ -14,7 +13,7 @@ type ButtonProps = {
   large?: boolean
 };
 
-export const Button: FC<ButtonProps & Space & Layout & Decor & ButtonHTMLAttributes<any>> = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
+export const Button: FC<ButtonHTMLAttributes<any> & ButtonProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
   
   const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
   const classNames = `button ${icon ? 'icon' : ''} ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large

@@ -7,7 +7,6 @@ export default async (req, res) => {
   
   try {
     const API_KEY = process.env.BUTTONDOWN_API_KEY;
-    console.log(API_KEY)
     const response = await fetch(
       `https://api.buttondown.email/v1/subscribers`,
       {
@@ -25,7 +24,6 @@ export default async (req, res) => {
     
     if (response.status >= 400) {
       const text = await response.text();
-      
       if (text.includes('already subscribed')) {
         return res.status(400).json({
           error: `You're already subscribed to my mailing list.`
