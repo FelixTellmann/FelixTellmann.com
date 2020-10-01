@@ -11,6 +11,16 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="referrer" content="strict-origin-when-cross-origin" />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-JS229JV27E" />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+    
+            gtag('config', 'G-JS229JV27E');
+            `
+          }} />
         </Head>
         <body>
           <script src="/colorTheme.js" />
