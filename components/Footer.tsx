@@ -5,12 +5,12 @@ import Link from './Link';
 import Text from './Text';
 
 type FooterProps = {
-  socialNav: {
+  socialNav?: {
     title: string | JSX.Element
     href: string
     target?: string
   }[]
-  footerNav: {
+  footerNav?: {
     title: string
     href: string
   }[]
@@ -22,9 +22,13 @@ export const Footer: FC<FooterProps> = ({ socialNav, footerNav }) => {
       <Box d={'flex'} justify={'center'}>
         {socialNav.map(({ title, href, target }) => <Button key={href} href={href} large icon target={target} mx={1}>{title}</Button>)}
       </Box>
-      <Box d={'flex'} justify={'center'}>
-        {footerNav.map(({ title, href }) => <Link key={href} href={href} title={title} small p={1} m={1} />)}
-      </Box>
+      {
+        footerNav
+        ? <Box d={'flex'} justify={'center'}>
+          {footerNav.map(({ title, href }) => <Link key={href} href={href} title={title} small p={1} m={1} />)}
+        </Box>
+        : null
+      }
       <Box d={'flex'} justify={'center'}>
         <Text as="small" d={'block'} mt={4} fontSize={0} color={`--color-faded`}>
           {`© ${new Date().getFullYear()} FelixTellmann.com - All rights reserved.`}
