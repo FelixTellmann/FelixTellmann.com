@@ -6,7 +6,7 @@ import Text from './Text';
 
 type FooterProps = {
   socialNav: {
-    title: string | JSX.Element
+    title: string
     href: string
     target?: string
   }[]
