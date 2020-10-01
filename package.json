@@ -26,6 +26,7 @@
     "@zeit/next-sass": "^1.0.1",
     "babel-plugin-inline-react-svg": "^1.1.1",
     "babel-plugin-module-resolver": "^4.0.0",
+    "globby": "^11.0.1",
     "gray-matter": "^4.0.2",
     "mdx-prism": "^0.3.1",
     "next-compose-plugins": "^2.2.0",

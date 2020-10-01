@@ -13,6 +13,7 @@ type FooterProps = {
   footerNav?: {
     title: string
     href: string
+    target?: string
   }[]
 };
 
@@ -25,7 +26,7 @@ export const Footer: FC<FooterProps> = ({ socialNav, footerNav }) => {
       {
         footerNav
         ? <Box d={'flex'} justify={'center'}>
-          {footerNav.map(({ title, href }) => <Link key={href} href={href} title={title} small p={1} m={1} />)}
+          {footerNav.map(({ title, href, target }) => <Link key={href} href={href} title={title} target={target} small p={1} m={1} />)}
         </Box>
         : null
       }

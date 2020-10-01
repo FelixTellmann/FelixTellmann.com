@@ -4,7 +4,7 @@ const MdxEnhanced = require('next-mdx-enhanced');
 const fs = require('fs');
 const path = require('path');
 const optimizedImages = require('next-optimized-images');
-const mdxOptions = require('./lib/mdxOptions')
+const mdxOptions = require('./lib/mdxOptions');
 
 module.exports = withPlugins(
   [
@@ -46,6 +46,10 @@ module.exports = withPlugins(
         } : {}
       );
 
+      if (isServer) {
+        require('./lib/createSitemap');
+      }
+
       config.resolve.extensions = ['.ts', '.js', '.jsx', '.tsx', '.svg', '.scss'];
       return config;
     }
@@ -54,4 +58,4 @@ module.exports = withPlugins(
 
 module.exports['env'] = {
   BUTTONDOWN_API_KEY: process.env.BUTTONDOWN_API_KEY
-}
+};

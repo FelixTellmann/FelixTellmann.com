@@ -121,11 +121,12 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
             { title: <FiTwitter />, href: 'https://twitter.com/FelixTellmann', target: '_blank' },
             { title: <FiMail />, href: 'mailto:hi@felixtellmann.com', target: '_blank' }
           ]}
-          /*footerNav={[
+          footerNav={[
+            { title: '/visit-my-old-website', href: 'https://old-tellmann-site.vercel.app/webdesign.html', target: '_blank' },/*
             { title: '/uses', href: '/uses' },
             { title: '/photos', href: '/photos' },
-            { title: '/newsletter', href: '/newsletter' }
-          ]}*/ />
+            { title: '/newsletter', href: '/newsletter' }*/
+          ]} />
       </BreakpointProvider>
     </>
   );
