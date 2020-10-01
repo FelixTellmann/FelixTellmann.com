@@ -79,6 +79,8 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
           min-height: calc(100vh - 309px);
           margin: 0 auto;
           padding: 0 3.2rem;
+          display: flex;
+          flex-direction: column;
         }
 
         #__next {
@@ -100,7 +102,7 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
       `}</style>
       
       <BreakpointProvider breakPoints={[0, 600, 900, 1200]}>
-          <Loading loading={false} duration={3} width="7px" />
+          <Loading loading={false} duration={3} width="5px" />
         <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
         <Header
           logo={{ title: 'FT', href: '/' }}

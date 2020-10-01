@@ -1,19 +1,33 @@
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, FormEvent, InputHTMLAttributes, useRef } from 'react';
+import Button from './Button';
 
 type InputProps = {
   placeholder?: string;
   label?: string;
-  icon?: any;
+  secondary?: boolean
+  button?: string
+  icon?: JSX.Element;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  submit?: (e: FormEvent<HTMLFormElement>, ref) => void
 };
 
-export const Input: FC<InputProps> = ({ label, placeholder, icon, onChange }) => {
+export const Input: FC<InputProps & InputHTMLAttributes<any>> = ({ label, button, submit, placeholder, icon, secondary, onChange, ...props }) => {
+  const inputRef = useRef();
+  
+  const submitWithRef = (e) => {
+    e.preventDefault();
+    if (submit) {
+      submit(e, inputRef);
+    }
+  };
+  
   return (
     <>
-      <div className="input-group">
-        <input aria-label={label ? label : placeholder} placeholder={placeholder} onChange={onChange} />
-        {icon}
-      </div>
+      <form className="input-group" onSubmit={submitWithRef}>
+        <input aria-label={label ? label : placeholder} placeholder={placeholder} onChange={onChange} {...props} ref={inputRef} />
+        {button ? <Button aria-label="submit" small secondary mr="-8px" fontWeight={600} fontSize={0}>{button}</Button> : null}
+        {icon ? icon : null}
+      </form>
       <style jsx>{`
         .input-group {
           font-size: 1.6rem;
@@ -24,9 +38,9 @@ export const Input: FC<InputProps> = ({ label, placeholder, icon, onChange }) =>
           padding: 0 1.6rem;
           border: 1px solid var(--color-input-border);
           border-radius: var(--border-radius);
-          background-color: var(--color-input-background);
+          background-color: ${secondary ? `var(--color-background)` : `var(--color-input-background)`};
           transition: box-shadow 0.2s;
-
+          
           &:hover {
             border-color: var(--color-input-border-hover);
           }
@@ -50,6 +64,9 @@ export const Input: FC<InputProps> = ({ label, placeholder, icon, onChange }) =>
           color: inherit;
           appearance: none;
           outline: none;
+          ::placeholder {
+            color: var(--color-subdued)
+          }
         }
       `}</style>
     </>

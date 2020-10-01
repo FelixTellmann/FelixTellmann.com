@@ -10,6 +10,7 @@ import LinkBlock from '../components/LinkBlock';
 import Card from '../components/Card';
 import { HiOutlineColorSwatch } from 'react-icons/hi';
 import Hr from '../components/Hr';
+import NewsletterSignup from '../components/NewsletterSignup';
 
 export const Index: FC<BlogProps> = ({ postData }) => {
     const [filteredPostData, setFilteredPostData] = useState(postData);
@@ -258,7 +259,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           {
             headline: <>Building my first Computer</>,
             description: <>My brother and I were lucky to be building our first computer from scratch, using my stepdads old hardware and
-              buying some new ones. 8MB Ram with a 133Mhz Pentium 😂 </>
+              buying some new ones. 133Mhz Pentium with 8mb ram 😂 </>
           }
         ]
       },
@@ -302,7 +303,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />)
         )
       }
-      <Hr invisible />
+      <Hr invisible mt={2}/>
       
       {/*================ PROJECTS ================*/}
       <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>Projects</Text>
@@ -331,8 +332,9 @@ export const Index: FC<BlogProps> = ({ postData }) => {
       
       {/*================ TIMELINE ================*/}
       <Timeline title="Timeline" preview={TIMELINE_CURRENT} data={[...TIMELINE_CURRENT, ...TIMELINE_PAST]} />
-      
+      <Hr invisible />
       {/*================ NEWSLETTER SIGNUP ================*/}
+      <NewsletterSignup />
     </>;
     
   }

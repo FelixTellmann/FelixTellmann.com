@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react';
+import { ButtonHTMLAttributes, FC, MouseEvent } from 'react';
 import Link from 'next/link';
 import { Decor, Layout, Space, useStyledSystem } from 'use-styled-system';
 
@@ -14,7 +14,7 @@ type ButtonProps = {
   large?: boolean
 };
 
-export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
+export const Button: FC<ButtonProps & Space & Layout & Decor > = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
   
   const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
   const classNames = `button ${icon ? 'icon' : ''} ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large
@@ -48,37 +48,42 @@ export const Button: FC<ButtonProps & Space & Layout & Decor> = ({ onClick, clas
         text-decoration: none;
         transition: background-color 0.25s;
         appearance: none;
-
-        &.small {
-          min-width: 3.2rem;
-          height: 3.2rem;
-          font-size: 1.4rem;
-        }
-
-        &.large {
-          min-width: 4.8rem;
-          height: 4.8rem;
-          font-size: 1.8rem;
-        }
-
-        &.icon {
-          padding: 0;
-        }
-
-        &.secondary {
-          background: var(--color-button-secondary);
-
-          &:hover {
-            background: var(--color-button);
-          }
-        }
-
+        
         &:hover {
           background-color: var(--color-button)
         }
+      }
 
+      .small {
+        min-width: 3.2rem;
+        height: 3.2rem;
+        font-size: 1.4rem;
+      }
+
+      .large {
+        min-width: 4.8rem;
+        height: 4.8rem;
+        font-size: 1.8rem;
+      }
+
+      .icon {
+        padding: 0;
+      }
+
+      .secondary {
+        background: var(--color-button-secondary);
+
+        &:hover {
+          background: var(--color-button);
+        }
+      }
+
+      
+
+      button.button {
         ${styleJsx}
       }
+    
     `}</style>
   </>;
 };
