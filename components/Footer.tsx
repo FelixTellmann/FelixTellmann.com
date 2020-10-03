@@ -31,7 +31,7 @@ export const Footer: FC<FooterProps> = ({ socialNav, footerNav }) => {
         : null
       }
       <Box d={'flex'} justify={'center'}>
-        <Text as="small" d={'block'} mt={4} fontSize={0} color={`--color-faded`}>
+        <Text as="small" d={'block'} mt={4} fontSize={0} color={`--color-subdued`}>
           {`© ${new Date().getFullYear()} FelixTellmann.com - All rights reserved.`}
         </Text>
       </Box>

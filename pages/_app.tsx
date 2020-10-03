@@ -122,7 +122,7 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
             { title: <FiMail />, href: 'mailto:hi@felixtellmann.com', target: '_blank' }
           ]}
           footerNav={[
-            { title: '/visit-my-old-site', href: 'https://old-tellmann-site.vercel.app/webdesign.html', target: '_blank' },/*
+            { title: 'visit-my-old-site', href: 'https://old-tellmann-site.vercel.app/webdesign.html', target: '_blank' },/*
             { title: '/uses', href: '/uses' },
             { title: '/photos', href: '/photos' },
             { title: '/newsletter', href: '/newsletter' }*/
