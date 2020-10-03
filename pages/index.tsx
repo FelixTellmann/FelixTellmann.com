@@ -11,6 +11,7 @@ import Card from '../components/Card';
 import { HiOutlineColorSwatch } from 'react-icons/hi';
 import Hr from '../components/Hr';
 import NewsletterSignup from '../components/NewsletterSignup';
+import IntroText from "../components/IntroText";
 
 export const Index: FC<BlogProps> = ({ postData }) => {
     const [filteredPostData, setFilteredPostData] = useState(postData);
@@ -287,39 +288,8 @@ export const Index: FC<BlogProps> = ({ postData }) => {
     return <>
       {/*================ INTRO ================*/}
       <Text as="h1" fontSize={6} fontWeight={700} lineHeight={1.2} mb={10}>
-        <span className="intro-desktop">Hello</span>
-        <span className="intro-mobile">Hi</span>
-        <style jsx>{`
-          .intro-desktop, .intro-mobile {
-            display: none;
-            visibility: hidden;
-            font-size: 22rem;
-            margin-left: -0.8rem;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            background-image: linear-gradient(270deg,#00bfa5 25.28%,#3182ce 59.7%,rgba(11,197,234,0.67) 97.75%);
-            line-height: 1;
-            letter-spacing: -0.06em;
-          }
-          
-          .intro-mobile {
-            display: block;
-            visibility: visible;
-          }
-          
-          @media screen and (min-width: 600px) {
-            .intro-desktop {
-              display: block;
-              visibility: visible;
-            }
-            .intro-mobile {
-              display: none;
-              visibility: hidden;
-            }
-          }
-          
-        `}</style>
+        <IntroText d={['none','block']}>Hello</IntroText>
+        <IntroText d={['block','none']}>Hi</IntroText>
         I'm Felix Tellmann
       </Text>
       <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'}>
