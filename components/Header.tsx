@@ -41,7 +41,7 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
         <Box d={'flex'} flex={1} justify={'flex-end'}>
           {nav.map(({ title, href }) => <Button key={href} href={href} mx={['2px', 2]} px={[2, 3]}>{title}</Button>)}
         </Box>
-        <Button onClick={colorTheme.toggle} icon secondary ml={3}>
+        <Button aria-label="Toggle Color Theme" onClick={colorTheme.toggle} icon secondary ml={3}>
           {
             colorTheme.value === 'dark-theme'
             ? <FiSun style={{ filter: `drop-shadow(rgba(240, 255, 50, 0.85) 0px 0px 3px)` }} />

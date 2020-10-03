@@ -57,7 +57,6 @@ export const NewsletterSignup: FC<NewsletterSignupProps> = ({}) => {
          : null}
         
       </Box>
-      <div></div>
       
     </div>
     <style jsx>{`

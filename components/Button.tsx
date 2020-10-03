@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, MouseEvent } from 'react';
+import { ButtonHTMLAttributes, FC, MouseEvent, Children } from 'react';
 import Link from 'next/link';
 import { Decor, Layout, Space, useStyledSystem } from 'use-styled-system';
 
@@ -13,17 +13,18 @@ type ButtonProps = {
   large?: boolean
 };
 
-export const Button: FC<ButtonHTMLAttributes<any> & ButtonProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, icon, secondary, small, large, children, ...props }) => {
+export const Button: FC<ButtonHTMLAttributes<any> & ButtonProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, icon, secondary, small, large, children, ...props }) => {
   
   const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
   const classNames = `button ${icon ? 'icon' : ''} ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large
                                                                                                              ? 'large'
                                                                                                              : ''} ${className}`.trim();
+
   return <>
     {
       href
-      ? <Link href={href}><a target={target} rel={target ? 'noreferrer' : ''} className={classNames} onClick={onClick} {...nonCssProps}>{title ? title : children}</a></Link>
-      : <button aria-label={title} className={classNames} onClick={onClick} {...nonCssProps}>{title ? title : children}</button>
+      ? <Link href={href}><a target={target} rel={target ? 'noreferrer' : ''} className={classNames} onClick={onClick} {...nonCssProps}>{children}</a></Link>
+      : <button className={classNames} onClick={onClick} {...nonCssProps}>{children}</button>
     }
     <style jsx>{`
       .button {

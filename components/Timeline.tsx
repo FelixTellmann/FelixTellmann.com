@@ -28,7 +28,7 @@ export const Timeline: FC<TimelineProps> = ({ title, data, preview }) => {
       </Fragment>
     ))}
     {preview
-     ? <Button onClick={() => toggleFullTimeline(!fullTimeline)} secondary d={'flex'} mx={'auto'} my={4} fontSize={1} fontWeight={600}>
+     ? <Button aria-label="Toggle Timeline View" onClick={() => toggleFullTimeline(!fullTimeline)} secondary d={'flex'} mx={'auto'} my={4} fontSize={1} fontWeight={600}>
        {fullTimeline ? <>Show less &nbsp;&nbsp;<FiChevronUp /></> : <>Show more &nbsp;&nbsp; <FiChevronDown /></>}
      </Button>
      : ''}

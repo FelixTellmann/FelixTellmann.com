@@ -25,7 +25,7 @@ export const Input: FC<InputProps & InputHTMLAttributes<any>> = ({ label, button
     <>
       <form className="input-group" onSubmit={submitWithRef}>
         <input aria-label={label ? label : placeholder} placeholder={placeholder} onChange={onChange} {...props} ref={inputRef} />
-        {button ? <Button aria-label="submit"
+        {button ? <Button aria-label="Subscribe"
                           small
                           secondary
                           mr="-8px"
