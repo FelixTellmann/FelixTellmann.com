@@ -26,9 +26,10 @@ export const Card: FC<CardProps> = ({ icon, title, description, hover }) => {
         border: 1px solid var(--color-border);
         border-radius: 0.4rem;
         margin-bottom: 1.6rem;
-        transition: box-shadow 0.15s ease-out;
+        box-shadow: var(--box-shadow-card);
+        transition: box-shadow 0.25s ease-out;
         &:hover, &:focus, &:active {
-            ${hover ? `box-shadow: 0px 4px 20px var(--color-border-shadow)` : ''}
+            ${hover ? `box-shadow: var(--box-shadow-card-hover);` : ''}
         }
       }
     `}</style>

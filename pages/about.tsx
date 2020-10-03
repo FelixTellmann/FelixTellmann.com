@@ -1,13 +1,15 @@
 import { FC, useState } from 'react';
 import Text from '../components/Text';
+import IntroText from '../components/IntroText';
 
 export const Index: FC = () => {
   const [padding, setPadding] = useState(0);
   
   return <>
-    <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={4}>
+    {/*<Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={4}>
       About Me
-    </Text>
+    </Text>*/}
+    <IntroText fontSize={[105,200]}>About</IntroText>
     <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={4}>
       I'm a freelancing web developer, writer and entrepreneur living in Cape Town. I enjoy creating things that live on the internet,
       whether that be websites, applications, or anything in between. My goal is to always build products that provide real value to its

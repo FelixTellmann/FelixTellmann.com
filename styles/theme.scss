@@ -1,5 +1,7 @@
 body,
 .light-theme {
+  --box-shadow-card: 1px 1px 5px 0px rgb(0 191 165 / 0.50), inset 1px 0px 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
+  --box-shadow-card-hover: 1px 1px 5px 0px rgb(0 191 165 / 0.50), 1px 0px 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
   --color-background: #fff;
   --color-body: #1c1c1c;
   --color-border: #e2e8f0;
@@ -30,13 +32,15 @@ body,
 }
 
 .dark-theme {
+  --box-shadow-card: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
+  --box-shadow-card-hover: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
   --color-background: #171923;
   --color-body: #fff;
   --color-border: #373d48;
   --color-border-shadow: rgba(255, 255, 255, 0.05);
   --color-button: rgba(255, 255, 255, 0.16);
   --color-button-secondary: rgb(255, 255, 255, 0.08);
-  --color-card-highlight: #2D3748;
+  --color-card-highlight: #2d3748;
   --color-card-highlight-border: #718096;;
   --color-faded: #3e4254;
   --color-green: #00bfa5;
