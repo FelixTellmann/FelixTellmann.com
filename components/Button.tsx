@@ -20,10 +20,11 @@ export const Button: FC<ButtonHTMLAttributes<any> & ButtonProps & Space & Layout
                                                                                                              ? 'large'
                                                                                                              : ''} ${className}`.trim();
 
+  const label = href ? href.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) && href.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1] : '';
   return <>
     {
       href
-      ? <Link href={href}><a target={target} rel={target ? 'noreferrer' : ''} className={classNames} onClick={onClick} {...nonCssProps}>{children}</a></Link>
+      ? <Link href={href}><a title={label} aria-label={label} target={target} rel={target ? 'noreferrer' : ''} className={classNames} onClick={onClick} {...nonCssProps}>{children}</a></Link>
       : <button className={classNames} onClick={onClick} {...nonCssProps}>{children}</button>
     }
     <style jsx>{`
