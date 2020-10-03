@@ -10,7 +10,7 @@ type IntroTextProps = {
 
 export const IntroText: FC<IntroTextProps & CSS> = ({ as = 'p', children, className = '', ...props }) => {
   const { styleJsx, nonCssProps } = useStyledSystem(props, { Decor: true, Space: true, Other: true });
-  const styles2 = "font-size: 22rem;\n            margin-left: -0.8rem;\n            color: transparent;\n            -webkit-background-clip: text;\n            background-clip: text;\n            background-image: linear-gradient(270deg,#00bfa5 25.28%,#3182ce 59.7%,rgba(11,197,234,0.67) 97.75%);\n            line-height: 1;\n            letter-spacing: -0.06em;"
+  const styles2 = "font-size: 22rem;\nfont-weight: 700;\n            margin-left: -0.8rem;\n            color: transparent;\n            -webkit-background-clip: text;\n            background-clip: text;\n            background-image: linear-gradient(270deg,#00bfa5 25.28%,#3182ce 59.7%,rgba(11,197,234,0.67) 97.75%);\n            line-height: 1.15;\n            letter-spacing: -0.06em;"
   const { className: cssClass, styles } = css.resolve`${styles2 + styleJsx}`;
   return <>
     {createElement(as, { className: `${cssClass} ${className}`, ...nonCssProps }, children)}

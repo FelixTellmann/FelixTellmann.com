@@ -288,8 +288,8 @@ export const Index: FC<BlogProps> = ({ postData }) => {
     return <>
       {/*================ INTRO ================*/}
       <Text as="h1" fontSize={6} fontWeight={700} lineHeight={1.2} mb={10}>
-        <IntroText d={['none','block']}>Hello</IntroText>
-        <IntroText d={['block','none']}>Hi</IntroText>
+        <IntroText d={['none','block']} mb={'-2rem;'}>Hello</IntroText>
+        <IntroText d={['block','none']} mb={'-2rem;'}>Hi</IntroText>
         I'm Felix Tellmann
       </Text>
       <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'}>
