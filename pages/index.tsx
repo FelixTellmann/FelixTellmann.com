@@ -286,15 +286,48 @@ export const Index: FC<BlogProps> = ({ postData }) => {
     
     return <>
       {/*================ INTRO ================*/}
-      <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>
-        Hi, i'm Felix Tellmann
+      <Text as="h1" fontSize={6} fontWeight={700} lineHeight={1.2} mb={10}>
+        <span className="intro-desktop">Hello</span>
+        <span className="intro-mobile">Hi</span>
+        <style jsx>{`
+          .intro-desktop, .intro-mobile {
+            display: none;
+            visibility: hidden;
+            font-size: 22rem;
+            margin-left: -0.8rem;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-image: linear-gradient(270deg,#00bfa5 25.28%,#3182ce 59.7%,rgba(11,197,234,0.67) 97.75%);
+                line-height: 1;
+            letter-spacing: -0.06em;
+          }
+          
+          .intro-mobile {
+            display: block;
+            visibility: visible;
+          }
+          
+          @media screen and (min-width: 600px) {
+            .intro-desktop {
+              display: block;
+              visibility: visible;
+            }
+            .intro-mobile {
+              display: none;
+              visibility: hidden;
+            }
+          }
+          
+        `}</style>
+        I'm Felix Tellmann
       </Text>
       <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'}>
         I'm a freelancing web developer, writer and entrepreneur living in Cape Town.
         I enjoy creating things that live on the internet, whether that be websites, applications, or anything in between.
         My goal is to always build products that provide real value to its users.
       </Text>
-      <Hr invisible />
+      <Hr invisible height={'10vh'} maxHeight={64} />
       
       {/*================ BLOG POSTS ================*/}
       <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>Recent Posts</Text>
@@ -331,7 +364,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
       <Hr invisible />
       
       {/*================ TIMELINE ================*/}
-      <Timeline title="Timeline" preview={TIMELINE_CURRENT} data={[...TIMELINE_CURRENT, ...TIMELINE_PAST]} />
+      <Timeline title="When and where" preview={TIMELINE_CURRENT} data={[...TIMELINE_CURRENT, ...TIMELINE_PAST]} />
       <Hr invisible />
       {/*================ NEWSLETTER SIGNUP ================*/}
       <NewsletterSignup />
