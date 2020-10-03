@@ -22,7 +22,7 @@ export const Button: FC<ButtonHTMLAttributes<any> & ButtonProps & Space & Layout
   return <>
     {
       href
-      ? <Link href={href}><a target={target} className={classNames} onClick={onClick} {...nonCssProps}>{title ? title : children}</a></Link>
+      ? <Link href={href}><a target={target} rel={target ? 'noreferrer' : ''} className={classNames} onClick={onClick} {...nonCssProps}>{title ? title : children}</a></Link>
       : <button className={classNames} onClick={onClick} {...nonCssProps}>{title ? title : children}</button>
     }
     <style jsx>{`

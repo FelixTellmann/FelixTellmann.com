@@ -7767,10 +7767,10 @@ next-optimized-images@^3.0.0-canary.10:
     optimized-images-loader "^0.4.0"
     react-optimized-image "^0.4.1"
 
-next-seo@^4.10.1:
-  version "4.10.1"
-  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-4.10.1.tgz#b229c1ab9dbc3b87916d2b9f277d5421510fa3f5"
-  integrity sha512-lvI8XmYVPOX3ZRVqS7Ft0jLjO5d54DDgMbM614ZAn8lSitPVMK5NF1FQmcBnJxTyCrHoM+h+s5R/c/ybHRl5RA==
+next-seo@^4.11.0:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-4.11.0.tgz#b4f160414b49e6e3dc7791df25e29b50550ebb67"
+  integrity sha512-JrrGA+wD20ArI5jTqbLE2jipmA5VCCcjBlb1ZI2lKktd7lCXNs/IIvwkNfJPPK0vFp/ewwylA6kO5CyX2fflig==
 
 next-tick@~1.0.0:
   version "1.0.0"
@@ -12055,11 +12055,6 @@ yargs@^15.3.1:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
-
-yarn@^1.22.10:
-  version "1.22.10"
-  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.10.tgz#c99daa06257c80f8fa2c3f1490724e394c26b18c"
-  integrity sha512-IanQGI9RRPAN87VGTF7zs2uxkSyQSrSPsju0COgbsKQOOXr5LtcVPeyXWgwVa0ywG3d8dg6kSYKGBuYK021qeA==
 
 zwitch@^1.0.0:
   version "1.0.5"
