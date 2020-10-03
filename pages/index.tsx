@@ -299,7 +299,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
             -webkit-background-clip: text;
             background-clip: text;
             background-image: linear-gradient(270deg,#00bfa5 25.28%,#3182ce 59.7%,rgba(11,197,234,0.67) 97.75%);
-                line-height: 1;
+            line-height: 1;
             letter-spacing: -0.06em;
           }
           
