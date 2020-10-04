@@ -97,7 +97,15 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
             url: 'https://www.felixtellmann.com/',
             site_name: 'Felix Tellmann',
             title:"Felix Tellmann - Front-end Engineer",
-            description:"Creator of things that live on the internet - Web developer, writer and entrepreneur."
+            description:"Creator of things that live on the internet - Web developer, writer and entrepreneur.",
+            images: [
+              {
+                url: 'https://www.felixtellmann.com/images/og-default.jpg',
+                alt: "Felix Tellmann - Front-end Engineer",
+                width: 1200,
+                height: 630
+              }
+            ]
           }}
           twitter={{
             handle: '@FelixTellmann',
