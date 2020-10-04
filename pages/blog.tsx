@@ -6,7 +6,8 @@ import { getAllPostsSlug, getSinglePostData } from '../lib/getBlogPosts';
 import matter from 'gray-matter';
 import BlogPreview from '../components/BlogPreview';
 import Box from '../components/Box';
-import IntroText from "../components/IntroText";
+import IntroText from '../components/IntroText';
+import { isBefore, parseISO } from 'date-fns';
 
 export type BlogProps = {
   postData: {
@@ -62,7 +63,7 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
     {/*<Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>
       Blog
     </Text>*/}
-    <IntroText fontSize={[150,200]}>Blog</IntroText>
+    <IntroText fontSize={[150, 200]}>Blog</IntroText>
     <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={3}>
       I've been writing online since 2014, mostly about web development, tech news, and the occasional life wisdom.
       Use the search below to filter by title.
