@@ -2,13 +2,13 @@ import { AppProps } from 'next/app';
 import { FC } from 'react';
 import GoogleFonts from 'next-google-fonts';
 import { BreakpointProvider } from 'use-styled-system';
-
-import 'reset-css/sass/_reset.scss';
-import 'styles/theme.scss';
 import Header from '../components/Header';
 import { FiFacebook, FiGithub, FiMail, FiTwitter } from 'react-icons/fi';
 import Footer from '../components/Footer';
 import { Loading } from '../components/Loading';
+import { DefaultSeo } from 'next-seo';
+import 'reset-css/sass/_reset.scss';
+import 'styles/theme.scss';
 
 export const _App: FC<AppProps> = ({ pageProps, Component }) => {
   
@@ -84,24 +84,28 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
 
         #__next {
           position: relative;
-
-          /* &:before {
-             content: ' ';
-             display: block;
-             position: absolute;
-             left: 0;
-             top: 0;
-             width: 100%;
-             height: 100%;
-             background-image: url('/bg-pattern.png');
-             background-size: 50%;
-             opacity: 0.7;
-           }*/
         }
       `}</style>
       
       <BreakpointProvider breakPoints={[0, 600, 900, 1200]}>
-          <Loading loading={false} duration={3} width="5px" />
+        <DefaultSeo
+          title="Felix Tellmann - Front-end Engineer"
+          description="Creator of things that live on the internet - Web developer, writer and entrepreneur."
+          openGraph={{
+            type: 'website',
+            locale: 'en_IE',
+            url: 'https://www.felixtellmann.com/',
+            site_name: 'Felix Tellmann',
+            title:"Felix Tellmann - Front-end Engineer",
+            description:"Creator of things that live on the internet - Web developer, writer and entrepreneur."
+          }}
+          twitter={{
+            handle: '@FelixTellmann',
+            site: '@FelixTellmann',
+            cardType: 'summary_large_image'
+          }}
+        />
+        <Loading loading={false} duration={3} width="5px" />
         <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
         <Header
           logo={{ title: 'FT', href: '/' }}
@@ -115,18 +119,30 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
         </div>
         <Footer
           socialNav={[
-            { title: <FiGithub style={{stroke:"url(#gradient) currentColor" }} />, href: 'https://github.com/FelixTellmann', target: '_blank' },
-            { title: <FiFacebook  style={{stroke:"url(#gradient) currentColor" }} />, href: 'https://www.facebook.com/felixtellmann', target: '_blank' },
-            { title: <FiTwitter  style={{stroke:"url(#gradient) currentColor" }} />, href: 'https://twitter.com/FelixTellmann', target: '_blank' },
-            { title: <FiMail style={{stroke:"url(#gradient) currentColor" }}  />, href: 'mailto:hi@felixtellmann.com', target: '_blank' }
+            {
+              title: <FiGithub style={{ stroke: 'url(#gradient) currentColor' }} />,
+              href: 'https://github.com/FelixTellmann', target: '_blank'
+            },
+            {
+              title: <FiFacebook style={{ stroke: 'url(#gradient) currentColor' }} />,
+              href: 'https://www.facebook.com/felixtellmann', target: '_blank'
+            },
+            {
+              title: <FiTwitter style={{ stroke: 'url(#gradient) currentColor' }} />,
+              href: 'https://twitter.com/FelixTellmann', target: '_blank'
+            },
+            {
+              title: <FiMail style={{ stroke: 'url(#gradient) currentColor' }} />,
+              href: 'mailto:hi@felixtellmann.com', target: '_blank'
+            }
           ]}
           footerNav={[
-            { title: 'visit-my-old-site', href: 'https://old-tellmann-site.vercel.app/webdesign.html', target: '_blank' },/*
+            { title: 'visit-my-old-site', href: 'https://old-tellmann-site.vercel.app/webdesign.html', target: '_blank' }/*
             { title: '/uses', href: '/uses' },
             { title: '/photos', href: '/photos' },
             { title: '/newsletter', href: '/newsletter' }*/
           ]} />
-        <svg aria-hidden="true" focusable="false" style={{width:0,height:0, position:`absolute`}}>
+        <svg aria-hidden="true" focusable="false" style={{ width: 0, height: 0, position: `absolute` }}>
           <linearGradient id="gradient" gradientTransform="rotate(65)">
             <stop offset="25.28%" stopColor="var(--color-gradient-1)" />
             <stop offset="57.7%" stopColor="var(--color-gradient-2)" />
