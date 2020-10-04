@@ -4,13 +4,16 @@ import { FC } from 'react';
 import ArticleHeading from '../components/ArticleHeading';
 import ArticleSidebar from '../components/ArticleSidebar';
 import NewsletterSignup from '../components/NewsletterSignup';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 
 type LayoutProps = {
+  slug: string
   frontMatter: {
     title: string
     author?: string
     authorUrl?: string
     authorAvatarUrl?: string
+    excerpt?: string
     publishedAt?: string
     readingTime?: {
       text: string;
@@ -26,10 +29,39 @@ type LayoutProps = {
   }
 }
 
-export const Layout: FC<LayoutProps> = ({ children, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest } }) => {
+export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, excerpt, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest } }) => {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
   return (
     <>
+      <NextSeo
+        title={`${title} – Felix Tellmann`}
+        description={excerpt}
+        canonical={`https://felixtellmann.com/blog/${slug}`}
+        openGraph={{
+          type: 'article',
+          article: {
+            publishedTime: new Date(publishedAt).toISOString()
+          },
+          url:`https://felixtellmann.com/blog/${slug}`,
+          title,
+          description: excerpt,
+          images: [{
+            url: `https://felixtellmann.com${image}`,
+            alt: title
+          }]
+        }}
+      />
+      <ArticleJsonLd
+        authorName="Felix Tellmann"
+        dateModified={new Date(publishedAt).toISOString()}
+        datePublished={new Date(publishedAt).toISOString()}
+        description={excerpt}
+        images={[`https://felixtellmann.com${image}`]}
+        publisherLogo="/favicons/android-icon-192x192.png"
+        publisherName="Felix Tellmann"
+        title={title}
+        url={`https://felixtellmann.com/blog/${slug}`}
+      />
       {/*================ HEADING ================*/}
       <ArticleHeading title={title}
                       authorAvatarUrl={authorAvatarUrl}

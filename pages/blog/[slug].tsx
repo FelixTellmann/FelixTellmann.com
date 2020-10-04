@@ -21,6 +21,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   
   return {
     props: {
+      slug,
       children: mdxSource,
       frontMatter: { ...data, ...extendedFrontMatter }
     }
