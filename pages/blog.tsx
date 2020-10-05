@@ -65,7 +65,7 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
     </Text>*/}
     <IntroText fontSize={[150, 200]}>Blog</IntroText>
     <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={3}>
-      I've been writing online since 2014, mostly about web development, tech news, and the occasional life wisdom.
+      I'm writing mostly about web development, tech news, and the occasional life wisdom.
       Use the search below to filter by title.
     </Text>
     <Box mb={5}>
