@@ -4,7 +4,7 @@ import { FC } from 'react';
 import ArticleHeading from '../components/ArticleHeading';
 import ArticleSidebar from '../components/ArticleSidebar';
 import NewsletterSignup from '../components/NewsletterSignup';
-import { NextSeo, ArticleJsonLd } from 'next-seo';
+import { ArticleJsonLd, NextSeo } from 'next-seo';
 
 type LayoutProps = {
   slug: string
@@ -29,7 +29,12 @@ type LayoutProps = {
   }
 }
 
-export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt = Date.now(), views, readingTime, excerpt, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest } }) => {
+export const Layout: FC<LayoutProps> = ({
+                                          children, slug, frontMatter: {
+    title, author = '', authorUrl, authorAvatarUrl, publishedAt = Date.now()
+      .toString(), views, readingTime, excerpt, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest
+  }
+                                        }) => {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
   return (
     <>
@@ -42,13 +47,15 @@ export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, 
           article: {
             publishedTime: new Date(publishedAt).toISOString()
           },
-          url:`https://felixtellmann.com/blog/${slug}`,
+          url: `https://felixtellmann.com/blog/${slug}`,
           title,
           description: excerpt,
-          images: [{
-            url: `https://felixtellmann.com${image}`,
-            alt: title
-          }]
+          images: [
+            {
+              url: `https://felixtellmann.com${image}`,
+              alt: title
+            }
+          ]
         }}
       />
       <ArticleJsonLd
@@ -66,7 +73,7 @@ export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, 
       <ArticleHeading title={title}
                       authorAvatarUrl={authorAvatarUrl}
                       author={author}
-                      publishedAt={new Date(publishedAt).toISOString()}
+                      publishedAt={publishedAt}
                       readingTime={readingTime}
                       views={views} />
       
@@ -92,6 +99,7 @@ export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, 
           justify-content: center;
           margin: 0 auto 6.4rem auto;
           line-height: 1.5;
+          max-width: 100%;
           @media screen and (min-width: 600px) {
             --h1: 4.8rem;
             --h2: 2.4rem;
@@ -146,12 +154,39 @@ export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, 
             margin-bottom: 3.2rem;
             margin-left: 0.8rem;
             padding-top: 0.8rem;
-            padding-left: 1.6rem;
+            padding-left: 2rem;
             list-style-type: disc;
           }
 
+          ol {
+            margin-bottom: 3.2rem;
+            padding-top: 0.8rem;
+
+            > li {
+              counter-increment: li;
+              padding-left: 2.8rem;
+              position: relative;
+
+              &:before {
+                position: absolute;
+                left: 0;
+                content: counters(li, '.') '. ';
+
+              }
+            }
+
+          }
+
           li {
-            padding-bottom: 0.25rem;
+            padding-bottom: 0.8rem;
+
+            > p {
+              margin: 0;
+            }
+
+            > pre[class*='language-'] {
+              margin: 0.8rem 0;
+            }
           }
 
           strong {
@@ -191,6 +226,16 @@ export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, 
 
         code {
           white-space: pre;
+          border: 1px solid var(--color-remark-code-title-bg);
+          border-radius: 0.4rem;
+          background: var(--color-remark-code-bg);
+          padding: 0.2rem 0.6rem
+        }
+
+        pre code {
+          background: transparent;
+          border: 0;
+          padding: 0;
         }
 
         code[class*='language-'],
@@ -405,7 +450,7 @@ export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, 
             color: rgb(178, 204, 214);
           }
         }
-
+      
       `}</style>
     </>
   );

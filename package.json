@@ -42,6 +42,7 @@
     "rehype": "^11.0.0",
     "remark-autolink-headings": "^6.0.1",
     "remark-code-titles": "^0.1.1",
+    "remark-prism": "^1.1.14",
     "remark-slug": "^6.0.0",
     "reset-css": "^5.0.1",
     "sass-loader": "^10.0.2",

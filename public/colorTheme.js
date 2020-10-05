@@ -1,21 +1,13 @@
 // Insert this script in your index.html right after the <body> tag.
 // This will help to prevent a flash if dark mode is the default.
 
-(function () {
+(function() {
   // Change these if you use something different in your hook.
   var storageKey = 'colorTheme';
   var classNames = ['light-theme', 'dark-theme'];
 
   function setClassOnDocumentBody(colorTheme) {
     var theme = 'light-theme';
-    if (colorTheme === false) {
-      // eslint-disable-next-line prefer-destructuring
-      theme = classNames[0];
-    }
-    if (colorTheme === true) {
-      // eslint-disable-next-line prefer-destructuring
-      theme = classNames[1];
-    }
     if (typeof colorTheme === 'string') {
       theme = colorTheme;
     }
@@ -42,7 +34,7 @@
     setClassOnDocumentBody(localStorageTheme);
   } else if (supportsColorSchemeQuery) {
     // source of truth from system
-    setClassOnDocumentBody(mql.matches);
+    setClassOnDocumentBody(mql.matches ? classNames[1] : classNames[0]);
     localStorage.setItem(storageKey, JSON.stringify('dark-theme'));
   } else {
     // source of truth from document.body
