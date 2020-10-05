@@ -7,7 +7,6 @@ import matter from 'gray-matter';
 import BlogPreview from '../components/BlogPreview';
 import Box from '../components/Box';
 import IntroText from '../components/IntroText';
-import { isBefore, parseISO } from 'date-fns';
 
 export type BlogProps = {
   postData: {
