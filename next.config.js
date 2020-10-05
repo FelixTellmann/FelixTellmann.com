@@ -11,16 +11,8 @@ module.exports = withPlugins(
   [
     [optimizedImages, { optimizeImagesInDev: true }],
     [SCSS],
-    process.env.NODE_ENV === 'development' ? [MdxEnhanced(mdxOptions)] : [MdxEnhanced],
-    withPWA, {
-    pwa: {
-      dest: 'public',
-      disable: process.env.NODE_ENV === 'development',
-      register: true,
-      scope: '/app',
-      sw: 'service-worker.js',
-    }
-  }
+    [process.env.NODE_ENV === 'development' ? MdxEnhanced(mdxOptions) : MdxEnhanced],
+    [withPWA, { pwa: { dest: 'public', disable: process.env.NODE_ENV === 'development', register: true, scope: '/app', sw: 'service-worker.js' } }]
   ],
   {
     webpack(config, { isServer }) {
