@@ -161,7 +161,7 @@ export const Layout: FC<LayoutProps> = ({
           ol {
             margin-bottom: 3.2rem;
             padding-top: 0.8rem;
-
+            
             > li {
               counter-increment: li;
               padding-left: 2.8rem;
