@@ -11,6 +11,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="referrer" content="strict-origin-when-cross-origin" />
+          <meta charSet="UTF-8"/>
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-JS229JV27E" />
           <script dangerouslySetInnerHTML={{
             __html: `

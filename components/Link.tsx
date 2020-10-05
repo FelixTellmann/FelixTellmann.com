@@ -17,8 +17,16 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({ onClick, classNam
   
   const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
   const classNames = `link ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large ? 'large' : ''} ${className}`.trim();
+  const label = (href ? href.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) && href.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1] : '');
+  
   return <>
-    <NextLink href={href}><a target={target} className={classNames} onClick={onClick} {...nonCssProps}>{title}</a></NextLink>
+    <NextLink href={href}>
+      <a target={target}
+         aria-label={href.includes('mailto') ? href.replace('mailto', '') : label}
+         rel={target === '_blank' ? 'noopener noreferrer' : ''}
+         className={classNames}
+         onClick={onClick} {...nonCssProps}>{title}</a>
+    </NextLink>
     
     <style jsx>{`
       .link {

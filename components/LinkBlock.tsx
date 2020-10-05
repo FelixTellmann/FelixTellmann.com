@@ -9,7 +9,7 @@ type LinkBlockProps = {
 
 export const LinkBlock: FC<LinkBlockProps & AnchorHTMLAttributes<any>> = ({ href, target, className, style = {}, children, ...props}) => {
   return <>
-    <Link href={href}><a target={target} className={className} style={style} {...props}>{children}</a></Link>
+    <Link href={href}><a target={target} rel={target === '_blank' ? 'noopener noreferrer' : ''} className={className} style={style} {...props}>{children}</a></Link>
     <style jsx>{`
       a {
         display: block;
