@@ -29,7 +29,7 @@ type LayoutProps = {
   }
 }
 
-export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt, views, readingTime, excerpt, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest } }) => {
+export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, author = '', authorUrl, authorAvatarUrl, publishedAt = Date.now(), views, readingTime, excerpt, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest } }) => {
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
   return (
     <>
@@ -66,7 +66,7 @@ export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, 
       <ArticleHeading title={title}
                       authorAvatarUrl={authorAvatarUrl}
                       author={author}
-                      publishedAt={publishedAt}
+                      publishedAt={new Date(publishedAt).toISOString()}
                       readingTime={readingTime}
                       views={views} />
       
