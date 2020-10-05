@@ -1,0 +1,26 @@
+---
+title: "How to add color themes in ReactJS?"
+author: "Felix Tellmann"
+authorUrl: "https://www.felixtellmann.co.za"
+authorAvatarUrl: "https://avatars1.githubusercontent.com/u/22034038"
+showHeadings: 2
+publishedAt: "2020-10-05"
+published: true
+excerpt: "More than just dark-mode, add any number of color themes to your react site."
+image: "/images/css-with-react/banner.png"
+showHeadingsExpanded: true
+---
+
+Over the last few weeks i've been upgrading my website with a complete
+ redesign, including dark-mode functionality. I've found a some good resources to add a dark-mode / light
+ -mode switcher, but very little info to do proper theming with more than
+  just two themes.
+
+My answer: [use-color-theme](https://github.com/FelixTellmann/use-color-theme).
+A simple react hook that toggles `light-theme`, `dark-theme` and any other
+ class on the `body` tag. The hook is works with CSS [custom
+  properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) and uses
+   `prefers-color-scheme` and localStorage under the hood to match users
+    perferences and eliminate the *flash* problem thats often associated with
+     color theming.
+
