@@ -5,12 +5,22 @@ const fs = require('fs');
 const path = require('path');
 const optimizedImages = require('next-optimized-images');
 const mdxOptions = require('./lib/mdxOptions');
+const withPWA = require('next-pwa');
 
 module.exports = withPlugins(
   [
     [optimizedImages, { optimizeImagesInDev: true }],
     [SCSS],
-    process.env.NODE_ENV === 'development' ? [MdxEnhanced(mdxOptions)] : [MdxEnhanced]
+    process.env.NODE_ENV === 'development' ? [MdxEnhanced(mdxOptions)] : [MdxEnhanced],
+    withPWA, {
+    pwa: {
+      dest: 'public',
+      disable: process.env.NODE_ENV === 'development',
+      register: true,
+      scope: '/app',
+      sw: 'service-worker.js',
+    }
+  }
   ],
   {
     webpack(config, { isServer }) {
