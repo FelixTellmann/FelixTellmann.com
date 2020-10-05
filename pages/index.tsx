@@ -11,7 +11,7 @@ import Card from '../components/Card';
 import { HiOutlineColorSwatch } from 'react-icons/hi';
 import Hr from '../components/Hr';
 import NewsletterSignup from '../components/NewsletterSignup';
-import IntroText from "../components/IntroText";
+import IntroText from '../components/IntroText';
 
 export const Index: FC<BlogProps> = ({ postData }) => {
     const [filteredPostData, setFilteredPostData] = useState(postData);
@@ -39,12 +39,12 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           },
           {
             headline: <>When the world stopped</>,
-            description: <>From successful restaurant to closing our doors in a matter of weeks. Its been a great journey, the uncertainty of
-              corona and the national lockdown have clarified major life-changing questions. Answering them became easy overnight.</>
+            description: <>From a successful restaurant to closing our doors in a matter of weeks. Its been a great journey, the uncertainty
+              of corona and the national lockdown have clarified major life-changing questions. Answering them became easy overnight.</>
           },
           {
             headline: <>Best Season so far</>,
-            description: <>Grew the restaurant consistently, with the best season an a blast of a staff party to finish of the holiday
+            description: <>Grew the restaurant consistently, with the best season and a blast of a staff party to finish off the holiday
               times.</>
           }
         ]
@@ -61,7 +61,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
             headline: <>Restaurant v2.0</>,
             description: <>Upgraded the concept to the fit market environment & changed the name from <u style={{ whiteSpace: 'nowrap' }}>The
               Burger Exchange</u> to <u style={{ whiteSpace: 'nowrap' }}>The
-              Exchange</u> and shifted focus to also include a variety of woodfired grills. 🥩🔥</>
+              Exchange</u> and shifted focus to also include a variety of woodfired grills. 🥩🔥 </>
           },
           {
             headline: <>Visited Namibia</>,
@@ -100,13 +100,13 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           },
           {
             headline: <>Full-time Web Development</>,
-            description: <>Found my first clients to work on the side, and quickly grew to a full time freelancing occupation, where I got
+            description: <>Found my first clients to work on the side and quickly grew to full time freelancing occupation, where I got
               hooked on React.js</>
           },
           {
             headline: <>Almost started a Food Truck 🚚</>,
-            description: <>My Wife an I were both getting excited to start our own Food Truck and planned out many details. Unfortunately, the
-              stars weren't aligned then. <em>We shall get back to it!!</em></>
+            description: <>My Wife and I were both getting excited to start our own Food Truck and planned out many details. Unfortunately,
+              the stars weren't aligned then. <em>We shall get back to it!!</em></>
           }
         ]
       },
@@ -127,7 +127,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
             headline: <>Opened a Restaurant (not my own yet)</>,
             description: <>After graduation, I got straight back to work. This time as General Manager, opening a brand new Restaurant in the
               CBD of Cape Town.
-              I opened Raya Kitchen over the course of 2 Months including construction and building up a new team from scratch.</>
+              I opened Raya Kitchen over 2 months including construction and building up a new team from scratch.</>
           }
         ]
       },
@@ -137,7 +137,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           {
             headline: <>Completed my Post Graduate Studies at UCT</>,
             description: <>If this Year wasn't enough. I went back to University in 2015 to advance with a Postgraduate Diploma in Business
-              Management & Entrepreneurship.📚👓 </>
+              Management & Entrepreneurship. 📚 👓 </>
           },
           {
             headline: <>Got Married 💒</>,
@@ -146,10 +146,10 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           },
           {
             headline: <>Co-Founded Simply Stuck</>,
-            description: <>Started a Laptop Vinyl sticker business, while exploring the very interesting customer segment of students 👨‍🎓 It
+            description: <>Started a Laptop Vinyl sticker business, while exploring the very interesting customer segment of students 👨‍ 🎓
+              It
               was part study, part real business, but somehow eventually faded & failed as we had a team of 6 co-founders. <em>Stick to 1 or 2
-                if
-                you can. </em>😉</>
+                if you can. </em> 😉 </>
           },
           
           {
@@ -158,7 +158,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
               in a Consulting Role.</>
           },
           {
-            headline: <>Got Engaged 💍</>,
+            headline: <>Got Engaged 💍 </>,
             description: <>I asked my now fiancee, Elizabeth, to marry me. She said yes! I took her out for a super romantic dinner and popped
               the question in a full restaurant.</>
           }
@@ -169,9 +169,10 @@ export const Index: FC<BlogProps> = ({ postData }) => {
         items: [
           {
             headline: <>First <em>Personal </em>&nbsp;Website</>,
-            description: <>I got back to my old passion in Tech 👨‍💻💻😄. While I build a couple of websites for other people & companies in
-              the past, I decided to build my first own site
-              with Wordpress with couple of Blog posts. Unfortunately I didn't use Git yet and lost the source code in a old HDD.</>
+            description: <>I got back to my old passion in Tech 👨 ‍💻💻 😄. While I build a couple of websites for other people & companies
+              in
+              the past, I decided to build my first own site with WordPress with a couple of blog posts. Unfortunately, I didn't use Git yet
+              and lost the source code in an old HDD.</>
           }
         ]
       },
@@ -205,7 +206,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
         items: [
           {
             headline: <>Working on a 6* Cruise Line</>,
-            description: <>Spend 4 months travelling the seas onboard of the Yachts of Seabourn. Visited many countries in North America & the
+            description: <>Spend 4 months traveling the seas onboard of the Yachts of Seabourn. Visited many countries in North America & The
               Caribbean while working as a Waiter.</>
           }
         ]
@@ -218,9 +219,9 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           },
           {
             headline: <>Learned English 0 - 100 in 3 months</>,
-            description: <>My first exciting endeavour in South Africa was a three months English course to find my feet. I went from hating
-              english (<em>"I will Never Learn English"</em> - 15y old Me) in high school to acing any test & starting to think in
-              English. Changing your environment, makes changing your habits muuuch easier.</>
+            description: <>My first exciting endeavor in South Africa was a three months English course to find my feet. I went from hating
+              English (<em>"I will never learn English"</em> - 15y old Me) in high school to acing any test & starting to think in
+              English. Changing your environment makes changing your habits muuuch easier.</>
           },
           {
             headline: <>Move to South Africa</>,
@@ -254,7 +255,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
         items: [
           {
             headline: <>My first lines of Code</>,
-            description: <>My stepdad Franz thought me programming ⌨, building a calculator 🧮 and a racing game 👾🏎 with Delphi and
+            description: <>My stepdad Franz thought me programming ⌨, building a calculator 🧮 and a racing game 👾 🏎 with Delphi and
               Pascal </>
           },
           {
@@ -269,7 +270,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
         items: [
           {
             headline: <>Exploring the Internet for the first time 🌐</>,
-            description: <>Travelling at 28.8Kbit Modem speeds 📠🔌💾 ..., t.t.t.t.t.t.t,tick
+            description: <>Travelling at 28.8Kbit Modem speeds 📠 🔌 💾 ..., t.t.t.t.t.t.t,tick
               eeeeeeeooohhhwwwwwaaa............Pshhhkkkkkkrrrr2ka, *ding*ding... %^&! Playing some Snowman browser game I will never
               forget.</>
           }
@@ -288,8 +289,8 @@ export const Index: FC<BlogProps> = ({ postData }) => {
     return <>
       {/*================ INTRO ================*/}
       <Text as="h1" fontSize={6} fontWeight={700} lineHeight={1.2} mb={10}>
-        <IntroText d={['none','block']} mb={'-2rem;'}>Hello</IntroText>
-        <IntroText d={['block','none']} mb={'-2rem;'}>Hi</IntroText>
+        <IntroText d={['none', 'block']} mb={'-2rem;'}>Hello</IntroText>
+        <IntroText d={['block', 'none']} mb={'-2rem;'}>Hi</IntroText>
         I'm Felix Tellmann
       </Text>
       <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'}>
@@ -306,7 +307,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />)
         )
       }
-      <Hr invisible mt={2}/>
+      <Hr invisible mt={2} />
       
       {/*================ PROJECTS ================*/}
       <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>Projects</Text>
