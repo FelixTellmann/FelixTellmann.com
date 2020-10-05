@@ -12,6 +12,7 @@ export type BlogProps = {
   postData: {
     slug: string;
     frontMatter: {
+      published?: boolean
       title?: string
       excerpt?: string
       slug?: string
@@ -89,7 +90,7 @@ export async function getStaticProps() {
       slug,
       frontMatter: matter(getSinglePostData(slug)).data
     };
-  });
+  }).filter((item) => item?.frontMatter?.published);
   
   return { props: { postData } };
 }

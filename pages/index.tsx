@@ -352,7 +352,7 @@ export async function getStaticProps() {
       slug,
       frontMatter: matter(getSinglePostData(slug)).data
     };
-  });
+  }).filter((item) => item?.frontMatter?.published);
   
   return { props: { postData } };
 }

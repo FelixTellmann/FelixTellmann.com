@@ -5,7 +5,7 @@ body,
   --color-gradient-1: #00bfa5;
   --color-gradient-2: #3182ce;
   --color-gradient-3: rgba(11,197,234,0.67);
-  --color-background: #fff;
+  --color-background: #f9fafa;
   --color-body: #1c1c1c;
   --color-border: #e2e8f0;
   --color-border-shadow: rgba(0, 0, 0, 0.05);
@@ -38,7 +38,7 @@ body,
   --box-shadow-card: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
   --box-shadow-card-hover: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
   --color-background: #171923;
-  --color-body: #fff;
+  --color-body: #f9fafa;
   --color-border: #373d48;
   --color-border-shadow: rgba(255, 255, 255, 0.05);
   --color-button: rgba(255, 255, 255, 0.16);
@@ -65,6 +65,39 @@ body,
   --color-text: #a0aec0;
 }
 
+.blue-theme {
+  --box-shadow-card: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
+  --box-shadow-card-hover: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
+  --color-background: #264452;
+  --color-body: #ceeaec;
+  --color-border: #373d48;
+  --color-border-shadow: rgba(255, 255, 255, 0.05);
+  --color-button: rgba(255, 255, 255, 0.16);
+  --color-button-secondary: rgb(255, 255, 255, 0.08);
+  --color-card-highlight: hsl(172deg 59% 18%);
+  --color-card-highlight-border: #718096;
+  --color-faded: #3e4254;
+  --color-green: #1bd4e4;
+  --color-header: #fff;
+  --color-header-backdrop-filter: saturate(100%) blur(2rem);
+  --color-header-background: rgb(38 68 82 / 0.6);
+  --color-input-background: rgb(255, 255, 255, 0.08);
+  --color-input-border: rgba(255, 255, 255, 0.14);
+  --color-input-border-focus: #3182ce;
+  --color-input-border-hover: rgb(255, 255, 255, 0.08);
+  --color-link: rgba(255, 255, 255, 0.80);
+  --color-link-hover: rgb(255, 255, 255, 0.68);
+  --color-mdx-link: #60b3fb;
+  --color-primary: #ee601e;
+  --color-remark-code-bg: #1a202c;
+  --color-remark-code-title-bg: #2d3748;
+  --color-selection: rgba(11, 197, 234, 0.67);
+  --color-subdued: #718096;
+  --color-text: #fdfeff;
+  --color-gradient-1: #20ffe1;
+  --color-gradient-2: #d1e64ee6;
+  --color-gradient-3: hsl(318deg 76% 62% / 80%);
+}
 :root {
   --border-radius: 0.4rem;
   --font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, sans-serif;

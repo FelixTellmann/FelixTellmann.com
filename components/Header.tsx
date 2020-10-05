@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Box from './Box';
 import Text from './Text';
 import Button from './Button';
-import { FiMoon, FiSun } from 'react-icons/fi';
+import { FiAperture, FiMoon, FiSun } from 'react-icons/fi';
 import useColorTheme from 'use-color-theme';
 import LinkBlock from './LinkBlock';
 
@@ -19,7 +19,7 @@ type HeaderProps = {
 
 export const Header: FC<HeaderProps> = ({ logo, nav }) => {
   
-  const colorTheme = useColorTheme('light-theme', { classNames: ['light-theme', 'dark-theme'] });
+  const colorTheme = useColorTheme('light-theme', { classNames: ['light-theme', 'dark-theme', 'blue-theme'] });
   
   return <>
     <Box as="header"
@@ -42,11 +42,9 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
           {nav.map(({ title, href }) => <Button key={href} href={href} mx={['2px', 2]} px={[2, 3]}>{title}</Button>)}
         </Box>
         <Button aria-label="Toggle Color Theme" onClick={colorTheme.toggle} icon secondary ml={3}>
-          {
-            colorTheme.value === 'dark-theme'
-            ? <FiSun style={{ filter: `drop-shadow(rgba(240, 255, 50, 0.85) 0px 0px 3px)` }} />
-            : <FiMoon style={{ filter: `drop-shadow(rgba(0, 0, 0, 0.35) 0px 0px 3px)` }} />
-          }
+          {colorTheme.value === 'light-theme' ? <FiMoon style={{ filter: `drop-shadow(rgba(0, 0, 0, 0.35) 0px 0px 3px)` }} /> : null}
+          {colorTheme.value === 'dark-theme' ? <FiAperture style={{ color: `#0bc5ea` }} /> : null}
+          {colorTheme.value === 'blue-theme' ? <FiSun style={{ color: `rgb(237 255 3 / 96%)` }} /> : null}
         </Button>
       </Box>
     </Box>
