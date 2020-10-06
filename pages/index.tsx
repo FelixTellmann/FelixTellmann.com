@@ -309,6 +309,9 @@ export const Index: FC<BlogProps> = ({ postData }) => {
       }
       <Hr invisible mt={2} />
       
+      {/* TODO - ADD Skills Section*/}
+      
+      
       {/*================ PROJECTS ================*/}
       <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>Projects</Text>
       <LinkBlock href="https://github.com/FelixTellmann/use-styled-system" target="_blank">
