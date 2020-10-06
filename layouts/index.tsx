@@ -1,10 +1,12 @@
-import hydrate from 'next-mdx-remote/hydrate';
-import Box from 'components/Box';
-import { FC } from 'react';
-import ArticleHeading from '../components/ArticleHeading';
-import ArticleSidebar from '../components/ArticleSidebar';
-import NewsletterSignup from '../components/NewsletterSignup';
-import { ArticleJsonLd, NextSeo } from 'next-seo';
+import hydrate from 'next-mdx-remote/hydrate'
+import Box from 'components/Box'
+import { FC } from 'react'
+import ArticleHeading from '../components/ArticleHeading'
+import ArticleSidebar from '../components/ArticleSidebar'
+import NewsletterSignup from '../components/NewsletterSignup'
+import { ArticleJsonLd, NextSeo } from 'next-seo'
+import { useRouter } from "next/router";
+
 
 type LayoutProps = {
   slug: string
@@ -16,38 +18,63 @@ type LayoutProps = {
     excerpt?: string
     publishedAt?: string
     readingTime?: {
-      text: string;
-      time: number;
-      words: number;
-      minutes: number;
+      text: string
+      time: number
+      words: number
+      minutes: number
     }
     views?: string
     image?: string
-    headings?: { level: number; heading: string; slug: string, subheading: any[] }[]
+    headings?: {
+      level: number
+      heading: string
+      slug: string
+      subheading: any[]
+    }[]
     showHeadings?: 0 | 1 | 2
     showHeadingsExpanded?: boolean
   }
 }
 
 export const Layout: FC<LayoutProps> = ({
-                                          children, slug, frontMatter: {
-    title, author = '', authorUrl, authorAvatarUrl, publishedAt = Date.now()
-      .toString(), views, readingTime, excerpt, image, headings, showHeadings = 0, showHeadingsExpanded = false, ...rest
+  children,
+  slug,
+  frontMatter: {
+    title,
+    author = '',
+    authorUrl,
+    authorAvatarUrl,
+    publishedAt = Date.now().toString(),
+    views,
+    readingTime,
+    excerpt,
+    image,
+    headings,
+    showHeadings = 0,
+    showHeadingsExpanded = false,
+    ...rest
   }
-                                        }) => {
-  const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
+}) => {
+  
+  const router = useRouter()
+  let canonical = `https://felixtellmann.com/blog/${slug}`;
+  if (!slug) {
+    canonical = `https://felixtellmann.com${router.pathname}`;
+  }
+  
+  const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children
   return (
     <>
       <NextSeo
         title={`${title} – Felix Tellmann`}
         description={excerpt}
-        canonical={`https://felixtellmann.com/blog/${slug}`}
+        canonical={canonical}
         openGraph={{
           type: 'article',
           article: {
             publishedTime: new Date(publishedAt).toISOString()
           },
-          url: `https://felixtellmann.com/blog/${slug}`,
+          url: canonical,
           title,
           description: excerpt,
           images: [
@@ -67,27 +94,31 @@ export const Layout: FC<LayoutProps> = ({
         publisherLogo="/favicons/android-icon-192x192.png"
         publisherName="Felix Tellmann"
         title={title}
-        url={`https://felixtellmann.com/blog/${slug}`}
+        url={canonical}
       />
       {/*================ HEADING ================*/}
-      <ArticleHeading title={title}
-                      authorAvatarUrl={authorAvatarUrl}
-                      author={author}
-                      publishedAt={publishedAt}
-                      readingTime={readingTime}
-                      views={views} />
-      
+      <ArticleHeading
+        title={title}
+        authorAvatarUrl={authorAvatarUrl}
+        author={author}
+        publishedAt={publishedAt}
+        readingTime={readingTime}
+        views={views}
+      />
+
       {/*================ CONTENT ================*/}
-      <article id="mdx-content" className="mdx">{content}</article>
-      
+      <article id="mdx-content" className="mdx">
+        {content}
+      </article>
+
       {/*================ SIDEBAR ================*/}
-      {showHeadings > 0 && headings
-       ? <ArticleSidebar showHeadings={showHeadings} headings={headings} showHeadingsExpanded={showHeadingsExpanded} />
-       : null}
-      
+      {showHeadings > 0 && headings ? (
+        <ArticleSidebar showHeadings={showHeadings} headings={headings} showHeadingsExpanded={showHeadingsExpanded} />
+      ) : null}
+
       {/*================ NEWSLETTER SIGNUP ================*/}
       <NewsletterSignup />
-      
+
       <style jsx global>{`
         .mdx {
           --h1: 3.6rem;
@@ -106,7 +137,8 @@ export const Layout: FC<LayoutProps> = ({
             --h3: 2rem;
           }
 
-          img, video {
+          img,
+          video {
             max-width: 100%;
             height: auto;
           }
@@ -150,7 +182,9 @@ export const Layout: FC<LayoutProps> = ({
             line-height: 1.5;
             text-decoration: none;
 
-            &:hover, &:focus, &:active {
+            &:hover,
+            &:focus,
+            &:active {
               text-decoration: underline;
             }
           }
@@ -176,10 +210,8 @@ export const Layout: FC<LayoutProps> = ({
                 position: absolute;
                 left: 0;
                 content: counters(li, '.') '. ';
-
               }
             }
-
           }
 
           li {
@@ -217,16 +249,16 @@ export const Layout: FC<LayoutProps> = ({
               transition: opacity 0.25s;
             }
 
-            &:hover, &:focus, &:active {
+            &:hover,
+            &:focus,
+            &:active {
               text-decoration: none;
 
               &:after {
                 opacity: 1;
               }
             }
-
           }
-
         }
 
         code {
@@ -234,7 +266,7 @@ export const Layout: FC<LayoutProps> = ({
           border: 1px solid var(--color-remark-code-title-bg);
           border-radius: 0.4rem;
           background: var(--color-remark-code-bg);
-          padding: 0.2rem 0.6rem
+          padding: 0.2rem 0.6rem;
         }
 
         pre code {
@@ -390,7 +422,6 @@ export const Layout: FC<LayoutProps> = ({
         }
 
         .dark-theme {
-
           :not(pre) > code[class*='language-'] {
             background: #011627;
           }
@@ -455,19 +486,17 @@ export const Layout: FC<LayoutProps> = ({
             color: rgb(178, 204, 214);
           }
         }
-      
       `}</style>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  
   return {
     props: {
       slug
     }
-  };
-};
+  }
+}

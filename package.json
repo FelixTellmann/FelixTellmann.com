@@ -38,6 +38,7 @@
     "next-optimized-images": "^3.0.0-canary.10",
     "next-seo": "^4.11.0",
     "node-sass": "^4.14.1",
+    "prettier": "^2.1.2",
     "react-icons": "^3.11.0",
     "reading-time": "^1.2.0",
     "rehype": "^11.0.0",

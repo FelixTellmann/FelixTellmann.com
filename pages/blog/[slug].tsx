@@ -9,7 +9,6 @@ import { mdxOptions, extractFrontMatter } from 'lib/mdxOptions';
 export default Layout;
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  
   const { content, data } = matter(getSinglePostData(slug));
   const extendedFrontMatter = await extractFrontMatter(content);
   
@@ -21,7 +20,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   
   return {
     props: {
-      slug,
+      slug: slug,
       children: mdxSource,
       frontMatter: { ...data, ...extendedFrontMatter }
     }
