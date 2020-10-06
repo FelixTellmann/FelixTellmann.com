@@ -5,8 +5,7 @@ import ArticleHeading from '../components/ArticleHeading'
 import ArticleSidebar from '../components/ArticleSidebar'
 import NewsletterSignup from '../components/NewsletterSignup'
 import { ArticleJsonLd, NextSeo } from 'next-seo'
-import { useRouter } from "next/router";
-
+import { useRouter } from 'next/router'
 
 type LayoutProps = {
   slug: string
@@ -55,13 +54,12 @@ export const Layout: FC<LayoutProps> = ({
     ...rest
   }
 }) => {
-  
   const router = useRouter()
-  let canonical = `https://felixtellmann.com/blog/${slug}`;
+  let canonical = `https://felixtellmann.com/blog/${slug}`
   if (!slug) {
-    canonical = `https://felixtellmann.com${router.pathname}`;
+    canonical = `https://felixtellmann.com${router.pathname}`
   }
-  
+
   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children
   return (
     <>
