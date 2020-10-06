@@ -106,6 +106,11 @@ export const Layout: FC<LayoutProps> = ({
             --h3: 2rem;
           }
 
+          img, video {
+            max-width: 100%;
+            height: auto;
+          }
+
           p {
             margin-top: 1.6rem;
             margin-bottom: 3.2rem;
@@ -161,7 +166,7 @@ export const Layout: FC<LayoutProps> = ({
           ol {
             margin-bottom: 3.2rem;
             padding-top: 0.8rem;
-            
+
             > li {
               counter-increment: li;
               padding-left: 2.8rem;
