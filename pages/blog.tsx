@@ -63,7 +63,7 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
     {/*<Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>
       Blog
     </Text>*/}
-    <IntroText fontSize={[150, 200]}>Blog</IntroText>
+    <IntroText as="h1" fontSize={[150, 200]}>Blog</IntroText>
     <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'} mb={3}>
       I'm writing mostly about web development, tech news, and the occasional life wisdom.
       Use the search below to filter by title.
