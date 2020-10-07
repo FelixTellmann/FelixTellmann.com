@@ -9,6 +9,7 @@ import { Loading } from '../components/Loading'
 import { DefaultSeo } from 'next-seo'
 import 'reset-css/sass/_reset.scss'
 import 'styles/theme.scss'
+import 'styles/mdx.scss'
 
 export const _App: FC<AppProps> = ({ pageProps, Component }) => {
   return (
@@ -202,4 +203,4 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
   )
 }
 
-export default _App
+export default _App;
