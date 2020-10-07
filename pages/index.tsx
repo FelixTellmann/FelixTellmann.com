@@ -1,14 +1,14 @@
 import { FC, useState } from 'react';
-import Text from '../components/Text';
 import { FiHexagon } from 'react-icons/fi';
+import matter from 'gray-matter';
+import { HiOutlineColorSwatch } from 'react-icons/hi';
+import Text from '../components/Text';
 import Timeline from '../components/Timeline';
 import { getAllPostsSlug, getSinglePostData } from '../lib/getBlogPosts';
-import matter from 'gray-matter';
 import { BlogProps } from './blog';
 import BlogPreview from '../components/BlogPreview';
 import LinkBlock from '../components/LinkBlock';
 import Card from '../components/Card';
-import { HiOutlineColorSwatch } from 'react-icons/hi';
 import Hr from '../components/Hr';
 import NewsletterSignup from '../components/NewsletterSignup';
 import IntroText from '../components/IntroText';
@@ -287,20 +287,20 @@ export const Index: FC<BlogProps> = ({ postData }) => {
   ];
   
   return <>
-    {/*================ INTRO ================*/}
+    {/*= =============== INTRO ================ */}
     <Text as="h1" fontSize={6} fontWeight={700} lineHeight={1.2} mb={10}>
-      <IntroText d={['none', 'block']} mb={'-2rem;'}>Hello</IntroText>
-      <IntroText d={['block', 'none']} mb={'-2rem;'}>Hi</IntroText>
+      <IntroText d={['none', 'block']} mb="-2rem;">Hello</IntroText>
+      <IntroText d={['block', 'none']} mb="-2rem;">Hi</IntroText>
       I'm Felix Tellmann
     </Text>
-    <Text as="p" fontSize={2} lineHeight={1.6} color={'--color-text'}>
+    <Text as="p" fontSize={2} lineHeight={1.6} color="--color-text">
       I'm a freelancing web developer, writer and entrepreneur living in Cape Town.
       I enjoy creating things that live on the internet, whether that be websites, applications, or anything in between.
       My goal is to always build products that provide real value to its users.
     </Text>
-    <Hr invisible height={'10vh'} maxHeight={64} />
+    <Hr invisible height="10vh" maxHeight={64} />
     
-    {/*================ BLOG POSTS ================*/}
+    {/*= =============== BLOG POSTS ================ */}
     <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>Recent Posts</Text>
     {
       filteredPostData.map(({ slug, frontMatter: { title, excerpt } }) => (
@@ -309,10 +309,10 @@ export const Index: FC<BlogProps> = ({ postData }) => {
     }
     <Hr invisible mt={2} />
     
-    {/* TODO - ADD Skills Section*/}
+    {/* TODO - ADD Skills Section */}
     
     
-    {/*================ PROJECTS ================*/}
+    {/*= =============== PROJECTS ================ */}
     <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>Projects</Text>
     <LinkBlock href="https://github.com/FelixTellmann/use-styled-system" target="_blank">
       <Card icon={<FiHexagon />}
@@ -328,19 +328,19 @@ export const Index: FC<BlogProps> = ({ postData }) => {
               many color themes as you wish.</>}
             hover />
     </LinkBlock>
-    {/* TODO: Add Project for Sudoku solver with simple presentation & hosting via Vercel*/}
-    {/*<LinkBlock href="https://github.com/FelixTellmann/use-color-theme" target="_blank">
+    {/* TODO: Add Project for Sudoku solver with simple presentation & hosting via Vercel */}
+    {/* <LinkBlock href="https://github.com/FelixTellmann/use-color-theme" target="_blank">
         <Card icon={<HiOutlineColorSwatch />}
               title="use-color-theme"
               description={<>A custom React Hook to help you implement a "theming" classes for your application. The hook allows you to add as many color themes as you wish.</>}
               hover />
-      </LinkBlock>*/}
+      </LinkBlock> */}
     <Hr invisible />
     
-    {/*================ TIMELINE ================*/}
-    <Timeline title="When and where" preview={TIMELINE_CURRENT} data={[...TIMELINE_CURRENT, ...TIMELINE_PAST]} />
+    {/*= =============== TIMELINE ================ */}
+    <Timeline heading="When and where" preview={TIMELINE_CURRENT} data={[...TIMELINE_CURRENT, ...TIMELINE_PAST]} />
     <Hr invisible />
-    {/*================ NEWSLETTER SIGNUP ================*/}
+    {/*= =============== NEWSLETTER SIGNUP ================ */}
     <NewsletterSignup />
   </>;
   
