@@ -178,8 +178,9 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
               title: 'visit-my-old-site',
               href: 'https://old-tellmann-site.vercel.app/webdesign.html',
               target: '_blank'
-            } /*
-            { title: '/uses', href: '/uses' },
+            },
+            { title: 'learn-in-public', href: '/learn' },
+            /*{ title: '/uses', href: '/uses' },
             { title: '/photos', href: '/photos' },
             { title: '/newsletter', href: '/newsletter' }*/
           ]}
