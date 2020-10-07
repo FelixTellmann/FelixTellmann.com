@@ -1,6 +1,6 @@
-import { FC, MouseEvent } from 'react';
-import NextLink from 'next/link';
-import { Decor, Layout, Space, useStyledSystem } from 'use-styled-system';
+import { FC, MouseEvent } from "react";
+import NextLink from "next/link";
+import { Decor, Layout, Space, useStyledSystem } from "use-styled-system";
 
 type LinkProps = {
   onClick?: (event: MouseEvent) => void
@@ -13,17 +13,26 @@ type LinkProps = {
   large?: boolean
 };
 
-export const Link: FC<LinkProps & Space & Layout & Decor> = ({ onClick, className = '', href, target, title, secondary, small, large, children, ...props }) => {
+export const Link: FC<LinkProps & Space & Layout & Decor> = ({ onClick, className = "", href, target, title, secondary, small, large, children, ...props }) => {
   
-  const { styleJsx, nonCssProps } = useStyledSystem(props, { Space: true, Layout: true, Decor: true });
-  const classNames = `link ${secondary ? 'secondary' : ''} ${small ? 'small' : ''} ${large ? 'large' : ''} ${className}`.trim();
-  const label = (href ? href.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) && href.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1] : '');
+  const { styleJsx, nonCssProps } = useStyledSystem(props, {
+    Space: true,
+    Layout: true,
+    Decor: true
+  });
+  const classNames = `link ${secondary ? "secondary" : ""} ${small ? "small" : ""} ${large
+                                                                                     ? "large"
+                                                                                     : ""} ${className}`.trim();
+  const label = (href
+                 ? href.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i) && href.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]
+                 : "");
   
+  /* TODO Add Highlighting to link for inline effect*/
   return <>
     <NextLink href={href}>
       <a target={target}
-         aria-label={href.includes('mailto') ? href.replace('mailto', '') : label}
-         rel={target === '_blank' ? 'noopener noreferrer' : ''}
+         aria-label={href.includes("mailto") ? href.replace("mailto", "") : label}
+         rel={target === "_blank" ? "noopener noreferrer" : ""}
          className={classNames}
          onClick={onClick} {...nonCssProps}>{title}</a>
     </NextLink>
