@@ -3,28 +3,28 @@
 
 (function() {
   // Change these if you use something different in your hook.
-  var storageKey = 'colorTheme';
-  var classNames = ['light-theme', 'dark-theme'];
+  const storageKey = 'colorTheme';
+  const classNames = ['light-theme', 'dark-theme'];
 
   function setClassOnDocumentBody(colorTheme) {
-    var theme = 'light-theme';
+    let theme = 'light-theme';
     if (typeof colorTheme === 'string') {
       theme = colorTheme;
     }
-    for (var i = 0; i < classNames.length; i++) {
+    for (let i = 0; i < classNames.length; i++) {
       document.body.classList.remove(classNames[i]);
     }
     document.body.classList.add(theme);
   }
 
-  var preferDarkQuery = '(prefers-color-scheme: dark)';
-  var mql = window.matchMedia(preferDarkQuery);
-  var supportsColorSchemeQuery = mql.media === preferDarkQuery;
-  var localStorageTheme = null;
+  const preferDarkQuery = '(prefers-color-scheme: dark)';
+  const mql = window.matchMedia(preferDarkQuery);
+  const supportsColorSchemeQuery = mql.media === preferDarkQuery;
+  let localStorageTheme = null;
   try {
     localStorageTheme = localStorage.getItem(storageKey);
   } catch (err) {}
-  var localStorageExists = localStorageTheme !== null;
+  const localStorageExists = localStorageTheme !== null;
   if (localStorageExists) {
     localStorageTheme = JSON.parse(localStorageTheme);
   }
@@ -38,7 +38,7 @@
     localStorage.setItem(storageKey, JSON.stringify('dark-theme'));
   } else {
     // source of truth from document.body
-    var iscolorTheme = document.body.classList.contains('dark-theme');
+    const iscolorTheme = document.body.classList.contains('dark-theme');
     localStorage.setItem(storageKey, iscolorTheme ? JSON.stringify('dark-theme') : JSON.stringify('light-theme'));
   }
 }());

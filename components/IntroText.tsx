@@ -1,11 +1,11 @@
-import { createElement, FC } from 'react';
+import { createElement, FC, MouseEvent } from "react";
 import { CSS, useStyledSystem } from 'use-styled-system';
 import css from 'styled-jsx/css';
 
 type IntroTextProps = {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'code' | 'blockquote' | 'a' | 'small' | 'span';
   className?: string;
-  onClick?: Function;
+  onClick?: (event: MouseEvent) => void;
 };
 
 export const IntroText: FC<IntroTextProps & CSS> = ({ as = 'p', children, className = '', ...props }) => {
@@ -23,4 +23,3 @@ export const IntroText: FC<IntroTextProps & CSS> = ({ as = 'p', children, classN
   );
 };
 
-export default IntroText;

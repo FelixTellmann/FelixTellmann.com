@@ -1,12 +1,8 @@
 import { FC, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import matter from 'gray-matter';
-import { Text } from '../components/Text';
-import { Input } from '../components/Input';
+import { BlogPreview, Box, Input, IntroText, Text } from 'components';
 import { getAllPostsSlug, getSinglePostData } from '../lib/getBlogPosts';
-import { BlogPreview } from '../components/BlogPreview';
-import { Box } from '../components/Box';
-import { IntroText } from '../components/IntroText';
 
 type PostData = {
   slug: string;
@@ -104,7 +100,7 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
 
 export default Blog;
 
-export const getStaticProps = () => {
+export const getStaticProps = (): { props: { postData } } => {
   const postData = getAllPostsSlug()
     .map((slug) => {
       return {

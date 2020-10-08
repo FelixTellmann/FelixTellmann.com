@@ -1,17 +1,15 @@
-import { AppProps } from 'next/app'
-import { FC } from 'react'
-import GoogleFonts from 'next-google-fonts'
-import { BreakpointProvider } from 'use-styled-system'
-import Header from '../components/Header'
-import { FiFacebook, FiGithub, FiMail, FiTwitter } from 'react-icons/fi'
-import Footer from '../components/Footer'
-import { Loading } from '../components/Loading'
-import { DefaultSeo } from 'next-seo'
-import 'reset-css/sass/_reset.scss'
-import 'styles/theme.scss'
-import 'styles/mdx.scss'
+import { AppProps } from 'next/app';
+import { FC } from 'react';
+import GoogleFonts from 'next-google-fonts';
+import { BreakpointProvider } from 'use-styled-system';
+import { FiFacebook, FiGithub, FiMail, FiTwitter } from 'react-icons/fi';
+import { DefaultSeo } from 'next-seo';
+import { Header, Footer, BorderFrame } from 'components';
+import 'reset-css/sass/_reset.scss';
+import 'styles/theme.scss';
+import 'styles/mdx.scss';
 
-export const _App: FC<AppProps> = ({ pageProps, Component }) => {
+export const Root: FC<AppProps> = ({ pageProps, Component }) => {
   return (
     <>
       <style jsx global>{`
@@ -76,19 +74,18 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
         .page {
           max-width: 76.4rem;
           min-height: calc(100vh - 309px);
-          margin: 0 auto;
-          padding: 0 3.2rem;
           display: flex;
           flex-direction: column;
+          margin: 0 auto;
+          padding: 0 3.2rem;
         }
 
         #__next {
           position: relative;
         }
       `}</style>
-
-      <BreakpointProvider breakPoints={[0, 600, 900, 1200]}>
-        <DefaultSeo
+  
+      <DefaultSeo
           title="Felix Tellmann - Front-end Engineer"
           description="Creator of things that live on the internet - Web developer, writer and entrepreneur."
           openGraph={{
@@ -112,15 +109,29 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
             site: '@FelixTellmann',
             cardType: 'summary_large_image'
           }}
-        />
-        <Loading loading={false} duration={3} width="5px" />
-        <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+      />
+      <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+      
+      <BreakpointProvider breakPoints={[0, 600, 900, 1200]}>
+        <BorderFrame loading={false} duration={3} width="5px" />
         <Header
-          logo={{ title: 'FT', href: '/' }}
+          logo={{
+            title: 'FT',
+            href: '/'
+          }}
           nav={[
-            { title: 'Home', href: '/' },
-            { title: 'Blog', href: '/blog' },
-            { title: 'About', href: '/about' }
+            {
+              title: 'Home',
+              href: '/'
+            },
+            {
+              title: 'Blog',
+              href: '/blog'
+            },
+            {
+              title: 'About',
+              href: '/about'
+            }
           ]}
         />
         <div className="page">
@@ -179,10 +190,13 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
               href: 'https://old-tellmann-site.vercel.app/webdesign.html',
               target: '_blank'
             },
-            { title: 'learn-in-public', href: '/learn' },
-            /*{ title: '/uses', href: '/uses' },
-            { title: '/photos', href: '/photos' },
-            { title: '/newsletter', href: '/newsletter' }*/
+            {
+              title: 'learn-in-public',
+              href: '/learn'
+            }
+            /* { title: '/uses', href: '/uses' },
+                { title: '/photos', href: '/photos' },
+                { title: '/newsletter', href: '/newsletter' } */
           ]}
         />
         <svg
@@ -201,7 +215,7 @@ export const _App: FC<AppProps> = ({ pageProps, Component }) => {
         </svg>
       </BreakpointProvider>
     </>
-  )
-}
+  );
+};
 
-export default _App;
+export default Root;

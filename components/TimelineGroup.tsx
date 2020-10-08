@@ -16,13 +16,12 @@ export const TimelineGroup: FC<TimelineGroupProps> = ({ title, items }) => {
           {title}
         </Text>
         <Box as="ul">
-          {items.map((props) => (
-            <TimelineItem key={props.headline.toString()} {...props} />
+          {items.map((props, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+            <TimelineItem key={index} {...props} />
           ))}
         </Box>
       </Box>
     </>
   );
 };
-
-export default TimelineGroup;

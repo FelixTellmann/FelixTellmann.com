@@ -1,4 +1,6 @@
-export default async (req, res) => {
+import { NextApiRequest, NextApiResponse } from 'next'
+
+export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const { email } = req.body;
 
   if (!email) {
@@ -18,7 +20,7 @@ export default async (req, res) => {
       },
       method: 'POST'
     });
- 
+
     if (response.status >= 400) {
       const text = await response.text();
       if (text.includes('already subscribed')) {

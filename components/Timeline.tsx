@@ -62,4 +62,4 @@ export const Timeline: FC<TimelineProps> = ({ heading, data, preview }) => {
   );
 };
 
-export default Timeline;
+

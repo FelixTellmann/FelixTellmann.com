@@ -35,4 +35,4 @@ export const LinkBlock: FC<LinkBlockProps & AnchorHTMLAttributes<any>> = ({
   );
 };
 
-export default LinkBlock;
+

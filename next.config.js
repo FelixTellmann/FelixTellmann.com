@@ -4,8 +4,8 @@ const MdxEnhanced = require('next-mdx-enhanced');
 const fs = require('fs');
 const path = require('path');
 const optimizedImages = require('next-optimized-images');
-const mdxOptions = require('./lib/mdxOptions');
 const withPWA = require('next-pwa');
+const mdxOptions = require('./lib/mdxOptions');
 
 module.exports = withPlugins(
   [
@@ -42,7 +42,7 @@ module.exports = withPlugins(
               fs
                 .readdirSync(path.join(process.cwd(), 'styles'))
                 .filter((file) => file.match(/^_.*\.scss$/))
-                .map((file) => './styles/' + file)
+                .map((file) => `./styles/${  file}`)
 
           }
         } : {}
@@ -58,6 +58,6 @@ module.exports = withPlugins(
   }
 );
 
-module.exports['env'] = {
+module.exports.env = {
   BUTTONDOWN_API_KEY: process.env.BUTTONDOWN_API_KEY
 };

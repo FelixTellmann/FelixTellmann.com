@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
 
-type BorderProps = {
+type BorderFrameProps = {
   loading: boolean;
   duration: number;
   width: string;
 };
 
-export const Loading: FC<BorderProps> = ({ loading, duration, width }) => {
+export const BorderFrame: FC<BorderFrameProps> = ({ loading, duration, width }) => {
   const [loop, setLoop] = useState(loading ? 'infinite' : 1);
   const style: any = {
     '--border-width': `${width}`,

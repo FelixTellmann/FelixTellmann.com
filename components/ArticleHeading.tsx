@@ -46,5 +46,3 @@ export const ArticleHeading: FC<ArticleHeadingProps> = ({ title, author, authorA
     </>
   )
 }
-
-export default ArticleHeading

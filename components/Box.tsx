@@ -22,4 +22,4 @@ export const Box: FC<BoxProps & CSS> = ({ as = 'div', children, className = '', 
   );
 };
 
-export default Box;
+

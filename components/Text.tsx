@@ -20,4 +20,4 @@ export const Text: FC<TextProps & CSS> = ({ as = 'p', children, className = '', 
   );
 };
 
-export default Text;
+

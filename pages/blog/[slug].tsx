@@ -1,37 +1,42 @@
-import matter from 'gray-matter'
-import renderToString from 'next-mdx-remote/render-to-string'
-import Layout from 'layouts'
-import { getAllPostsSlug, getSinglePostData } from 'lib/getBlogPosts'
-import { mdxOptions, extractFrontMatter } from 'lib/mdxOptions'
+import matter from 'gray-matter';
+import renderToString from 'next-mdx-remote/render-to-string';
+import Layout from 'layouts';
+import { getAllPostsSlug, getSinglePostData } from 'lib/getBlogPosts';
+import { mdxOptions, extractFrontMatter } from 'lib/mdxOptions';
+import { GetStaticProps } from 'next';
 
-export default Layout
+export default Layout;
 
-export const getStaticProps = async ({ params: { slug } }) => {
-  const { content, data } = matter(getSinglePostData(slug))
-  const extendedFrontMatter = await extractFrontMatter(content)
+type Props = {
+  params: {
+    slug: string;
+  };
+};
 
-  const mdxSource = await renderToString(content.replace(/import\s+.*?\s+from\s+('|"|`)[\w\d\-\/\.]+\1;?/gi, ''), {
+export const getStaticProps: GetStaticProps<Props> = async ({ params: { slug } }): Promise<{ props }> => {
+  const { content, data } = matter(getSinglePostData(typeof slug === 'string' ? slug : ''));
+  const extendedFrontMatter = extractFrontMatter(content);
+
+  const mdxSource = await renderToString(content.replace(/import\s+.*?\s+from\s+['"`][\w\d\-/.]+\1;?/gi, ''), {
     // Optionally pass remark/rehype plugins
-    mdxOptions: mdxOptions,
+    mdxOptions,
     scope: data
-  })
+  });
 
   return {
     props: {
-      slug: slug,
+      slug,
       children: mdxSource,
       frontMatter: { ...data, ...extendedFrontMatter }
     }
-  }
-}
+  };
+};
 
-export const getStaticPaths = async () => {
-  const paths = getAllPostsSlug()
-    // Map the path into the static paths object required by Next.js
-    .map((slug) => ({ params: { slug } }))
+export const getStaticPaths = (): { paths; fallback: boolean } => {
+  const paths = getAllPostsSlug().map((slug) => ({ params: { slug } }));
 
   return {
     paths,
     fallback: false
-  }
-}
+  };
+};

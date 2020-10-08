@@ -89,4 +89,4 @@ export const Input: FC<InputProps & InputHTMLAttributes<any>> = ({
   );
 };
 
-export default Input;
+

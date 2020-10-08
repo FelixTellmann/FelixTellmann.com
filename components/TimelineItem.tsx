@@ -28,4 +28,4 @@ export const TimelineItem: FC<TimelineItemProps> = ({ headline, description }) =
   );
 };
 
-export default TimelineItem;
+

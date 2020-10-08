@@ -23,4 +23,4 @@ export const BlogPreview: FC<BlogPreviewProps> = ({ slug, title, excerpt }) => {
   );
 };
 
-export default BlogPreview;
+

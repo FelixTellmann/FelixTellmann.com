@@ -26,4 +26,4 @@ export const Hr: FC<HrProps & Space> = ({ invisible, ...props }) => {
   );
 };
 
-export default Hr;
+

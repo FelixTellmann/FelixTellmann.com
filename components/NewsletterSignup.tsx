@@ -76,4 +76,4 @@ export const NewsletterSignup: FC = () => {
   );
 };
 
-export default NewsletterSignup;
+

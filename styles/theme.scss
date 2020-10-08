@@ -1,10 +1,7 @@
 body,
 .light-theme {
-  --box-shadow-card: 1px 1px 5px 0px rgb(0 191 165 / 0.50), inset 1px 0px 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
-  --box-shadow-card-hover: 1px 1px 5px 0px rgb(0 191 165 / 0.50), 1px 0px 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
-  --color-gradient-1: #00bfa5;
-  --color-gradient-2: #3182ce;
-  --color-gradient-3: rgba(11,197,234,0.67);
+  --box-shadow-card: 1px 1px 5px 0px rgb(0 191 165 / 0.5), inset 1px 0px 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
+  --box-shadow-card-hover: 1px 1px 5px 0px rgb(0 191 165 / 0.5), 1px 0px 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
   --color-background: #f9fafa;
   --color-body: #1c1c1c;
   --color-border: #e2e8f0;
@@ -14,6 +11,9 @@ body,
   --color-card-highlight: #ebf8ff;
   --color-card-highlight-border: #90cdf4;
   --color-faded: #aebcd4;
+  --color-gradient-1: #00bfa5;
+  --color-gradient-2: #3182ce;
+  --color-gradient-3: rgba(11, 197, 234, 0.67);
   --color-green: #00bfa5;
   --color-header: #1a202c;
   --color-header-backdrop-filter: saturate(180%) blur(2rem);
@@ -35,8 +35,10 @@ body,
 }
 
 .dark-theme {
-  --box-shadow-card: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
-  --box-shadow-card-hover: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
+  --box-shadow-card: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0px 11px 4px rgb(49 118 206 / 25%),
+    0px 0px 1px 1px #0bc5ea52;
+  --box-shadow-card-hover: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), 1px 0px 11px 4px rgb(49 118 206 / 25%),
+    0px 0px 1px 1px #0bc5ea52;
   --color-background: #171923;
   --color-body: #f9fafa;
   --color-border: #373d48;
@@ -44,7 +46,7 @@ body,
   --color-button: rgba(255, 255, 255, 0.16);
   --color-button-secondary: rgb(255, 255, 255, 0.08);
   --color-card-highlight: #2d3748;
-  --color-card-highlight-border: #718096;;
+  --color-card-highlight-border: #718096;
   --color-faded: #3e4254;
   --color-green: #00bfa5;
   --color-header: #fff;
@@ -54,7 +56,7 @@ body,
   --color-input-border: rgba(255, 255, 255, 0.14);
   --color-input-border-focus: #3182ce;
   --color-input-border-hover: rgb(255, 255, 255, 0.08);
-  --color-link: rgba(255, 255, 255, 0.80);
+  --color-link: rgba(255, 255, 255, 0.8);
   --color-link-hover: rgb(255, 255, 255, 0.68);
   --color-mdx-link: #60b3fb;
   --color-primary: #ee601e;
@@ -66,8 +68,10 @@ body,
 }
 
 .blue-theme {
-  --box-shadow-card: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
-  --box-shadow-card-hover: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), 1px 0px 11px 4px rgb(49 118 206 / 25%), 0px 0px 1px 1px #0bc5ea52;
+  --box-shadow-card: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0px 11px 4px rgb(49 118 206 / 25%),
+    0px 0px 1px 1px #0bc5ea52;
+  --box-shadow-card-hover: 0px 0px 8px 2px hsl(172deg 100% 37% / 24%), 1px 0px 11px 4px rgb(49 118 206 / 25%),
+    0px 0px 1px 1px #0bc5ea52;
   --color-background: #264452;
   --color-body: #ceeaec;
   --color-border: #373d48;
@@ -77,6 +81,9 @@ body,
   --color-card-highlight: hsl(172deg 59% 18%);
   --color-card-highlight-border: #718096;
   --color-faded: #3e4254;
+  --color-gradient-1: #20ffe1;
+  --color-gradient-2: #d1e64ee6;
+  --color-gradient-3: hsl(318deg 76% 62% / 80%);
   --color-green: #1bd4e4;
   --color-header: #fff;
   --color-header-backdrop-filter: saturate(100%) blur(2rem);
@@ -85,7 +92,7 @@ body,
   --color-input-border: rgba(255, 255, 255, 0.14);
   --color-input-border-focus: #3182ce;
   --color-input-border-hover: rgb(255, 255, 255, 0.08);
-  --color-link: rgba(255, 255, 255, 0.80);
+  --color-link: rgba(255, 255, 255, 0.8);
   --color-link-hover: rgb(255, 255, 255, 0.68);
   --color-mdx-link: #60b3fb;
   --color-primary: #ee601e;
@@ -94,9 +101,6 @@ body,
   --color-selection: rgba(11, 197, 234, 0.67);
   --color-subdued: #718096;
   --color-text: #fdfeff;
-  --color-gradient-1: #20ffe1;
-  --color-gradient-2: #d1e64ee6;
-  --color-gradient-3: hsl(318deg 76% 62% / 80%);
 }
 :root {
   --border-radius: 0.4rem;

@@ -78,4 +78,4 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
   );
 };
 
-export default Link;
+

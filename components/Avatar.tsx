@@ -59,4 +59,4 @@ export const Avatar: FC<AvatarProps & SizeProperties> = ({ src, alt, initials = 
   );
 };
 
-export default Avatar;
+

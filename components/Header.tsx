@@ -78,4 +78,4 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
   );
 };
 
-export default Header;
+

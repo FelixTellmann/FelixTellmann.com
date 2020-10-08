@@ -15,7 +15,7 @@ export type Headings = {
 
 export type ArticleSidebarProps = {
   showHeadings: number;
-  headings: Headings
+  headings: Headings;
   showHeadingsExpanded?: boolean;
 };
 
@@ -36,8 +36,6 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     scrollTo(200, document.getElementById(slug).offsetTop - 120);
     setActiveSubheading(slug);
   };
-
-  let tabOrder = 0;
 
   useEffect(() => {
     const ac = new AbortController();
@@ -139,7 +137,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
               {headings.map(({ title, slug, subheading }) => (
                 <li key={slug} className="heading">
                   <a
-                    tabIndex={(tabOrder += 1)}
+                    tabIndex={-1}
                     role="button"
                     className={slug === activeHeading ? 'active' : ''}
                     aria-label={title}
@@ -152,7 +150,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
                       {subheading.map(({ subLevel, subTitle, subSlug }) => (
                         <li key={subSlug} className={`heading-${subLevel}`}>
                           <a
-                            tabIndex={(tabOrder += 1)}
+                            tabIndex={-1}
                             role="button"
                             className={`${subSlug === activeSubheading ? 'active' : ''}`}
                             aria-label={subTitle}
@@ -309,5 +307,3 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
     </>
   );
 };
-
-export default ArticleSidebar;

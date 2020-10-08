@@ -46,4 +46,4 @@ export const Card: FC<CardProps> = ({ icon, title, description, hover }) => {
   );
 };
 
-export default Card;
+

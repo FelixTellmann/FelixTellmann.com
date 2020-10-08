@@ -45,4 +45,4 @@ export const Footer: FC<FooterProps> = ({ socialNav, footerNav }) => {
   );
 };
 
-export default Footer;
+

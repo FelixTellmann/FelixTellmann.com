@@ -14,9 +14,9 @@ pre[class*='language-'] {
   text-align: left;
   word-wrap: normal;
   word-break: normal;
-  overflow-wrap: normal;
   tab-size: 4;
   hyphens: none;
+  overflow-wrap: normal;
 }
 
 /* Code blocks */
@@ -149,7 +149,6 @@ pre[class*='language-'] {
 }
 
 .dark-theme {
-
   :not(pre) > code[class*='language-'] {
     background: #011627;
   }
