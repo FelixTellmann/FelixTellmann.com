@@ -4,10 +4,11 @@ import GoogleFonts from 'next-google-fonts';
 import { BreakpointProvider } from 'use-styled-system';
 import { FiFacebook, FiGithub, FiMail, FiTwitter } from 'react-icons/fi';
 import { DefaultSeo } from 'next-seo';
-import { Header, Footer, BorderFrame } from 'components';
+import { BorderFrame, Footer, Header } from 'components';
 import 'reset-css/sass/_reset.scss';
 import 'styles/theme.scss';
 import 'styles/mdx.scss';
+import 'styles/typography.scss';
 
 export const Root: FC<AppProps> = ({ pageProps, Component }) => {
   return (
@@ -84,34 +85,34 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
           position: relative;
         }
       `}</style>
-  
+
       <DefaultSeo
-          title="Felix Tellmann - Front-end Engineer"
-          description="Creator of things that live on the internet - Web developer, writer and entrepreneur."
-          openGraph={{
-            type: 'website',
-            locale: 'en_IE',
-            url: 'https://www.felixtellmann.com/',
-            site_name: 'Felix Tellmann',
-            title: 'Felix Tellmann - Front-end Engineer',
-            description: 'Creator of things that live on the internet - Web developer, writer and entrepreneur.',
-            images: [
-              {
-                url: 'https://www.felixtellmann.com/images/og-default.jpg',
-                alt: 'Felix Tellmann - Front-end Engineer',
-                width: 1200,
-                height: 630
-              }
-            ]
-          }}
-          twitter={{
-            handle: '@FelixTellmann',
-            site: '@FelixTellmann',
-            cardType: 'summary_large_image'
-          }}
+        title="Felix Tellmann - Front-end Engineer"
+        description="Creator of things that live on the internet - Web developer, writer and entrepreneur."
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          url: 'https://www.felixtellmann.com/',
+          site_name: 'Felix Tellmann',
+          title: 'Felix Tellmann - Front-end Engineer',
+          description: 'Creator of things that live on the internet - Web developer, writer and entrepreneur.',
+          images: [
+            {
+              url: 'https://www.felixtellmann.com/images/og-default.jpg',
+              alt: 'Felix Tellmann - Front-end Engineer',
+              width: 1200,
+              height: 630
+            }
+          ]
+        }}
+        twitter={{
+          handle: '@FelixTellmann',
+          site: '@FelixTellmann',
+          cardType: 'summary_large_image'
+        }}
       />
       <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
-      
+
       <BreakpointProvider breakPoints={[0, 600, 900, 1200]}>
         <BorderFrame loading={false} duration={3} width="5px" />
         <Header
@@ -195,8 +196,8 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
               href: '/learn'
             }
             /* { title: '/uses', href: '/uses' },
-                { title: '/photos', href: '/photos' },
-                { title: '/newsletter', href: '/newsletter' } */
+                        { title: '/photos', href: '/photos' },
+                        { title: '/newsletter', href: '/newsletter' } */
           ]}
         />
         <svg
