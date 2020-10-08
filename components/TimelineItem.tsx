@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import CheckIcon from 'public/icons/CheckIcon.svg';
 import { Box } from './Box';
-import { Text } from './Text';
 
 export type TimelineItemProps = {
   headline: string | JSX.Element;
@@ -11,21 +10,32 @@ export type TimelineItemProps = {
 export const TimelineItem: FC<TimelineItemProps> = ({ headline, description }) => {
   return (
     <>
-      <Box as="li" mb={3}>
-        <Box d="flex" mb={1} align="center">
-          <CheckIcon style={{ margin: `0 12px 0 8px`, color: `var(--color-green)` }} />
-          <Text as="h4" lineHeight={1.8} fontWeight={600}>
-            {headline}
-          </Text>
-        </Box>
-        {description ? (
-          <Text as="p" color="--color-text" ml={36} lineHeight={1.6}>
-            {description}
-          </Text>
-        ) : null}
-      </Box>
+      <li>
+        <CheckIcon />
+        <h4 className="h6">{headline}</h4>
+
+        {description ? <p>{description}</p> : null}
+      </li>
+      <style jsx>{`
+        li {
+          display: grid;
+          align-items: center;
+          grid-template-columns: 3.6rem 1fr;
+          grid-template-rows: 2.8rem 1fr;
+          grid-template-areas:
+            ' . . '
+            ' . description';
+          margin-bottom: 1.6rem;
+          grid-row-gap: 0.4rem;
+          :global(svg) {
+            margin: 0 12px 0 8px;
+            color: var(--color-green);
+          }
+        }
+        p {
+          grid-area: description;
+        }
+      `}</style>
     </>
   );
 };
-
-

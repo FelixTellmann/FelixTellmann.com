@@ -22,9 +22,9 @@ export const Timeline: FC<TimelineProps> = ({ heading, data, preview }) => {
   return (
     <>
       {heading ? (
-        <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.2} mb={3}>
+        <h2>
           {heading}
-        </Text>
+        </h2>
       ) : (
         ''
       )}

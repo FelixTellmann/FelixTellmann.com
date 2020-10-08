@@ -1,10 +1,15 @@
 {
   "extends": "stylelint-config-sass-guidelines",
-  "plugins": ["stylelint-order"],
+  "plugins": ["stylelint-scss", "stylelint-order"],
   "ignoreFiles": ["public/**/*", ".mdx-data/**/*", ".next/**/*", "@types/**/*", "node_modules/**/*"],
   "rules": {
     "max-nesting-depth": 4,
-    "selector-no-qualifying-type": [true, { "ignore": ["attribute"] }],
+    "selector-no-qualifying-type": [
+      true,
+      {
+        "ignore": ["attribute"]
+      }
+    ],
     "selector-list-comma-newline-after": "never-multi-line",
     "order/properties-alphabetical-order": null,
     "order/properties-order": [

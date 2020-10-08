@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FiHexagon } from 'react-icons/fi';
 import matter from 'gray-matter';
 import { HiOutlineColorSwatch } from 'react-icons/hi';
-import { BlogPreview, Card, Hr, IntroText, LinkBlock, NewsletterSignup, Text, Timeline } from 'components';
+import { HeroText, BlogPreview, Card, Hr, LinkBlock, NewsletterSignup, Timeline, Responsive } from 'components';
 import { getAllPostsSlug, getSinglePostData } from '../lib/getBlogPosts';
 import { BlogProps } from './blog';
 
@@ -403,26 +403,22 @@ export const Index: FC<BlogProps> = ({ postData }) => {
   return (
     <>
       {/*= =============== INTRO ================ */}
-      <Text as="h1" fontSize={6} fontWeight={700} lineHeight={1.2} mb={10}>
-        <IntroText d={['none', 'block']} mb="-2rem;">
-          Hello
-        </IntroText>
-        <IntroText d={['block', 'none']} mb="-2rem;">
-          Hi
-        </IntroText>
+      <h1>
+        <HeroText>
+          <Responsive desktop>Hello</Responsive>
+          <Responsive mobile>Hi</Responsive>
+        </HeroText>
         I'm Felix Tellmann
-      </Text>
-      <Text as="p" fontSize={2} lineHeight={1.6} color="--color-text">
+      </h1>
+      <p>
         I'm a freelancing web developer, writer and entrepreneur living in Cape Town. I enjoy creating things that live on the
         internet, whether that be websites, applications, or anything in between. My goal is to always build products that provide
         real value to its users.
-      </Text>
+      </p>
       <Hr invisible height="10vh" maxHeight={64} />
 
       {/*= =============== BLOG POSTS ================ */}
-      <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>
-        Recent Posts
-      </Text>
+      <h2>Recent Posts</h2>
       {postData
         ? postData.map(({ slug, frontMatter: { title, excerpt } }) => (
             <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />
@@ -433,9 +429,7 @@ export const Index: FC<BlogProps> = ({ postData }) => {
       {/* TODO - ADD Skills Section */}
 
       {/*= =============== PROJECTS ================ */}
-      <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>
-        Projects
-      </Text>
+      <h2>Projects</h2>
       <LinkBlock href="https://github.com/FelixTellmann/use-styled-system" target="_blank">
         <Card
           icon={<FiHexagon />}
@@ -453,13 +447,13 @@ export const Index: FC<BlogProps> = ({ postData }) => {
         <Card
           icon={<HiOutlineColorSwatch />}
           title="use-color-theme"
+          hover
           description={
             <>
               A custom React Hook to help you implement a "theming" classes for your application. The hook allows you to add as
               many color themes as you wish.
             </>
           }
-          hover
         />
       </LinkBlock>
       {/* TODO: Add Project for Sudoku solver with simple presentation & hosting via Vercel */}

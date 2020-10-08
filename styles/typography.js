@@ -18,6 +18,7 @@ export const typography = css.global`
     }
 
     body {
+      position: relative;
       background: var(--color-background);
       color: var(--color-body);
       font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, sans-serif;
@@ -58,48 +59,79 @@ export const typography = css.global`
       font-size: 0.875em;
     }
     
+    p, .p {
+      margin-bottom: 0;
+      color: var(--color-text);
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: unset;
+    }
+
+    article {
+      p, .p {
+        margin-top: 1.6rem;
+        margin-bottom: 3.2rem;
+      }
+    }
     
     h1, .h1 {
       margin-bottom: 1rem;
+      color: var(--color-body);
       font-size: 4.8rem;
       font-weight: 700;
       line-height: 1.2;
+      letter-spacing: unset;
+    }
+
+    h2, .h2 {
+      margin-bottom: 1.6rem;
+      color: var(--color-body);
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: unset;
       @include min-width(600px) {
         font-size: 3.6rem;
       }
     }
 
-    h2, .h2 {
-      margin-bottom: 1.6rem;
-      font-size: 3.6rem;
-      font-weight: 700;
-      line-height: 1.25;
-      @include min-width(600px) {
-        font-size: 3rem;
-      }
-    }
-
     h3, .h3 {
       margin-bottom: 1rem;
-      font-size: 2.4rem;
+      color: var(--color-body);
+      font-size: 2rem;
       font-weight: 700;
       line-height: 1.4;
+      letter-spacing: unset;
       @include min-width(600px) {
-        font-size: 2rem;
+        font-size: 2.4rem;
       }
     }
 
     h4, .h4 {
-      margin-bottom: 0;
+      margin-bottom: 0.8rem;
+      color: var(--color-body);
       font-size: 2rem;
       font-weight: 700;
       line-height: 1.25;
+      letter-spacing: unset;
     }
     
     h5, .h5 {
+      margin-bottom: 0.8rem;
+      color: var(--color-body);
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.05em;
+    }
+
+    h6, .h6 {
       margin-bottom: 0;
+      color: var(--color-body);
       font-size: 1.6rem;
       font-weight: 600;
       line-height: 1.8;
+      letter-spacing: unset;
     }
 `;

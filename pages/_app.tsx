@@ -5,24 +5,17 @@ import { BreakpointProvider } from 'use-styled-system';
 import { FiFacebook, FiGithub, FiMail, FiTwitter } from 'react-icons/fi';
 import { DefaultSeo } from 'next-seo';
 import { BorderFrame, Footer, Header } from 'components';
-import { variables } from 'styles/variables';
 import 'reset-css/sass/_reset.scss';
 import 'styles/theme.scss';
 import 'styles/mdx.scss';
-import { typography } from 'styles/typography'
+import { typography, variables } from 'styles'
 
 export const Root: FC<AppProps> = ({ pageProps, Component }) => {
   return (
     <>
-      <style jsx global>
-        {variables}
-      </style>
-      <style jsx global>
-        {typography}
-      </style>
+      <style jsx global>{variables}</style>
+      <style jsx global>{typography}</style>
       <style jsx global>{`
-        
-
         .page {
           max-width: 76.4rem;
           min-height: calc(100vh - 309px);
@@ -30,10 +23,6 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
           flex-direction: column;
           margin: 0 auto;
           padding: 0 3.2rem;
-        }
-
-        #__next {
-          position: relative;
         }
       `}</style>
 

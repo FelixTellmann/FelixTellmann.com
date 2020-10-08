@@ -35,13 +35,9 @@ export const NewsletterSignup: FC = () => {
   return (
     <>
       <div className="signup">
-        <Text as="h2" lineHeight={1.25} fontWeight={700} fontSize={[3, 4]} mb={2}>
-          Subscribe to my newsletter
-        </Text>
-        <Text color="--color-text" lineHeight={1.5}>
-          Get emails from me about web development, tech, and early access to new articles.
-        </Text>
-        <Box mt={3} color="--color-text" lineHeight={1.5}>
+        <h2 className="h3">Subscribe to my newsletter</h2>
+        <p>Get emails from me about web development, tech, and early access to new articles.</p>
+        <section>
           {success ? (
             <Text color="--color-green" fontWeight={600}>
               Thank you for subscribing, you'll receive a welcome email shortly.
@@ -62,7 +58,7 @@ export const NewsletterSignup: FC = () => {
               {errorMessage}
             </Text>
           ) : null}
-        </Box>
+        </section>
       </div>
       <style jsx>{`
         .signup {
@@ -71,9 +67,11 @@ export const NewsletterSignup: FC = () => {
           border: 1px solid var(--color-card-highlight-border);
           background-color: var(--color-card-highlight);
         }
+        section {
+          margin-top: 1.6rem;
+          color: var(--color-text);
+        }
       `}</style>
     </>
   );
 };
-
-

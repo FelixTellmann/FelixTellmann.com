@@ -17,12 +17,12 @@ export const Card: FC<CardProps> = ({ icon, title, description, hover }) => {
           {icon}
         </Box>
         <div className="card-content">
-          <Text as="h3" fontSize={18} fontWeight={700} lineHeight={1.25} letterSpacing="-0.05em" mb={2}>
+          <h3 className="h5">
             {title}
-          </Text>
-          <Text as="p" lineHeight={1.3} color="--color-text">
+          </h3>
+          <p style={{lineHeight: 1.4}}>
             {description}
-          </Text>
+          </p>
         </div>
       </div>
       <style jsx>{`

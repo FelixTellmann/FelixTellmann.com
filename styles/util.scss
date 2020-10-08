@@ -1,0 +1,34 @@
+$sizes: 2, 4, 8, 16, 24, 32, 36, 64, 128, 256;
+
+@each $size in $sizes {
+  .m#{$size} {
+    margin: #{$size / 10}rem;
+  }
+  .mt#{$size} {
+    margin-top: #{$size / 10}rem;
+  }
+  .mr#{$size} {
+    margin-right: #{$size / 10}rem;
+  }
+  .mb#{$size} {
+    margin-bottom: #{$size / 10}rem;
+  }
+  .ml#{$size} {
+    margin-left: #{$size / 10}rem;
+  }
+  .p#{$size} {
+    padding: #{$size / 10}rem;
+  }
+  .pt#{$size} {
+    padding-top: #{$size / 10}rem;
+  }
+  .pr#{$size} {
+    padding-right: #{$size / 10}rem;
+  }
+  .pb#{$size} {
+    padding-bottom: #{$size / 10}rem;
+  }
+  .pl#{$size} {
+    padding-left: #{$size / 10}rem;
+  }
+}
