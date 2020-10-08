@@ -5,72 +5,23 @@ import { BreakpointProvider } from 'use-styled-system';
 import { FiFacebook, FiGithub, FiMail, FiTwitter } from 'react-icons/fi';
 import { DefaultSeo } from 'next-seo';
 import { BorderFrame, Footer, Header } from 'components';
+import { variables } from 'styles/variables';
 import 'reset-css/sass/_reset.scss';
 import 'styles/theme.scss';
 import 'styles/mdx.scss';
-import 'styles/typography.scss';
+import { typography } from 'styles/typography'
 
 export const Root: FC<AppProps> = ({ pageProps, Component }) => {
   return (
     <>
+      <style jsx global>
+        {variables}
+      </style>
+      <style jsx global>
+        {typography}
+      </style>
       <style jsx global>{`
-        *,
-        *:before,
-        *:after {
-          box-sizing: border-box;
-        }
-
-        html {
-          min-width: 320px;
-          font-size: 10px;
-          scroll-behavior: smooth;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          text-rendering: optimizeLegibility;
-          -ms-text-size-adjust: 100%;
-          -webkit-text-size-adjust: 100%;
-        }
-
-        body {
-          background: var(--color-background);
-          color: var(--color-body);
-          font-family: var(--font-family);
-          font-size: var(--p);
-        }
-
-        ::selection {
-          background-color: var(--color-selection);
-        }
-
-        a {
-          cursor: pointer;
-          color: inherit;
-          text-decoration: none;
-        }
-
-        hr {
-          margin: 0;
-          border-width: 0;
-          border-color: unset;
-        }
-
-        strong {
-          font-weight: 700;
-        }
-
-        em {
-          font-style: italic;
-        }
-
-        u {
-          text-decoration-color: var(--color-subdued);
-          text-decoration-skip-ink: auto;
-          text-decoration-width: 1px;
-        }
-
-        small {
-          font-size: 0.875em;
-        }
+        
 
         .page {
           max-width: 76.4rem;

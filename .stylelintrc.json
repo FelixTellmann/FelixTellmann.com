@@ -2,13 +2,6 @@
   "extends": "stylelint-config-sass-guidelines",
   "plugins": ["stylelint-order"],
   "ignoreFiles": ["public/**/*", ".mdx-data/**/*", ".next/**/*", "@types/**/*", "node_modules/**/*"],
-  "processors": [
-    [ "@mapbox/stylelint-processor-arbitrary-tags", {
-      "startTag": "\\s*<style jsx>{`",
-      "endTag": "\\s*`}<\/style>"
-    }
-    ]
-  ],
   "rules": {
     "max-nesting-depth": 4,
     "selector-no-qualifying-type": [true, { "ignore": ["attribute"] }],
