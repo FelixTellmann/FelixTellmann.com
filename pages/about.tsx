@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Text, HeroText, Link } from 'components';
+import {  HeroText, Link } from 'components';
 
 export const Index: FC = () => {
   return (
