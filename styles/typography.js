@@ -64,7 +64,7 @@ export const typography = css.global`
       color: var(--color-text);
       font-size: 1.6rem;
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.7;
       letter-spacing: unset;
     }
 
