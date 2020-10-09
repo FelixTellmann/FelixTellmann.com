@@ -1,9 +1,11 @@
 import { FC } from 'react';
-import {  HeroText, Link } from 'components';
+import { HeroText, Link } from 'components';
+import { NextSeo } from "next-seo";
 
 export const Index: FC = () => {
   return (
     <>
+      <NextSeo title="About Me - Felix Tellmann" openGraph={{ title: 'About Me - Felix Tellmann' }} />
       <h1>
         <HeroText fontSize={[105, 200]}>About</HeroText>
       </h1>

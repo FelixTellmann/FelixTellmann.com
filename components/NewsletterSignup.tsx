@@ -39,7 +39,7 @@ export const NewsletterSignup: FC = () => {
         <p>Get emails from me about web development, tech, and early access to new articles.</p>
         <section>
           {success ? (
-            <Text color="--color-green" fontWeight={600}>
+            <Text color="--color-pro" fontWeight={600}>
               Thank you for subscribing, you'll receive a welcome email shortly.
             </Text>
           ) : (
@@ -54,7 +54,7 @@ export const NewsletterSignup: FC = () => {
             />
           )}
           {errorMessage ? (
-            <Text mt={2} color="--color-warning" fontWeight={600}>
+            <Text mt={2} color="--color-warn" fontWeight={600}>
               {errorMessage}
             </Text>
           ) : null}

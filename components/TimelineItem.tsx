@@ -29,7 +29,7 @@ export const TimelineItem: FC<TimelineItemProps> = ({ headline, description }) =
           grid-row-gap: 0.4rem;
           :global(svg) {
             margin: 0 12px 0 8px;
-            color: var(--color-green);
+            color: var(--color-pro);
           }
         }
         p {

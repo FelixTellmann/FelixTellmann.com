@@ -73,6 +73,10 @@ export const typography = css.global`
         margin-top: 1.6rem;
         margin-bottom: 3.2rem;
       }
+
+      p:first-of-type, .p:first-of-type {
+        margin-top: 0;
+      }
     }
     
     h1, .h1 {

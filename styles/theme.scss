@@ -1,4 +1,5 @@
-body,.light-theme {
+body,
+.light-theme {
   --box-shadow-card: 1px 1px 5px 0 rgb(0 191 165 / 0.5), inset 1px 0 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
   --box-shadow-card-hover: 1px 1px 5px 0 rgb(0 191 165 / 0.5), 1px 0 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
   --color-background: #f9fafa;
@@ -13,7 +14,6 @@ body,.light-theme {
   --color-gradient-1: #00bfa5;
   --color-gradient-2: #3182ce;
   --color-gradient-3: rgba(11, 197, 234, 0.67);
-  --color-green: #00bfa5;
   --color-header: #1a202c;
   --color-header-backdrop-filter: saturate(180%) blur(2rem);
   --color-header-background: transparent;
@@ -25,19 +25,22 @@ body,.light-theme {
   --color-link-hover: #626262;
   --color-mdx-link: #0178df;
   --color-primary: #1ec4ee;
+  --color-pro: hsl(172deg 100% 37%);
+  --color-pro-10: hsl(172 100% 37% / 0.1);
+  --color-pro-40: hsl(172 100% 37% / 0.4);
   --color-remark-code-bg: #f7fafc;
   --color-remark-code-title-bg: #e2e8f0;
   --color-selection: #81e6d9;
   --color-subdued: #718096;
   --color-text: #2d3748;
-  --color-warning: #e53e3e;
+  --color-warn: hsl(0 76% 57% / 1);
+  --color-warn-10: hsl(0 76% 57% / 0.1);
+  --color-warn-40: hsl(0 76% 57% / 0.4);
 }
 
 .dark-theme {
-  --box-shadow-card: 0 0 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0 11px 4px rgb(49 118 206 / 25%),
-    0 0 1px 1px #0bc5ea52;
-  --box-shadow-card-hover: 0 0 8px 2px hsl(172deg 100% 37% / 24%), 1px 0 11px 4px rgb(49 118 206 / 25%),
-    0 0 1px 1px #0bc5ea52;
+  --box-shadow-card: 0 0 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0 11px 4px rgb(49 118 206 / 25%), 0 0 1px 1px #0bc5ea52;
+  --box-shadow-card-hover: 0 0 8px 2px hsl(172deg 100% 37% / 24%), 1px 0 11px 4px rgb(49 118 206 / 25%), 0 0 1px 1px #0bc5ea52;
   --color-background: #171923;
   --color-body: #f9fafa;
   --color-border: #373d48;
@@ -47,7 +50,6 @@ body,.light-theme {
   --color-card-highlight: #2d3748;
   --color-card-highlight-border: #718096;
   --color-faded: #3e4254;
-  --color-green: #00bfa5;
   --color-header: #fff;
   --color-header-backdrop-filter: saturate(100%) blur(2rem);
   --color-header-background: rgba(23, 25, 35, 0.6);
@@ -59,6 +61,7 @@ body,.light-theme {
   --color-link-hover: rgb(255, 255, 255, 0.68);
   --color-mdx-link: #60b3fb;
   --color-primary: #ee601e;
+  --color-pro: #00bfa5;
   --color-remark-code-bg: #1a202c;
   --color-remark-code-title-bg: #2d3748;
   --color-selection: rgba(11, 197, 234, 0.67);
@@ -67,10 +70,8 @@ body,.light-theme {
 }
 
 .blue-theme {
-  --box-shadow-card: 0 0 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0 11px 4px rgb(49 118 206 / 25%),
-    0 0 1px 1px #0bc5ea52;
-  --box-shadow-card-hover: 0 0 8px 2px hsl(172deg 100% 37% / 24%), 1px 0 11px 4px rgb(49 118 206 / 25%),
-    0 0 1px 1px #0bc5ea52;
+  --box-shadow-card: 0 0 8px 2px hsl(172deg 100% 37% / 24%), inset 1px 0 11px 4px rgb(49 118 206 / 25%), 0 0 1px 1px #0bc5ea52;
+  --box-shadow-card-hover: 0 0 8px 2px hsl(172deg 100% 37% / 24%), 1px 0 11px 4px rgb(49 118 206 / 25%), 0 0 1px 1px #0bc5ea52;
   --color-background: #264452;
   --color-body: #ceeaec;
   --color-border: #373d48;
@@ -83,7 +84,6 @@ body,.light-theme {
   --color-gradient-1: #20ffe1;
   --color-gradient-2: #d1e64ee6;
   --color-gradient-3: hsl(318deg 76% 62% / 80%);
-  --color-green: #1bd4e4;
   --color-header: #fff;
   --color-header-backdrop-filter: saturate(100%) blur(2rem);
   --color-header-background: rgb(38 68 82 / 0.6);
@@ -95,6 +95,7 @@ body,.light-theme {
   --color-link-hover: rgb(255, 255, 255, 0.68);
   --color-mdx-link: #60b3fb;
   --color-primary: #ee601e;
+  --color-pro: #1bd4e4;
   --color-remark-code-bg: #1a202c;
   --color-remark-code-title-bg: #2d3748;
   --color-selection: rgba(11, 197, 234, 0.67);

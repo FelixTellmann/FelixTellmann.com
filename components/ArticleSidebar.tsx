@@ -225,10 +225,10 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
             &:focus,
             &:active,
             &.active {
-              color: var(--color-green);
+              color: var(--color-pro);
 
               &:before {
-                background-color: var(--color-green);
+                background-color: var(--color-pro);
               }
             }
           }
@@ -294,10 +294,10 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
               &:focus,
               &:active,
               &.active {
-                color: var(--color-green);
+                color: var(--color-pro);
 
                 &:before {
-                  border-color: var(--color-green);
+                  border-color: var(--color-pro);
                 }
               }
             }

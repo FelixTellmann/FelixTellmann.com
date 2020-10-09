@@ -1,6 +1,6 @@
 import { AnchorHTMLAttributes, CSSProperties, FC } from 'react';
 import Link from 'next/link';
-import { Space, useStyledSystem } from 'use-styled-system';
+import { Decor, Space, useStyledSystem } from "use-styled-system";
 
 type LinkBlockProps = {
   href: string;
@@ -8,7 +8,7 @@ type LinkBlockProps = {
   style?: CSSProperties;
 };
 
-export const LinkBlock: FC<LinkBlockProps & AnchorHTMLAttributes<any> & Space> = ({
+export const LinkBlock: FC<LinkBlockProps & AnchorHTMLAttributes<any> & Space & Decor> = ({
   href,
   target,
   className,

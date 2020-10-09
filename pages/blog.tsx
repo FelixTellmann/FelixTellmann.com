@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import matter from 'gray-matter';
-import { BlogPreview, Box, Input, IntroText, Text } from 'components';
+import { BlogPreview, Box, HeroText, Input, IntroText, NewsletterSignup, Text } from "components";
 import { getAllPostsSlug, getSinglePostData } from '../lib/getBlogPosts';
 
 type PostData = {
@@ -77,10 +77,8 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
       {/* <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>
       Blog
     </Text> */}
-      <IntroText as="h1" fontSize={[150, 200]}>
-        Blog
-      </IntroText>
-      <Text as="p" fontSize={2} lineHeight={1.6} color="--color-text" mb={3}>
+      <HeroText fontSize={[150, 200]}>Blog</HeroText>
+      <Text my={3}>
         I'm writing mostly about web development, tech news, and the occasional life wisdom. Use the search below to filter by
         title.
       </Text>
@@ -88,12 +86,13 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
         <Input placeholder="Search Articles" icon={<FiSearch />} onChange={search} />
       </Box>
 
-      <Text as="h2" fontSize={[30, 36]} fontWeight={700} lineHeight={1.25} mb={3}>
+      <h2>
         Recent Posts
-      </Text>
+      </h2>
       {filteredPostData.map(({ slug, frontMatter: { title, excerpt } }) => (
         <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />
       ))}
+      <NewsletterSignup />
     </>
   );
 };

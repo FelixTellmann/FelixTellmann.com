@@ -5,7 +5,7 @@ import { Decor, Layout, Space, useStyledSystem } from 'use-styled-system';
 type LinkProps = {
   onClick?: (event: MouseEvent) => void;
   href: string;
-  title: string | JSX.Element;
+  title?: string | JSX.Element;
   target?: string;
   className?: string;
   secondary?: boolean;
@@ -22,6 +22,7 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
   secondary,
   small,
   large,
+  children,
   ...props
 }) => {
   const { styleJsx, nonCssProps } = useStyledSystem(props, {
@@ -47,7 +48,7 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
           onClick={onClick}
           onKeyDown={onClick}
           {...nonCssProps}>
-          {title}
+          {title || children}
         </a>
       </NextLink>
 

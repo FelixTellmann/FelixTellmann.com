@@ -84,7 +84,6 @@ export const Index: FC<BlogProps> = ({ postData }) => {
       ]
     }
   ];
-
   const TIMELINE_PAST = [
     {
       title: `2018`,

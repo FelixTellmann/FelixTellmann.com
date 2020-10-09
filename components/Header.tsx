@@ -10,7 +10,7 @@ import { LinkBlock } from './LinkBlock';
 type HeaderProps = {
   logo: {
     title: string;
-    href: string ;
+    href: string;
   };
   nav: {
     title: string;
@@ -42,22 +42,9 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
         <meta name="msapplication-TileImage" content={`/favicon/${colorTheme.value}/ms-icon-144x144.png`} />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <Box
-        as="header"
-        mb={4}
-        mt={[0, 4]}
-        position="sticky"
-        top={0}
-        color="--color-header"
-        bg="--color-header-background"
-        backdropFilter="--color-header-backdrop-filter"
-        zIndex={1000}>
-        <Box as="nav" d="flex" align="center" maxW={960} mx="auto" p={4}>
-          <LinkBlock href={logo.href}>
-            <Text as="div" fontSize={5} fontWeight={700}>
-              {logo.title}
-            </Text>
-          </LinkBlock>
+      <header>
+        <nav>
+          <LinkBlock href={logo.href} fontSize={5} fontWeight={700}>{logo.title}</LinkBlock>
           <Box d="flex" flex={1} justify="flex-end">
             {nav.map(({ title, href }) => (
               <Button key={href} href={href} mx={['2px', 2]} px={[2, 3]}>
@@ -67,15 +54,40 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
           </Box>
           <Button aria-label="Toggle Color Theme" onClick={colorTheme.toggle} icon secondary ml={3}>
             {colorTheme.value === 'light-theme' ? (
-              <FiMoon style={{ filter: `drop-shadow(rgba(0, 0, 0, 0.35) 0px 0px 3px)` }} />
+              <FiMoon style={{ filter: `drop-shadow(rgba(0, 0, 0, 0.35) 00003px)` }} />
             ) : null}
             {colorTheme.value === 'dark-theme' ? <FiAperture style={{ color: `#0bc5ea` }} /> : null}
             {colorTheme.value === 'blue-theme' ? <FiSun style={{ color: `rgb(237 255 3 / 96%)` }} /> : null}
           </Button>
-        </Box>
-      </Box>
+        </nav>
+      </header>
+
+      <style jsx>{`
+        header {
+          position: sticky;
+          z-index: 1000;
+          top: 0;
+          margin-top: 0;
+          margin-bottom: 3.2rem;
+          background-color: var(--color-header-background);
+          color: var(--color-header);
+          backdrop-filter: var(--color-header-backdrop-filter);
+
+          @media screen and (min-width: 600px) {
+            margin-top: 3.2rem;
+          }
+        }
+
+        nav {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 3.2rem;
+          align-items: center;
+          max-width: 960px;
+        }
+        
+      `}</style>
     </>
   );
 };
-
-
