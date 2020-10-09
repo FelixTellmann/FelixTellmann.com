@@ -70,6 +70,10 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
               href: '/blog'
             },
             {
+              title: 'Learn',
+              href: '/learn'
+            },
+            {
               title: 'About',
               href: '/about'
             }

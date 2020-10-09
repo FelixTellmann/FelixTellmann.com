@@ -3,6 +3,9 @@ body,
   --box-shadow-card: 1px 1px 5px 0 rgb(0 191 165 / 0.5), inset 1px 0 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
   --box-shadow-card-hover: 1px 1px 5px 0 rgb(0 191 165 / 0.5), 1px 0 6px 4px rgb(49 118 206 / 11%), 1px 1px 2px 1px #0bc5ea;
   --color-background: #f9fafa;
+  --color-blue: hsl(208, 99%, 44%);
+  --color-blue-10: hsla(208, 99%, 44%, 0.1);
+  --color-blue-40: hsla(208, 99%, 44%, 0.4);
   --color-body: #1c1c1c;
   --color-border: #e2e8f0;
   --color-border-shadow: rgba(0, 0, 0, 0.05);
@@ -25,17 +28,19 @@ body,
   --color-link-hover: #626262;
   --color-mdx-link: #0178df;
   --color-primary: #1ec4ee;
-  --color-pro: hsl(172deg 100% 37%);
-  --color-pro-10: hsl(172 100% 37% / 0.1);
-  --color-pro-40: hsl(172 100% 37% / 0.4);
+  --color-turqois: #1ec4ee;
+  --color-pro: hsl(172, 100%, 37%);
+  --color-pro-10: hsla(172, 100%, 37%, 0.1);
+  --color-pro-40: hsla(172, 100%, 37%, 0.4);
   --color-remark-code-bg: #f7fafc;
   --color-remark-code-title-bg: #e2e8f0;
   --color-selection: #81e6d9;
   --color-subdued: #718096;
   --color-text: #2d3748;
-  --color-warn: hsl(0 76% 57% / 1);
-  --color-warn-10: hsl(0 76% 57% / 0.1);
-  --color-warn-40: hsl(0 76% 57% / 0.4);
+  --color-attention: hsl(52, 76%, 57%);
+  --color-warn: hsl(0, 76%, 57%, 1);
+  --color-warn-10: hsla(0, 76%, 57%, 0.1);
+  --color-warn-40: hsla(0, 76%, 57%, 0.4);
 }
 
 .dark-theme {

@@ -44,15 +44,15 @@ export const Header: FC<HeaderProps> = ({ logo, nav }) => {
       </Head>
       <header>
         <nav>
-          <LinkBlock href={logo.href} fontSize={5} fontWeight={700}>{logo.title}</LinkBlock>
+          <LinkBlock href={logo.href} fontSize={5} fontWeight={700} mr={1}>{logo.title}</LinkBlock>
           <Box d="flex" flex={1} justify="flex-end">
             {nav.map(({ title, href }) => (
-              <Button key={href} href={href} mx={['2px', 2]} px={[2, 3]}>
+              <Button key={href} href={href} mx={['2px', 2]} px={[2, 3]} letterSpacing={['-0.2px', 0]} fontSize={[15, 16]}>
                 {title}
               </Button>
             ))}
           </Box>
-          <Button aria-label="Toggle Color Theme" onClick={colorTheme.toggle} icon secondary ml={3}>
+          <Button aria-label="Toggle Color Theme" onClick={colorTheme.toggle} icon secondary ml={[1,3]}>
             {colorTheme.value === 'light-theme' ? (
               <FiMoon style={{ filter: `drop-shadow(rgba(0, 0, 0, 0.35) 00003px)` }} />
             ) : null}

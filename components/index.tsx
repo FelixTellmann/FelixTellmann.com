@@ -9,6 +9,7 @@ export * from './Footer';
 export * from './Header';
 export * from './HeroText';
 export * from './Hr';
+export * from './InfoBlock';
 export * from './Input';
 export * from './IntroText';
 export * from './Link';
