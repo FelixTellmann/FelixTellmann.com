@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import matter from 'gray-matter';
-import { BlogPreview, Box, HeroText, Input, IntroText, NewsletterSignup, Text } from "components";
+import { BlogPreview, Box, HeroText, Input, IntroText, NewsletterSignup, Text } from 'components';
 import { getAllPostsSlug, getSinglePostData } from '../lib/getBlogPosts';
 
 type PostData = {
@@ -57,11 +57,7 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
           return acc;
         }, [])
         .filter(({ frontMatter: { title }, matchCount }) => {
-          if (
-            (matchCount / totalMatchCount < 0.3 && totalMatchCount > 3) ||
-            (totalMatchCount / wordCount < 0.75 && wordCount > 6)
-          )
-            return false;
+          if ((matchCount / totalMatchCount < 0.3 && totalMatchCount > 3) || (totalMatchCount / wordCount < 0.75 && wordCount > 6)) return false;
           return matcher.exec(sanitize(title));
         })
         .sort((a, b) => {
@@ -77,18 +73,17 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
       {/* <Text as="h1" fontSize={[36, 6]} fontWeight={700} lineHeight={1.2} mb={10}>
       Blog
     </Text> */}
-      <HeroText fontSize={[150, 200]}>Blog</HeroText>
+      <h1>
+        <HeroText fontSize={[150, 200]}>Blog</HeroText>
+      </h1>
       <Text my={3}>
-        I'm writing mostly about web development, tech news, and the occasional life wisdom. Use the search below to filter by
-        title.
+        I'm writing mostly about web development, tech news, and the occasional life wisdom. Use the search below to filter by title.
       </Text>
       <Box mb={5}>
         <Input placeholder="Search Articles" icon={<FiSearch />} onChange={search} />
       </Box>
 
-      <h2>
-        Recent Posts
-      </h2>
+      <h2>Recent Posts</h2>
       {filteredPostData.map(({ slug, frontMatter: { title, excerpt } }) => (
         <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />
       ))}

@@ -77,6 +77,6 @@
     "stylelint-scss": "^3.18.0",
     "url-loader": "^4.1.0",
     "use-color-theme": "^1.0.4",
-    "use-styled-system": "^2.2.7"
+    "use-styled-system": "^2.2.13"
   }
 }
