@@ -436,7 +436,6 @@ export const Learn: FC = () => {
             grid-template-columns: repeat(6, auto);
             margin-top: 3.2rem;
             margin-bottom: 3.2rem;
-            border: 1px solid var(--color-text);
             border-radius: 4px;
 
             @media screen and (min-width: 964px) {
@@ -451,24 +450,48 @@ export const Learn: FC = () => {
               overflow: visible !important;
               background-color: var(--color-text);
               color: var(--color-background);
+              border-top: 1px solid var(--color-text);
 
               &:before {
                 position: absolute;
                 content: "";
-                bottom: 100%;
+                bottom: calc(100% - 4px);
                 left: -1px;
                 width: calc(100% + 3px);
                 height: 136px;
                 background-color: var(--color-background);
+                z-index: -1;
+              }
+
+              &:after {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: -1px;
+                width: calc(100% + 2px);
+                height: 8px;
+                background-color: var(--color-text);
+                z-index: 0;
+                border: 1px solid var(--color-text);
               }
             }
 
             th:first-of-type {
+              border-left: 1px solid var(--color-text);
               border-top-left-radius: 4px;
+
+              &:after {
+                border-top-left-radius: 4px;
+              }
             }
 
             th:last-of-type {
+              border-right: 1px solid var(--color-text);
               border-top-right-radius: 4px;
+
+              &:after {
+                border-top-right-radius: 4px;
+              }
             }
 
             tr,
@@ -492,6 +515,7 @@ export const Learn: FC = () => {
             }
 
             td {
+              cursor: pointer;
               position: relative;
               z-index: -1;
               border-right: 1px solid var(--color-blue-40);
@@ -503,12 +527,26 @@ export const Learn: FC = () => {
               background-color: var(--color-blue-10);
             }
 
-            td:last-of-type {
-              border-right: 0;
+            td:first-of-type {
+              border-left: 1px solid var(--color-text);
             }
 
-            tr:last-of-type td {
-              border-bottom: 0;
+            td:last-of-type {
+              border-right: 1px solid var(--color-text);
+            }
+
+            tr:last-of-type {
+              td {
+                border-bottom: 1px solid var(--color-text);
+              }
+
+              td:first-of-type {
+                border-bottom-left-radius: 4px;
+              }
+
+              td:last-of-type {
+                border-bottom-right-radius: 4px;
+              }
             }
 
             tr:hover {
