@@ -11,7 +11,6 @@ export const Learn: FC = () => {
           Learn in Public
         </HeroText>
       </h1>
-      <h2>How to learn more</h2>
       <article>
         <p>
           Through my entire life I've always had a passion for learning and figuring new things out. I've always been curious by nature and never felt
@@ -54,6 +53,8 @@ export const Learn: FC = () => {
           won't be limited to just web-development. My aim is to showcase my learning and to the page as a tool for myself to keep track my own
           progress, save some resources for later use and to get feedback and insights into things I do not know yet.
         </p>
+        <h2>My List</h2>
+        
       </article>
     </>
   );

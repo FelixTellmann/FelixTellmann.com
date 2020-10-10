@@ -31,7 +31,7 @@ export const Footer: FC<FooterProps> = ({ socialNav, footerNav }) => {
         {footerNav ? (
           <nav>
             {footerNav.map(({ title, href, target }) => (
-              <Link key={href} href={href} title={title} target={target} small p={1} m={1} />
+              <Link key={href} href={href}  subtle title={title} target={target} small p={1} m={1} />
             ))}
           </nav>
         ) : null}

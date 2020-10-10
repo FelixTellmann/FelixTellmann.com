@@ -9,6 +9,7 @@ type LinkProps = {
   target?: string;
   className?: string;
   secondary?: boolean;
+  subtle?: boolean;
   small?: boolean;
   large?: boolean;
 };
@@ -20,6 +21,7 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
   target,
   title,
   secondary,
+  subtle,
   small,
   large,
   children,
@@ -54,11 +56,20 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
 
       <style jsx>{`
         .link {
+          display: inline-flex;
+          background-repeat: no-repeat;
+          background-position: 0 1.05em;
+          background-size: 100% 24%, 0 24%;
           cursor: pointer;
           color: var(--color-link);
           font-family: inherit;
           text-decoration: none;
-          transition: color 0.25s, background-color 0.25s;
+          text-shadow: 0.06em 0 0 var(--color-background), -0.06em 0 0 var(--color-background), 0 0.06em 0 var(--color-background),
+            0 -0.06em var(--color-background);
+          transition: color 0.25s, background-color 0.25s, background 0.2s;
+          ${subtle
+            ? ''
+            : `background-image: linear-gradient(270deg, var(--color-pro-40) 25.28%, var(--color-blue-40) 59.7%, var(--color-pro-40) 97.75%), linear-gradient(270deg,var(--color-gradient-1) 25.28%,var(--color-gradient-2) 59.7%,var(--color-gradient-3) 97.75%);`}
 
           &.small {
             font-size: 1.4rem;
@@ -69,7 +80,7 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
           }
 
           &:hover {
-            color: var(--color-link-hover);
+            ${subtle ? `color: var(--color-link-hover);` : `background-size: 100% 24%, 100% 24%;`}
           }
 
           ${styleJsx}
@@ -78,5 +89,3 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
     </>
   );
 };
-
-
