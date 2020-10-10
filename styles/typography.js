@@ -69,6 +69,7 @@ export const typography = css.global`
     }
 
     article {
+      z-index: 1;
       p, .p {
         margin-top: 1.6rem;
         margin-bottom: 3.2rem;
