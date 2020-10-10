@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useStyledSystem } from 'use-styled-system';
-import { SizeProperties } from 'use-styled-system/dist/Size';
+import { SizeProperties } from 'use-styled-system/dist';
 import { WidthProperty } from 'csstype';
 
 type AvatarProps = {
