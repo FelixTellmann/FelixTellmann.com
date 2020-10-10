@@ -17,6 +17,7 @@ export const DataTable: FC<DataTableProps> = ({ headings }) => {
           {headings.map((key) => (
             <th>{key}</th>
           ))}
+          
           <th>#</th>
           <th>Title</th>
           <th>Tags</th>
