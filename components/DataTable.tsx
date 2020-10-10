@@ -3,7 +3,7 @@ import { FC } from 'react';
 type DataTableProps = {
   headings: (string | JSX.Element)[];
   sortable: boolean[] | unknown;
-  footer: (string | JSX.Element)[];
+  footer?: (string | JSX.Element)[];
   columnContentTYpes?: ('text' | 'numeric')[];
   defaultSortDirection?: 'ascending' | 'descending' | 'none';
   rows: (string | number | JSX.Element)[][] | unknown[];
@@ -17,13 +17,6 @@ export const DataTable: FC<DataTableProps> = ({ headings }) => {
           {headings.map((key) => (
             <th>{key}</th>
           ))}
-          
-          <th>#</th>
-          <th>Title</th>
-          <th>Tags</th>
-          <th>Link</th>
-          <th>Status</th>
-          <th>Date</th>
         </thead>
         <tbody>
           <tr className="row">

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { NextSeo } from "next-seo";
 import { HeroText, InfoBlock, Link } from "components";
+import DataTable from "../components/DataTable";
 
 export const Learn: FC = () => {
   return (
@@ -68,7 +69,7 @@ export const Learn: FC = () => {
           </p>
           <h2>My List</h2>
           
-          
+          <DataTable headings={['#', 'title']} sortable={[true,true]} rows={[[1, 'querty']]} />
           
           
           Nextjs
