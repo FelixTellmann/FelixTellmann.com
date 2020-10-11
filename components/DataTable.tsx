@@ -1,24 +1,39 @@
 import { FC } from 'react';
 
+
+interface RowObject  {
+  [key: string]: (string | number | JSX.Element)
+}
+
 type DataTableProps = {
   headings: (string | JSX.Element)[];
   sortable: boolean[] | unknown;
   footer?: (string | JSX.Element)[];
-  columnContentTYpes?: ('text' | 'numeric')[];
+  columnContentTypes?: ('text' | 'numeric')[];
   defaultSortDirection?: 'ascending' | 'descending' | 'none';
-  rows: (string | number | JSX.Element)[][] | unknown[];
+  rows: ((string | number | JSX.Element)[])[] | RowObject[];
 };
 
-export const DataTable: FC<DataTableProps> = ({ headings }) => {
+export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
+  
+  const columnLength = headings.length;
+  const tableRows = rows.map((row) => {
+    
+    
+    return row
+  })
+  
+  console.log(tableRows)
   return (
     <>
-      <table className="table">
-        <thead className="row header">
-          {headings.map((key) => (
-            <th>{key}</th>
-          ))}
+      <table>
+        <thead>
+          {headings.map((key) =>   <th>{key}</th>)}
         </thead>
         <tbody>
+          {rows.map((row) =>  <tr>
+            {row}
+          </tr>}
           <tr className="row">
             <td className="box">1</td>
             <td className="box">Using next Js. to do somethign really cool!</td>
@@ -38,7 +53,7 @@ export const DataTable: FC<DataTableProps> = ({ headings }) => {
           width: 100%;
           display: grid;
           /*================ no of columns as prop - read out of data? ================*/
-          grid-template-columns: repeat(6, auto);
+          grid-template-columns: repeat(${columnLength}, auto);
           margin-top: 3.2rem;
           margin-bottom: 3.2rem;
           border-radius: 4px;
