@@ -37,6 +37,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [] }) => {
         <thead>
           <tr>
             {headings.map((key, i) => (
+                // eslint-disable-next-line react/no-array-index-key
                 <th key={i}>{key}</th>
             ))}
           </tr>
