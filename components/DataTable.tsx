@@ -4,25 +4,27 @@ interface RowObject {
   [key: string]: string | number | JSX.Element;
 }
 
+type RowArray = ((string | number | JSX.Element)[])
+
 type DataTableProps = {
   headings: (string | JSX.Element)[];
   sortable: boolean[] | unknown;
   footer?: (string | JSX.Element)[];
   columnContentTypes?: ('text' | 'numeric')[];
   defaultSortDirection?: 'ascending' | 'descending' | 'none';
-  rows: (string | number | JSX.Element)[][] | RowObject[];
+  rows: RowArray[] | RowObject[];
 };
 
 export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
   const columnLength = headings.length;
-  const tableRows: string| number | JSX.Element[] = rows.map((row: (string | number | JSX.Element)[] | RowObject) => {
-    let returnArray: (string| number | JSX.Element)[] = [];
+  const tableRows: RowArray[] = rows.map((row: RowArray | RowObject) => {
+    let returnArray: (string | number | JSX.Element)[] = [];
     if (Array.isArray(row)) {
       row.length = columnLength;
       returnArray = [...row];
     } else if (typeof row === 'object' && row !== null) {
       headings.forEach((h) => {
-        tableRows.push(row[h]);
+        returnArray.push(row[h]);
       });
     }
     return returnArray;
@@ -38,17 +40,23 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
           ))}
         </thead>
         <tbody>
-          {/* {rows.map((row) => <tr>
-              {row}
-            </tr>} */}
-          <tr className="row">
+          {tableRows.map((row, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <tr key={i}>
+              {row.map((cell, j) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                <td key={j}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+          {/* <tr className="row">
             <td className="box">1</td>
             <td className="box">Using next Js. to do somethign really cool!</td>
             <td className="boxbox">Next.js, react, etc</td>
             <td className="box">Link to</td>
             <td className="box">In Progress</td>
             <td className="box">2020-10-10</td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
 

@@ -69,7 +69,8 @@ export const Learn: FC = () => {
           </p>
           <h2>My List</h2>
           
-          <DataTable headings={['#', 'title']} sortable={[true,true]} rows={[[1, 'querty', 'wham']]} />
+          <DataTable headings={['#', 'title']} sortable={[true,true]} rows={[
+            {'#':'asdasd'}]} />
           
           
           Nextjs
