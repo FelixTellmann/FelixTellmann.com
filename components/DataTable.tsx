@@ -35,8 +35,8 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
     <>
       <table>
         <thead>
-          {headings.map((key) => (
-            <th>{key}</th>
+          {headings.map((key, i) => (
+            <th key={i}>{key}</th>
           ))}
         </thead>
         <tbody>
@@ -49,14 +49,6 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
               ))}
             </tr>
           ))}
-          {/* <tr className="row">
-            <td className="box">1</td>
-            <td className="box">Using next Js. to do somethign really cool!</td>
-            <td className="boxbox">Next.js, react, etc</td>
-            <td className="box">Link to</td>
-            <td className="box">In Progress</td>
-            <td className="box">2020-10-10</td>
-          </tr> */}
         </tbody>
       </table>
 
