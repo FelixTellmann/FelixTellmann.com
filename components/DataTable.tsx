@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
-
-interface RowObject  {
-  [key: string]: (string | number | JSX.Element)
+interface RowObject {
+  [key: string]: string | number | JSX.Element;
 }
 
 type DataTableProps = {
@@ -11,29 +10,37 @@ type DataTableProps = {
   footer?: (string | JSX.Element)[];
   columnContentTypes?: ('text' | 'numeric')[];
   defaultSortDirection?: 'ascending' | 'descending' | 'none';
-  rows: ((string | number | JSX.Element)[])[] | RowObject[];
+  rows: (string | number | JSX.Element)[][] | RowObject[];
 };
 
 export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
-  
   const columnLength = headings.length;
-  const tableRows = rows.map((row) => {
-    
-    
-    return row
-  })
-  
-  console.log(tableRows)
+  const tableRows: string| number | JSX.Element[] = rows.map((row: (string | number | JSX.Element)[] | RowObject) => {
+    let returnArray: (string| number | JSX.Element)[] = [];
+    if (Array.isArray(row)) {
+      row.length = columnLength;
+      returnArray = [...row];
+    } else if (typeof row === 'object' && row !== null) {
+      headings.forEach((h) => {
+        tableRows.push(row[h]);
+      });
+    }
+    return returnArray;
+  });
+
+  console.log(tableRows);
   return (
     <>
       <table>
         <thead>
-          {headings.map((key) =>   <th>{key}</th>)}
+          {headings.map((key) => (
+            <th>{key}</th>
+          ))}
         </thead>
         <tbody>
-          {rows.map((row) =>  <tr>
-            {row}
-          </tr>}
+          {/* {rows.map((row) => <tr>
+              {row}
+            </tr>} */}
           <tr className="row">
             <td className="box">1</td>
             <td className="box">Using next Js. to do somethign really cool!</td>
