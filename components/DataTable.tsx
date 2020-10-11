@@ -30,7 +30,6 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [] }) => {
     return returnArray;
   });
 
-  console.log(tableRows);
   return (
     <>
       <table>
