@@ -7,17 +7,17 @@ interface RowObject {
 type RowArray = ((string | number | JSX.Element)[])
 
 type DataTableProps = {
-  headings: (string | JSX.Element)[];
+  headings: (string)[];
   sortable: boolean[] | unknown;
   footer?: (string | JSX.Element)[];
   columnContentTypes?: ('text' | 'numeric')[];
   defaultSortDirection?: 'ascending' | 'descending' | 'none';
-  rows: RowArray[] | RowObject[];
+  rows: (RowArray | RowObject)[];
 };
 
-export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
+export const DataTable: FC<DataTableProps> = ({ headings, rows = [] }) => {
   const columnLength = headings.length;
-  const tableRows: RowArray[] = rows.map((row: RowArray | RowObject) => {
+  const tableRows: RowArray[] = rows.map((row) => {
     let returnArray: (string | number | JSX.Element)[] = [];
     if (Array.isArray(row)) {
       row.length = columnLength;
@@ -35,9 +35,11 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
     <>
       <table>
         <thead>
-          {headings.map((key, i) => (
-            <th key={i}>{key}</th>
-          ))}
+          <tr>
+            {headings.map((key, i) => (
+                <th key={i}>{key}</th>
+            ))}
+          </tr>
         </thead>
         <tbody>
           {tableRows.map((row, i) => (
@@ -56,7 +58,6 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows }) => {
         table {
           position: relative;
           z-index: -1;
-          left: 3.2rem;
           width: 100%;
           display: grid;
           /*================ no of columns as prop - read out of data? ================*/
