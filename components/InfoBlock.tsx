@@ -1,8 +1,8 @@
-import { CSSProperties, FC, useEffect, useRef, useState } from 'react';
-import { FiAlertCircle, FiPlusCircle, FiMinusCircle, FiHelpCircle, FiCheckCircle, FiXCircle } from 'react-icons/fi';
-import QuoteIcon from 'public/icons/QuoteIcon.svg';
-import Color from 'color';
-import { Space, useStyledSystem } from 'use-styled-system';
+import { CSSProperties, FC, useEffect, useRef, useState } from "react";
+import { FiAlertCircle, FiCheckCircle, FiHelpCircle, FiMinusCircle, FiPlusCircle, FiXCircle } from "react-icons/fi";
+import QuoteIcon from "public/icons/QuoteIcon.svg";
+import Color from "color";
+import { Space, useStyledSystem } from "use-styled-system";
 
 type InfoBlockProps = {
   type?: 'attention' | 'warning' | 'positive' | 'quote' | 'help' | 'pro' | 'con' | 'question';
@@ -24,7 +24,6 @@ export const InfoBlock: FC<InfoBlockProps & Space> = ({ children, type, color, s
   useEffect(() => {
     if (window && !color) {
       const colorValue = getComputedStyle(div.current)?.getPropertyValue('--info-block-100')?.trim() || '#000';
-      console.log(colorValue);
       setToCssStyle((currentStyle) => ({
         ...currentStyle,
         '--info-block-40': Color(colorValue).alpha(0.4).hsl().string(),
@@ -61,19 +60,13 @@ export const InfoBlock: FC<InfoBlockProps & Space> = ({ children, type, color, s
           font-weight: 400;
           line-height: 1.6;
           --info-block-100: #000;
-          ${type === 'attention' ? '--info-block-100: var(--color-attention);' : ''}
-          ${type === 'warning' ? '--info-block-100: var(--color-warn);' : ''}
-          ${type === 'positive'
-            ? '--info-block-100: var(--color-pro);'
-            : ''}
-          ${type === 'quote' ? '--info-block-100: var(--color-turqois);' : ''}
-          ${type === 'pro'
-            ? '--info-block-100: var(--color-pro);'
-            : ''}
-          ${type === 'con' ? '--info-block-100: var(--color-warn);' : ''}
-          ${type === 'question'
-            ? '--info-block-100: var(--color-blue);'
-            : ''}
+          ${type === "attention" ? "--info-block-100: var(--color-attention);" : ""}
+          ${type === "warning" ? "--info-block-100: var(--color-warn);" : ""}
+          ${type === "positive" ? "--info-block-100: var(--color-pro);" : ""}
+          ${type === "quote" ? "--info-block-100: var(--color-turqois);" : ""}
+          ${type === "pro" ? "--info-block-100: var(--color-pro);" : ""}
+          ${type === "con" ? "--info-block-100: var(--color-warn);" : ""}
+          ${type === "question" ? "--info-block-100: var(--color-blue);" : ""}
 
           :global(svg) {
             position: absolute;

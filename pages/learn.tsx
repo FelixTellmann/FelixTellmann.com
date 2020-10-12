@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { NextSeo } from "next-seo";
-import { HeroText, InfoBlock, Link } from "components";
-import DataTable from "../components/DataTable";
+import { DataTable, HeroText, InfoBlock, Link } from "components";
 
 export const Learn: FC = () => {
   return (
@@ -69,8 +68,12 @@ export const Learn: FC = () => {
           </p>
           <h2>My List</h2>
           
-          <DataTable headings={['#', 'title']} sortable={[true,true]} rows={[
-            {'#':'asdasd'}]} />
+          <DataTable headings={["#", "title", "asdasd", "asdasdasd"]} sortable={[true, true]} rows={[
+            { "#": "asdasd", title: 'asdasdasdasdasd', asdasd: 123123, asdasdasd: 'aasdasdasdasd' },
+            { "#": "asdasd", title: 'asdasdasdasdasd', asdasd: 123123, asdasdasd: 'aasdasdasdasd' },
+            { "#": "asdasd", title: 'asdasdasdasdasd', asdasd: 123123, asdasdasd: 'aasdasdasdasd' },
+            { "#": "asdasd", title: 'asdasdasdasdasd', asdasd: 123123, asdasdasd: 'aasdasdasdasd' },
+          ]} color={{base: '#319F9C', heading: '#1a202c'}} fixedColumnWidth={{'#': 'minmax(30px, 1fr)'}}/>
           
           
           Nextjs
@@ -95,7 +98,7 @@ export const Learn: FC = () => {
           es6
           react
           creating good cheatsheets
-          
+        
         
         </article>
       </>
