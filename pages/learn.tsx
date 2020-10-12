@@ -85,6 +85,7 @@ export const Learn: FC = () => {
           
           <DataTable headings={["#", "title", "asdasd", "asdasdasd"]}
                      sortable={[true, false, true]}
+                     defaultSortColumn={2}
                      rows={[
                        {
                          "#": "asdasd",

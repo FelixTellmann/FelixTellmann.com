@@ -87,7 +87,7 @@ const DataTableSortHeading: FC<DataTableSortHeadingProps> = ({ children, isSorta
   </>;
 };
 
-export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth, columnContentTypes, sortable, defaultSortDirection = "ascending", defaultSortColumn = 0 }) => {
+export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth, columnContentTypes, sortable = false, defaultSortDirection = "ascending", defaultSortColumn = 0 }) => {
   /*= =============== Color Styles ================ */
   const table = useRef();
   const [toCssStyle, setToCssStyle] = useState(style);
@@ -197,7 +197,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
     };
   }));
   
-  const [tableRows, setTableRows] = useState<RowArray[]>(rows.map((row) => {
+  const sanitizedRows = rows.map((row) => {
     let returnArray: (string | number | JSX.Element)[] = [];
     if (Array.isArray(row)) {
       row.length = columnLength;
@@ -208,7 +208,20 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
       });
     }
     return returnArray;
-  }));
+  })
+  
+  let defaultSortIndex = 0
+  
+  if (defaultSortColumn) {
+      if (typeof defaultSortColumn === 'string') {
+        defaultSortIndex = headings.indexOf(defaultSortColumn)
+      }
+      if (typeof defaultSortColumn === 'number') {
+        defaultSortIndex = defaultSortColumn;
+      }
+  }
+  
+  
   
   const updateDirection = (tableData: RowArray[], direction: "ascending" | "descending", index: number): RowArray[] => {
     return tableData.sort((a, b) => {
@@ -245,6 +258,8 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
     });
   };
   
+  const [tableRows, setTableRows] = useState<RowArray[]>(sortable ? updateDirection(sanitizedRows, defaultSortDirection, defaultSortIndex ) : sanitizedRows);
+  
   /* Update of State */
   const onSort = (e) => {
     const { active, direction, index } = e.currentTarget.dataset;
@@ -263,7 +278,6 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
     setTableRows(updateDirection(tableRows, sortDirection, index));
   };
   
-  console.log(tableRows);
   return (
       <>
         <table className={`jsx-${hashString}`} style={toCssStyle} ref={table}>
