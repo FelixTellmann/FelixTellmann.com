@@ -5,7 +5,7 @@ type RowObject = {
   [key: string]: string | number | JSX.Element;
 };
 type ContentTypes = {
-  [key: string]: "text" | "numeric";
+  [key: string]: "text" | "numeric" | "center";
 };
 type ColumnWidth = {
   [key: string]: string | number;
@@ -16,7 +16,7 @@ type DataTableProps = {
   headings: string[];
   sortable: boolean[] | unknown;
   footer?: (string | JSX.Element)[];
-  columnContentTypes?: ("text" | "numeric")[] | ContentTypes;
+  columnContentTypes?: ("text" | "numeric" | "center") | ("text" | "numeric" | "center")[] | ContentTypes;
   fixedColumnWidth?: (string | number)[] | ColumnWidth;
   defaultSortDirection?: "ascending" | "descending" | "none";
   initialSortColumn?: number | string;
@@ -25,11 +25,10 @@ type DataTableProps = {
   style?: CSSProperties;
 };
 
-export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth }) => {
+export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth, columnContentTypes }) => {
+  /*= =============== Color Styles ================ */
   const table = useRef();
-  
   const [toCssStyle, setToCssStyle] = useState(style);
-  
   useEffect(() => {
     let heading = "";
     let base = "";
@@ -56,32 +55,53 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
     }));
   }, [color]);
   
+  /*= =============== ColumnWidth ================ */
   const columnLength = headings.length;
-  
   let columnWidth = `repeat(${columnLength}, auto`;
-  
-  if (fixedColumnWidth && Array.isArray(fixedColumnWidth)) {
-    const array: string[] = new Array(columnLength).fill("auto");
-    fixedColumnWidth.forEach(
-        (width, index) => width && (typeof width === "string"
-            ? (array[index] = width)
-            : (array[index] = `${width.toString()}px`))
-    );
-    array.length = columnLength;
-    columnWidth = array.join(" ");
-  } else if (typeof fixedColumnWidth === "object" && fixedColumnWidth !== null) {
-    const array: string[] = new Array(columnLength).fill("auto");
-    Object.entries(fixedColumnWidth).forEach(([key, width]) => {
-      const hIndex = headings.indexOf(key);
-      if (hIndex !== -1) {
-        if (typeof width === "string") {
-          array[hIndex] = width;
-        } else {
-          array[hIndex] = `${width.toString()}px`;
+  if (fixedColumnWidth) {
+    if (Array.isArray(fixedColumnWidth)) {
+      const array: string[] = new Array(columnLength).fill("auto");
+      fixedColumnWidth.forEach(
+          (width, index) => width && (typeof width === "string"
+              ? (array[index] = width)
+              : (array[index] = `${width.toString()}px`))
+      );
+      array.length = columnLength;
+      columnWidth = array.join(" ");
+    }
+    if (typeof fixedColumnWidth === "object" && !Array.isArray(fixedColumnWidth)) {
+      const array: string[] = new Array(columnLength).fill("auto");
+      Object.entries(fixedColumnWidth).forEach(([key, width]) => {
+        const hIndex = headings.indexOf(key);
+        if (hIndex !== -1) {
+          if (typeof width === "string") {
+            array[hIndex] = width;
+          } else {
+            array[hIndex] = `${width.toString()}px`;
+          }
         }
-      }
-    });
-    columnWidth = array.join(" ");
+      });
+      columnWidth = array.join(" ");
+    }
+  }
+  
+  /*= =============== ColumnTypes ================ */
+  let columnTextDirection = "left";
+  let columnTextDirectionArray = [];
+  if (columnContentTypes) {
+    if (typeof columnContentTypes === "string") {
+      if (columnContentTypes === "text") columnTextDirection = "left";
+      if (columnContentTypes === "numeric") columnTextDirection = "right";
+      if (columnContentTypes === "center") columnTextDirection = "center";
+    }
+    if (Array.isArray(columnContentTypes)) {
+      columnTextDirectionArray = new Array(columnLength).fill("left");
+      columnContentTypes.forEach((contentType, index) => {
+        if (contentType === "text") columnTextDirectionArray[index] = "left";
+        if (contentType === "numeric") columnTextDirectionArray[index] = "right";
+        if (contentType === "center") columnTextDirectionArray[index] = "center";
+      });
+    }
   }
   
   const tableRows: RowArray[] = rows.map((row) => {
@@ -116,6 +136,9 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
                 </tr>
             ))}
           </tbody>
+          <style dangerouslySetInnerHTML={{ __html: columnTextDirectionArray.map((val, i) => {
+            return `td:nth-of-type(${i}),th:nth-of-type(${i}) {text-align: ${val};`
+            }).join('') }}/>
         </table>
         
         <style jsx>{`
@@ -203,7 +226,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
             font-size: 14px;
             line-height: 40px;
             white-space: nowrap;
-            text-align: center;
+            text-align: ${columnTextDirection};
             text-overflow: ellipsis;
           }
 
@@ -255,7 +278,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
         }
       `}</style>
       </>
-  );
+);
 };
 
 export default DataTable;

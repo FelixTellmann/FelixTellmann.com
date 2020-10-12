@@ -73,7 +73,7 @@ export const Learn: FC = () => {
             { "#": "asdasd", title: 'asdasdasdasdasd', asdasd: 123123, asdasdasd: 'aasdasdasdasd' },
             { "#": "asdasd", title: 'asdasdasdasdasd', asdasd: 123123, asdasdasd: 'aasdasdasdasd' },
             { "#": "asdasd", title: 'asdasdasdasdasd', asdasd: 123123, asdasdasd: 'aasdasdasdasd' },
-          ]} color={{base: '#319F9C', heading: '#1a202c'}} fixedColumnWidth={{'#': 'minmax(30px, 1fr)'}}/>
+          ]} color={{base: '#319F9C', heading: '#1a202c'}} fixedColumnWidth={{'#': 'minmax(30px, 1fr)'}} columnContentTypes={['text','numeric']}/>
           
           
           Nextjs
