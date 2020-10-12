@@ -1,4 +1,6 @@
 import { CSSProperties, FC, useEffect, useRef, useState } from "react";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa";
+
 import Color from "color";
 import JSXStyle from "styled-jsx/style";
 import _hashString from "string-hash";
@@ -12,22 +14,80 @@ type ContentTypes = {
 type ColumnWidth = {
   [key: string]: string | number;
 };
+type ColumnSort = {
+  [key: string]: boolean;
+};
 const hashString = String(_hashString("randomValue"));
 type RowArray = (string | number | JSX.Element)[];
 type DataTableProps = {
   headings: string[];
-  sortable: boolean[] | unknown;
   footer?: (string | JSX.Element)[];
   columnContentTypes?: ("text" | "numeric" | "center") | ("text" | "numeric" | "center")[] | ContentTypes;
   fixedColumnWidth?: (string | number)[] | ColumnWidth;
-  defaultSortDirection?: "ascending" | "descending" | "none";
-  initialSortColumn?: number | string;
+  sortable: boolean[] | ColumnSort;
+  defaultSortDirection?: "ascending" | "descending";
+  defaultSortColumn?: number | string;
   rows: (RowArray | RowObject)[];
   color?: string | { base: string; heading: string };
   style?: CSSProperties;
 };
 
-export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth, columnContentTypes }) => {
+type DataTableSortHeadingProps = {
+  isSortable?: boolean
+  sortDirection?: "ascending" | "descending"
+  active?: boolean
+  onSort?: (event) => void
+  index: number
+}
+
+const DataTableSortHeading: FC<DataTableSortHeadingProps> = ({ children, isSortable = true, sortDirection = "ascending", active, onSort, index }) => {
+  return <>
+    <div tabIndex={0}
+         role="switch"
+         className={active ? "active" : ""}
+         onClick={onSort}
+         onKeyDown={onSort}
+         aria-checked={active}
+         data-active={active}
+         data-direction={sortDirection}
+         data-index={index}>
+      {isSortable ? <>
+        {sortDirection === "ascending" ? <FaCaretDown /> : null}
+        {sortDirection === "descending" ? <FaCaretUp /> : null}
+        {children}
+      </> : children}
+    </div>
+    
+    <style jsx>{`
+      div {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        user-select: none;
+      
+        ${isSortable ? `cursor: pointer;` : "default"}
+        :global(svg) {
+          opacity: 0;
+          margin-right: 0.4rem;
+          transition: 0.16s opacity;
+        }
+      
+        &:hover, &:focus, &:active, &.active {
+          outline: none;
+      
+          ${isSortable ? `text-decoration: underline;` : ""}
+          :global(svg) {
+            opacity: 1;
+          }
+        }
+      }
+    
+    `}</style>
+  </>;
+};
+
+export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth, columnContentTypes, sortable, defaultSortDirection = "ascending", defaultSortColumn = 0 }) => {
   /*= =============== Color Styles ================ */
   const table = useRef();
   const [toCssStyle, setToCssStyle] = useState(style);
@@ -104,7 +164,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
         if (contentType === "center") columnTextDirectionArray[index] = "center";
       });
     }
-    if (typeof columnContentTypes === 'object' && !Array.isArray(columnContentTypes)) {
+    if (typeof columnContentTypes === "object" && !Array.isArray(columnContentTypes)) {
       columnTextDirectionArray = new Array(columnLength).fill("left");
       Object.entries(columnContentTypes).forEach(([key, type]) => {
         const cIndex = headings.indexOf(key);
@@ -117,7 +177,27 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
     }
   }
   
-  const tableRows: RowArray[] = rows.map((row) => {
+  /*= =============== Unify Row Data &  Sorting ================ */
+  /* Initial State */
+  const [tableHeadings, setTableHeadings] = useState(headings.map((heading, index) => {
+    let isSortable: boolean;
+    if (sortable) {
+      if (Array.isArray(sortable)) {
+        isSortable = sortable[index] === true;
+      }
+      if (typeof sortable === "object" && !Array.isArray(sortable)) {
+        isSortable = sortable[heading];
+      }
+    }
+    return {
+      heading,
+      isSortable,
+      sortDirection: defaultSortDirection,
+      active: index === defaultSortColumn
+    };
+  }));
+  
+  const [tableRows, setTableRows] = useState<RowArray[]>(rows.map((row) => {
     let returnArray: (string | number | JSX.Element)[] = [];
     if (Array.isArray(row)) {
       row.length = columnLength;
@@ -128,15 +208,74 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
       });
     }
     return returnArray;
-  });
+  }));
   
+  const updateDirection = (tableData: RowArray[], direction: "ascending" | "descending", index: number): RowArray[] => {
+    return tableData.sort((a, b) => {
+      if (direction === "ascending") {
+        if (typeof a[index] === "string") {
+          if (a[index].toString().trim().toLowerCase() < b[index].toString().trim().toLowerCase()) {
+            return -1;
+          }
+          if (a[index].toString().trim().toLowerCase() > b[index].toString().trim().toLowerCase()) {
+            return 1;
+          }
+          return 0;
+          
+        }
+        if (typeof a[index] === "number") {
+          return +a[index] - +b[index];
+        }
+      }
+      if (direction === "descending") {
+        if (typeof a[index] === "string") {
+          if (a[index].toString().trim().toLowerCase() > b[index].toString().trim().toLowerCase()) {
+            return -1;
+          }
+          if (a[index].toString().trim().toLowerCase() < b[index].toString().trim().toLowerCase()) {
+            return 1;
+          }
+          return 0;
+        }
+        if (typeof a[index] === "number") {
+          return +b[index] - +a[index];
+        }
+      }
+      return 0;
+    });
+  };
+  
+  /* Update of State */
+  const onSort = (e) => {
+    const { active, direction, index } = e.currentTarget.dataset;
+    const sortDirection = active === "true" ? (direction === "ascending"
+        ? "descending"
+        : "ascending") : "ascending";
+    setTableHeadings((prevTableHeadings) => {
+      return prevTableHeadings.map((heading, i) => {
+        return {
+          ...heading,
+          active: i === +index,
+          sortDirection: i === +index ? sortDirection : "ascending"
+        };
+      });
+    });
+    setTableRows(updateDirection(tableRows, sortDirection, index));
+  };
+  
+  console.log(tableRows);
   return (
       <>
         <table className={`jsx-${hashString}`} style={toCssStyle} ref={table}>
           <thead>
             <tr>
-              {headings.map((key, i) => (
-                  <th key={i}>{key}</th>
+              {tableHeadings.map(({ heading, isSortable, sortDirection, active }, i) => (
+                  <th key={i}><DataTableSortHeading onSort={isSortable ? onSort : null}
+                                                    isSortable={isSortable}
+                                                    sortDirection={sortDirection}
+                                                    active={active}
+                                                    index={i}>{heading}</DataTableSortHeading>
+                  </th>
               ))}
             </tr>
           </thead>
@@ -232,16 +371,19 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
 
         th,
         td {
-          min-width: 40px;
-          height: 40px;
+          min-width: 4rem;
+          height: 4rem;
           display: inline;
           overflow: hidden;
-          padding: 0 8px;
-          font-size: 14px;
-          line-height: 40px;
+          padding: 0 0.8rem;
+          font-size: 1.4rem;
+          line-height: 4rem;
           white-space: nowrap;
           text-align: ${columnTextDirection};
           text-overflow: ellipsis;
+          @media screen and (min-width: 964px) {
+            padding: 0 1.2rem;
+          }
         }
 
         td {

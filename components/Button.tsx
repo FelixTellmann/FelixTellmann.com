@@ -37,7 +37,7 @@ export const Button: FC<ButtonHTMLAttributes<any> & ButtonProps & Space & Layout
       {href ? (
         <Link href={href}>
           <a
-            tabIndex={-1}
+            tabIndex={0}
             role="button"
             title={label}
             aria-label={href.includes('mailto:') ? href.replace('mailto', '') : label}

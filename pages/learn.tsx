@@ -84,30 +84,30 @@ export const Learn: FC = () => {
           <h2>My List</h2>
           
           <DataTable headings={["#", "title", "asdasd", "asdasdasd"]}
-                     sortable={[true, true]}
+                     sortable={[true, false, true]}
                      rows={[
                        {
                          "#": "asdasd",
-                         title: "asdasdasdasdasd",
-                         asdasd: 123123,
+                         title: "qweqwe",
+                         asdasd: 123,
                          asdasdasd: "aasdasdasdasd"
                        },
                        {
-                         "#": "asdasd",
+                         "#": "213442",
                          title: "asdasdasdasdasd",
-                         asdasd: 123123,
+                         asdasd: 543,
                          asdasdasd: "aasdasdasdasd"
                        },
                        {
-                         "#": "asdasd",
+                         "#": " dfdssd",
                          title: "asdasdasdasdasd",
-                         asdasd: 123123,
+                         asdasd: 768,
                          asdasdasd: "aasdasdasdasd"
                        },
                        {
-                         "#": "asdasd",
+                         "#": "4vdsfv",
                          title: "asdasdasdasdasd",
-                         asdasd: 123123,
+                         asdasd: 9809,
                          asdasdasd: "aasdasdasdasd"
                        }
                      ]}
@@ -116,7 +116,8 @@ export const Learn: FC = () => {
                        heading: "#1a202c"
                      }}
                      fixedColumnWidth={{ "#": "minmax(30px, 1fr)" }}
-                     columnContentTypes={{ "#": "numeric" }} />
+                     columnContentTypes={{ "#": "numeric" }}
+                     />
           
           
           Nextjs

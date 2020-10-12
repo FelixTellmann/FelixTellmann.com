@@ -137,7 +137,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
               {headings.map(({ title, slug, subheading }) => (
                 <li key={slug} className="heading">
                   <a
-                    tabIndex={-1}
+                    tabIndex={0}
                     role="button"
                     className={slug === activeHeading ? 'active' : ''}
                     aria-label={title}
@@ -150,7 +150,7 @@ export const ArticleSidebar: FC<ArticleSidebarProps> = ({ showHeadings, headings
                       {subheading.map(({ subLevel, subTitle, subSlug }) => (
                         <li key={subSlug} className={`heading-${subLevel}`}>
                           <a
-                            tabIndex={-1}
+                            tabIndex={0}
                             role="button"
                             className={`${subSlug === activeSubheading ? 'active' : ''}`}
                             aria-label={subTitle}

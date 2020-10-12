@@ -42,7 +42,7 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
       <NextLink href={href}>
         <a
           role="button"
-          tabIndex={-1}
+          tabIndex={0}
           target={target}
           aria-label={href.includes('mailto:') ? href.replace('mailto', '') : label}
           rel={target === '_blank' ? 'noopener noreferrer' : ''}
