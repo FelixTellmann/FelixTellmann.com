@@ -1,9 +1,10 @@
-import { CSSProperties, FC, useEffect, useRef, useState } from "react";
-import { FaCaretDown, FaCaretUp } from "react-icons/fa";
+import { CSSProperties, FC, isValidElement, useEffect, useRef, useState } from "react";
+import { DataTableHeading } from "components";
 
 import Color from "color";
 import JSXStyle from "styled-jsx/style";
 import _hashString from "string-hash";
+import { isJSX, isJSXElement, isJSXFragment } from "@babel/types";
 
 type RowObject = {
   [key: string]: string | number | JSX.Element;
@@ -32,61 +33,6 @@ type DataTableProps = {
   style?: CSSProperties;
 };
 
-type DataTableSortHeadingProps = {
-  isSortable?: boolean
-  sortDirection?: "ascending" | "descending"
-  active?: boolean
-  onSort?: (event) => void
-  index: number
-}
-
-const DataTableSortHeading: FC<DataTableSortHeadingProps> = ({ children, isSortable = true, sortDirection = "ascending", active, onSort, index }) => {
-  return <>
-    <div tabIndex={0}
-         role="switch"
-         className={active ? "active" : ""}
-         onClick={onSort}
-         onKeyDown={onSort}
-         aria-checked={active}
-         data-active={active}
-         data-direction={sortDirection}
-         data-index={index}>
-      {isSortable ? <>
-        {sortDirection === "ascending" ? <FaCaretDown /> : null}
-        {sortDirection === "descending" ? <FaCaretUp /> : null}
-        {children}
-      </> : children}
-    </div>
-    
-    <style jsx>{`
-      div {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        user-select: none;
-      
-        ${isSortable ? `cursor: pointer;` : "default"}
-        :global(svg) {
-          opacity: 0;
-          margin-right: 0.4rem;
-          transition: 0.16s opacity;
-        }
-      
-        &:hover, &:focus, &:active, &.active {
-          outline: none;
-      
-          ${isSortable ? `text-decoration: underline;` : ""}
-          :global(svg) {
-            opacity: 1;
-          }
-        }
-      }
-    
-    `}</style>
-  </>;
-};
-
 export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth, columnContentTypes, sortable = false, defaultSortDirection = "ascending", defaultSortColumn = 0 }) => {
   /*= =============== Color Styles ================ */
   const table = useRef();
@@ -111,8 +57,8 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
           : Color(heading).negate().saturate(1).lighten(0.8).grayscale().hsl().string(),
       "--table-cell-1n": Color(base || heading).alpha(0.15).hsl().string(),
       "--table-cell-2n": Color(base || heading).rotate(-30).alpha(0.1).hsl().string(),
-      "--table-cell-hover-1n": Color(base || heading).rotate(180).alpha(0.13).hsl().string(),
-      "--table-cell-hover-2n": Color(base || heading).rotate(180).alpha(0.1).hsl().string(),
+      "--table-cell-hover-1n": Color(base || heading).rotate(220).alpha(0.13).hsl().string(),
+      "--table-cell-hover-2n": Color(base || heading).rotate(220).alpha(0.1).hsl().string(),
       "--table-cell-border": Color(base || heading).alpha(0.4).hsl().string()
     }));
   }, [color]);
@@ -208,57 +154,61 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
       });
     }
     return returnArray;
-  })
+  });
   
-  let defaultSortIndex = 0
+  let defaultSortIndex = 0;
   
   if (defaultSortColumn) {
-      if (typeof defaultSortColumn === 'string') {
-        defaultSortIndex = headings.indexOf(defaultSortColumn)
-      }
-      if (typeof defaultSortColumn === 'number') {
-        defaultSortIndex = defaultSortColumn;
-      }
+    if (typeof defaultSortColumn === "string") {
+      defaultSortIndex = headings.indexOf(defaultSortColumn);
+    }
+    if (typeof defaultSortColumn === "number") {
+      defaultSortIndex = defaultSortColumn;
+    }
   }
   
-  
+  const getStringFromElement = (el): string | number | void => {
+    if (typeof el.props?.children === "string" || el.props?.children === "number") {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return el.props?.children;
+    }
+    if (isValidElement(el.props?.children)) {
+      return getStringFromElement(el.props?.children);
+    }
+  };
   
   const updateDirection = (tableData: RowArray[], direction: "ascending" | "descending", index: number): RowArray[] => {
     return tableData.sort((a, b) => {
-      if (direction === "ascending") {
-        if (typeof a[index] === "string") {
-          if (a[index].toString().trim().toLowerCase() < b[index].toString().trim().toLowerCase()) {
-            return -1;
+          
+          if (typeof a[index] === "number" && typeof b[index] === "number") {
+            return direction === "ascending" ? +a[index] - +b[index] : +b[index] - +a[index];
           }
-          if (a[index].toString().trim().toLowerCase() > b[index].toString().trim().toLowerCase()) {
-            return 1;
+          
+          let A;
+          let B;
+          if (typeof a[index] === "string") A = a[index];
+          if (typeof b[index] === "string") B = b[index];
+          if (isValidElement(a[index])) {
+            A = getStringFromElement(a[index]);
+          }
+          if (isValidElement(b[index])) {
+            B = getStringFromElement(b[index]);
+          }
+          if (A < B) {
+            return direction === "ascending" ? -1 : 1;
+          }
+          if (A > B) {
+            return direction === "ascending" ? 1 : -1;
           }
           return 0;
           
         }
-        if (typeof a[index] === "number") {
-          return +a[index] - +b[index];
-        }
-      }
-      if (direction === "descending") {
-        if (typeof a[index] === "string") {
-          if (a[index].toString().trim().toLowerCase() > b[index].toString().trim().toLowerCase()) {
-            return -1;
-          }
-          if (a[index].toString().trim().toLowerCase() < b[index].toString().trim().toLowerCase()) {
-            return 1;
-          }
-          return 0;
-        }
-        if (typeof a[index] === "number") {
-          return +b[index] - +a[index];
-        }
-      }
-      return 0;
-    });
+    );
   };
   
-  const [tableRows, setTableRows] = useState<RowArray[]>(sortable ? updateDirection(sanitizedRows, defaultSortDirection, defaultSortIndex ) : sanitizedRows);
+  const [tableRows, setTableRows] = useState<RowArray[]>(sortable
+      ? updateDirection(sanitizedRows, defaultSortDirection, defaultSortIndex)
+      : sanitizedRows);
   
   /* Update of State */
   const onSort = (e) => {
@@ -284,11 +234,11 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
           <thead>
             <tr>
               {tableHeadings.map(({ heading, isSortable, sortDirection, active }, i) => (
-                  <th key={i}><DataTableSortHeading onSort={isSortable ? onSort : null}
-                                                    isSortable={isSortable}
-                                                    sortDirection={sortDirection}
-                                                    active={active}
-                                                    index={i}>{heading}</DataTableSortHeading>
+                  <th key={i}><DataTableHeading onSort={isSortable ? onSort : null}
+                                                isSortable={isSortable}
+                                                sortDirection={sortDirection}
+                                                active={active}
+                                                index={i}>{heading}</DataTableHeading>
                   </th>
               ))}
             </tr>

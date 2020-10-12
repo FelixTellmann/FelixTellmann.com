@@ -100,7 +100,7 @@ export const Learn: FC = () => {
                          asdasdasd: "aasdasdasdasd"
                        },
                        {
-                         "#": " dfdssd",
+                         "#": <><Link href="#">qwee</Link></>,
                          title: "asdasdasdasdasd",
                          asdasd: 768,
                          asdasdasd: "aasdasdasdasd"
@@ -113,7 +113,7 @@ export const Learn: FC = () => {
                        }
                      ]}
                      color={{
-                       base: "#319f9c",
+                       base: "#309abc",
                        heading: "#1a202c"
                      }}
                      fixedColumnWidth={{ "#": "minmax(30px, 1fr)" }}
