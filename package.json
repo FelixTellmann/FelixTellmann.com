@@ -68,6 +68,7 @@
     "reset-css": "^5.0.1",
     "sass-loader": "^10.0.2",
     "sass-resources-loader": "^2.1.0",
+    "string-hash": "^1.1.3",
     "styled-jsx": "^3.3.0",
     "styled-jsx-plugin-sass": "^1.0.0",
     "stylelint": "^13.7.2",

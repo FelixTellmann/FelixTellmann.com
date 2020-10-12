@@ -1,5 +1,7 @@
 import { CSSProperties, FC, useEffect, useRef, useState } from "react";
 import Color from "color";
+import JSXStyle from "styled-jsx/style";
+import _hashString from "string-hash";
 
 type RowObject = {
   [key: string]: string | number | JSX.Element;
@@ -10,7 +12,7 @@ type ContentTypes = {
 type ColumnWidth = {
   [key: string]: string | number;
 };
-
+const hashString = String(_hashString("randomValue"));
 type RowArray = (string | number | JSX.Element)[];
 type DataTableProps = {
   headings: string[];
@@ -119,7 +121,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
   
   return (
       <>
-        <table style={toCssStyle} ref={table}>
+        <table className={`jsx-${hashString}`} style={toCssStyle} ref={table}>
           <thead>
             <tr>
               {headings.map((key, i) => (
@@ -136,11 +138,12 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
                 </tr>
             ))}
           </tbody>
-          <style dangerouslySetInnerHTML={{ __html: columnTextDirectionArray.map((val, i) => {
-            return `td:nth-of-type(${i}),th:nth-of-type(${i}) {text-align: ${val};`
-            }).join('') }}/>
         </table>
-        
+        <JSXStyle id={`jsx-${hashString}`}>
+          {columnTextDirectionArray.map((val, i) => {
+            return `.jsx-0001 td:nth-of-type(${i}),.jsx-0001 th:nth-of-type(${i}) {text-align: ${val};}`;
+          }).join("")}
+        </JSXStyle>
         <style jsx>{`
         table {
           position: relative;
@@ -157,128 +160,127 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
             width: 900px;
             margin-left: -120px;
           }
+        }
+        th {
+          position: sticky;
+          top: 136px;
+          font-weight: 700;
+          display: block;
+          overflow: visible !important;
+          border-top: 1px solid var(--table-header-border);
+          background-color: var(--table-header-border);
+          color: var(--table-header-text);
 
-          th {
-            position: sticky;
-            top: 136px;
-            font-weight: 700;
-            display: block;
-            overflow: visible !important;
-            border-top: 1px solid var(--table-header-border);
-            background-color: var(--table-header-border);
-            color: var(--table-header-text);
-
-            &:before {
-              position: absolute;
-              content: '';
-              z-index: -1;
-              bottom: calc(100% - 4px);
-              left: -1px;
-              width: calc(100% + 3px);
-              height: 136px;
-              background-color: var(--color-background);
-            }
-
-            &:after {
-              position: absolute;
-              content: '';
-              z-index: 0;
-              top: 0;
-              left: -1px;
-              width: calc(100% + 2px);
-              height: 8px;
-              border: 1px solid var(--table-header-border);
-              background-color: var(--table-header-border);
-            }
-          }
-
-          th:first-of-type {
-            border-left: 1px solid var(--table-header-border);
-            border-top-left-radius: 4px;
-
-            &:after {
-              border-top-left-radius: 4px;
-            }
-          }
-
-          th:last-of-type {
-            border-right: 1px solid var(--table-header-border);
-            border-top-right-radius: 4px;
-
-            &:after {
-              border-top-right-radius: 4px;
-            }
-          }
-
-          tr,
-          thead,
-          tbody {
-            display: contents;
-          }
-
-          th,
-          td {
-            min-width: 40px;
-            height: 40px;
-            display: inline;
-            overflow: hidden;
-            padding: 0 8px;
-            font-size: 14px;
-            line-height: 40px;
-            white-space: nowrap;
-            text-align: ${columnTextDirection};
-            text-overflow: ellipsis;
-          }
-
-          td {
-            position: relative;
+          &:before {
+            position: absolute;
+            content: '';
             z-index: -1;
-            border-right: 1px solid var(--table-cell-border);
-            border-bottom: 1px solid var(--table-cell-border);
-            background-color: var(--table-cell-1n);
-            color: var(--color-text);
-            cursor: pointer;
+            bottom: calc(100% - 4px);
+            left: -1px;
+            width: calc(100% + 3px);
+            height: 136px;
+            background-color: var(--color-background);
           }
 
-          td:nth-of-type(2n) {
-            background-color: var(--table-cell-2n);
+          &:after {
+            position: absolute;
+            content: '';
+            z-index: 0;
+            top: 0;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: 8px;
+            border: 1px solid var(--table-header-border);
+            background-color: var(--table-header-border);
+          }
+        }
+
+        th:first-of-type {
+          border-left: 1px solid var(--table-header-border);
+          border-top-left-radius: 4px;
+
+          &:after {
+            border-top-left-radius: 4px;
+          }
+        }
+
+        th:last-of-type {
+          border-right: 1px solid var(--table-header-border);
+          border-top-right-radius: 4px;
+
+          &:after {
+            border-top-right-radius: 4px;
+          }
+        }
+
+        tr,
+        thead,
+        tbody {
+          display: contents;
+        }
+
+        th,
+        td {
+          min-width: 40px;
+          height: 40px;
+          display: inline;
+          overflow: hidden;
+          padding: 0 8px;
+          font-size: 14px;
+          line-height: 40px;
+          white-space: nowrap;
+          text-align: ${columnTextDirection};
+          text-overflow: ellipsis;
+        }
+
+        td {
+          position: relative;
+          z-index: -1;
+          border-right: 1px solid var(--table-cell-border);
+          border-bottom: 1px solid var(--table-cell-border);
+          background-color: var(--table-cell-1n);
+          color: var(--color-text);
+          cursor: pointer;
+        }
+
+        td:nth-of-type(2n) {
+          background-color: var(--table-cell-2n);
+        }
+
+        td:first-of-type {
+          border-left: 1px solid var(--table-header-border);
+        }
+
+        td:last-of-type {
+          border-right: 1px solid var(--table-header-border);
+        }
+
+        tr:last-of-type {
+          td {
+            border-bottom: 1px solid var(--table-header-border);
           }
 
           td:first-of-type {
-            border-left: 1px solid var(--table-header-border);
+            border-bottom-left-radius: 4px;
           }
 
           td:last-of-type {
-            border-right: 1px solid var(--table-header-border);
+            border-bottom-right-radius: 4px;
+          }
+        }
+
+        tr:hover {
+          td {
+            background-color: var(--table-cell-hover-1n);
           }
 
-          tr:last-of-type {
-            td {
-              border-bottom: 1px solid var(--table-header-border);
-            }
-
-            td:first-of-type {
-              border-bottom-left-radius: 4px;
-            }
-
-            td:last-of-type {
-              border-bottom-right-radius: 4px;
-            }
-          }
-
-          tr:hover {
-            td {
-              background-color: var(--table-cell-hover-1n);
-            }
-
-            td:nth-of-type(2n) {
-              background-color: var(--table-cell-hover-2n);
-            }
+          td:nth-of-type(2n) {
+            background-color: var(--table-cell-hover-2n);
           }
         }
       `}</style>
       </>
-);
+  );
 };
 
 export default DataTable;
