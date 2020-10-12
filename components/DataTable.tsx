@@ -4,7 +4,6 @@ import { DataTableHeading } from "components";
 import Color from "color";
 import JSXStyle from "styled-jsx/style";
 import _hashString from "string-hash";
-import { isJSX, isJSXElement, isJSXFragment } from "@babel/types";
 
 type RowObject = {
   [key: string]: string | number | JSX.Element;
@@ -175,6 +174,8 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
     if (isValidElement(el.props?.children)) {
       return getStringFromElement(el.props?.children);
     }
+    return "";
+    
   };
   
   const updateDirection = (tableData: RowArray[], direction: "ascending" | "descending", index: number): RowArray[] => {
