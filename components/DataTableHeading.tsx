@@ -9,7 +9,7 @@ type DataTableSortHeadingProps = {
   index: number
 }
 
-export const DataTableHeading: FC<DataTableSortHeadingProps> = ({ children, isSortable = true, sortDirection = "ascending", active, onSort, index }) => {
+export const DataTableHeading: FC<DataTableSortHeadingProps> = ({ children, isSortable = false, sortDirection = "ascending", active, onSort, index }) => {
   return <>
     <div tabIndex={0}
          role="switch"

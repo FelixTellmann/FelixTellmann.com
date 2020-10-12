@@ -1,6 +1,5 @@
 import { CSSProperties, FC, isValidElement, useEffect, useRef, useState } from "react";
 import { DataTableHeading } from "components";
-
 import Color from "color";
 import JSXStyle from "styled-jsx/style";
 import _hashString from "string-hash";
@@ -8,23 +7,29 @@ import _hashString from "string-hash";
 type RowObject = {
   [key: string]: string | number | JSX.Element;
 };
+
 type ContentTypes = {
   [key: string]: "text" | "numeric" | "center";
 };
+
 type ColumnWidth = {
   [key: string]: string | number;
 };
+
 type ColumnSort = {
   [key: string]: boolean;
 };
+
 const hashString = String(_hashString("randomValue"));
+
 type RowArray = (string | number | JSX.Element)[];
+
 type DataTableProps = {
   headings: string[];
   footer?: (string | JSX.Element)[];
   columnContentTypes?: ("text" | "numeric" | "center") | ("text" | "numeric" | "center")[] | ContentTypes;
   fixedColumnWidth?: (string | number)[] | ColumnWidth;
-  sortable: boolean[] | ColumnSort;
+  sortable?: boolean[] | ColumnSort;
   defaultSortDirection?: "ascending" | "descending";
   defaultSortColumn?: number | string;
   rows: (RowArray | RowObject)[];
@@ -32,10 +37,88 @@ type DataTableProps = {
   style?: CSSProperties;
 };
 
-export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth, columnContentTypes, sortable = false, defaultSortDirection = "ascending", defaultSortColumn = 0 }) => {
+const getStringFromElement = (el): string | number | void => {
+  if (typeof el.props?.children === "string" || el.props?.children === "number") {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return el.props?.children;
+  }
+  if (isValidElement(el.props?.children)) {
+    return getStringFromElement(el.props?.children);
+  }
+  return "";
+  
+};
+const updateDirection = (tableData: RowArray[], direction: "ascending" | "descending", index: number): RowArray[] => {
+  return tableData.sort((a, b) => {
+        
+        if (typeof a[index] === "number" && typeof b[index] === "number") {
+          return direction === "ascending" ? +a[index] - +b[index] : +b[index] - +a[index];
+        }
+        
+        let A;
+        let B;
+        if (typeof a[index] === "string") A = a[index];
+        if (typeof b[index] === "string") B = b[index];
+        if (isValidElement(a[index])) {
+          A = getStringFromElement(a[index]);
+        }
+        if (isValidElement(b[index])) {
+          B = getStringFromElement(b[index]);
+        }
+        if (A < B) {
+          return direction === "ascending" ? -1 : 1;
+        }
+        if (A > B) {
+          return direction === "ascending" ? 1 : -1;
+        }
+        return 0;
+        
+      }
+  );
+};
+const sanitizeRows = (rows: (RowArray | RowObject)[], headings: string[]): RowArray[] => rows.map((row) => {
+  let returnArray: (string | number | JSX.Element)[] = [];
+  if (Array.isArray(row)) {
+    row.length = headings.length;
+    returnArray = [...row];
+  } else if (typeof row === "object" && row !== null) {
+    headings.forEach((h) => {
+      returnArray.push(row[h]);
+    });
+  }
+  return returnArray;
+});
+const initializeHeadings = (headings: string[], sortDirection: "ascending" | "descending", sortColumn: number | string, sortable?: boolean[] | ColumnSort): { heading: string, isSortable: boolean, sortDirection: "ascending" | "descending", active: boolean }[] => {
+  return headings.map((heading, index) => {
+    let isSortable: boolean;
+    if (sortable) {
+      if (Array.isArray(sortable)) {
+        isSortable = sortable[index] === true;
+      }
+      if (typeof sortable === "object" && !Array.isArray(sortable)) {
+        isSortable = sortable[heading];
+      }
+    }
+    return {
+      heading,
+      isSortable,
+      sortDirection,
+      active: index === sortColumn
+    };
+  });
+};
+
+export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, style = {}, fixedColumnWidth, columnContentTypes, sortable, defaultSortDirection = "ascending", defaultSortColumn = 0 }) => {
   /*= =============== Color Styles ================ */
   const table = useRef();
   const [toCssStyle, setToCssStyle] = useState(style);
+  const [tableHeadings, setTableHeadings] = useState(initializeHeadings(headings, defaultSortDirection, defaultSortColumn, sortable));
+  const [tableRows, setTableRows] = useState<RowArray[]>(sortable
+      ? updateDirection(sanitizeRows(rows, headings), defaultSortDirection, typeof defaultSortColumn === "string"
+          ? headings.indexOf(defaultSortColumn)
+          : (typeof defaultSortColumn === "number" ? defaultSortColumn : 0))
+      : sanitizeRows(rows, headings));
+  
   useEffect(() => {
     let heading = "";
     let base = "";
@@ -56,15 +139,16 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
           : Color(heading).negate().saturate(1).lighten(0.8).grayscale().hsl().string(),
       "--table-cell-1n": Color(base || heading).alpha(0.15).hsl().string(),
       "--table-cell-2n": Color(base || heading).rotate(-30).alpha(0.1).hsl().string(),
-      "--table-cell-hover-1n": Color(base || heading).rotate(220).alpha(0.13).hsl().string(),
-      "--table-cell-hover-2n": Color(base || heading).rotate(220).alpha(0.1).hsl().string(),
+      "--table-cell-hover-1n": Color(base || heading).rotate(40).alpha(0.13).hsl().string(),
+      "--table-cell-hover-2n": Color(base || heading).rotate(20).alpha(0.1).hsl().string(),
       "--table-cell-border": Color(base || heading).alpha(0.4).hsl().string()
     }));
   }, [color]);
   
   /*= =============== ColumnWidth ================ */
   const columnLength = headings.length;
-  let columnWidth = `repeat(${columnLength}, auto`;
+  let columnWidth = `repeat(${columnLength}, auto);`;
+  
   if (fixedColumnWidth) {
     if (Array.isArray(fixedColumnWidth)) {
       const array: string[] = new Array(columnLength).fill("auto");
@@ -76,6 +160,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
       array.length = columnLength;
       columnWidth = array.join(" ");
     }
+    
     if (typeof fixedColumnWidth === "object" && !Array.isArray(fixedColumnWidth)) {
       const array: string[] = new Array(columnLength).fill("auto");
       Object.entries(fixedColumnWidth).forEach(([key, width]) => {
@@ -124,94 +209,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
   
   /*= =============== Unify Row Data &  Sorting ================ */
   /* Initial State */
-  const [tableHeadings, setTableHeadings] = useState(headings.map((heading, index) => {
-    let isSortable: boolean;
-    if (sortable) {
-      if (Array.isArray(sortable)) {
-        isSortable = sortable[index] === true;
-      }
-      if (typeof sortable === "object" && !Array.isArray(sortable)) {
-        isSortable = sortable[heading];
-      }
-    }
-    return {
-      heading,
-      isSortable,
-      sortDirection: defaultSortDirection,
-      active: index === defaultSortColumn
-    };
-  }));
   
-  const sanitizedRows = rows.map((row) => {
-    let returnArray: (string | number | JSX.Element)[] = [];
-    if (Array.isArray(row)) {
-      row.length = columnLength;
-      returnArray = [...row];
-    } else if (typeof row === "object" && row !== null) {
-      headings.forEach((h) => {
-        returnArray.push(row[h]);
-      });
-    }
-    return returnArray;
-  });
-  
-  let defaultSortIndex = 0;
-  
-  if (defaultSortColumn) {
-    if (typeof defaultSortColumn === "string") {
-      defaultSortIndex = headings.indexOf(defaultSortColumn);
-    }
-    if (typeof defaultSortColumn === "number") {
-      defaultSortIndex = defaultSortColumn;
-    }
-  }
-  
-  const getStringFromElement = (el): string | number | void => {
-    if (typeof el.props?.children === "string" || el.props?.children === "number") {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return el.props?.children;
-    }
-    if (isValidElement(el.props?.children)) {
-      return getStringFromElement(el.props?.children);
-    }
-    return "";
-    
-  };
-  
-  const updateDirection = (tableData: RowArray[], direction: "ascending" | "descending", index: number): RowArray[] => {
-    return tableData.sort((a, b) => {
-          
-          if (typeof a[index] === "number" && typeof b[index] === "number") {
-            return direction === "ascending" ? +a[index] - +b[index] : +b[index] - +a[index];
-          }
-          
-          let A;
-          let B;
-          if (typeof a[index] === "string") A = a[index];
-          if (typeof b[index] === "string") B = b[index];
-          if (isValidElement(a[index])) {
-            A = getStringFromElement(a[index]);
-          }
-          if (isValidElement(b[index])) {
-            B = getStringFromElement(b[index]);
-          }
-          if (A < B) {
-            return direction === "ascending" ? -1 : 1;
-          }
-          if (A > B) {
-            return direction === "ascending" ? 1 : -1;
-          }
-          return 0;
-          
-        }
-    );
-  };
-  
-  const [tableRows, setTableRows] = useState<RowArray[]>(sortable
-      ? updateDirection(sanitizedRows, defaultSortDirection, defaultSortIndex)
-      : sanitizedRows);
-  
-  /* Update of State */
   const onSort = (e) => {
     const { active, direction, index } = e.currentTarget.dataset;
     const sortDirection = active === "true" ? (direction === "ascending"
@@ -228,6 +226,16 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
     });
     setTableRows(updateDirection(tableRows, sortDirection, index));
   };
+  
+  useEffect(() => {
+    setTableHeadings(initializeHeadings(headings, defaultSortDirection, defaultSortColumn, sortable));
+    setTableRows(sortable
+        ? updateDirection(sanitizeRows(rows, headings), defaultSortDirection,
+            typeof defaultSortColumn === "string"
+                ? headings.indexOf(defaultSortColumn)
+                : (typeof defaultSortColumn === "number" ? defaultSortColumn : 0))
+        : sanitizeRows(rows, headings));
+  }, [headings, defaultSortColumn, defaultSortDirection, sortable, rows]);
   
   return (
       <>
@@ -273,7 +281,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
 
           @media screen and (min-width: 964px) {
             width: 900px;
-            margin-left: -120px;
+            margin-left: -100px;
           }
         }
         th {
@@ -358,7 +366,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
           border-bottom: 1px solid var(--table-cell-border);
           background-color: var(--table-cell-1n);
           color: var(--color-text);
-          cursor: pointer;
+          cursor: default;
         }
 
         td:nth-of-type(2n) {

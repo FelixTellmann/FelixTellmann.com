@@ -1,6 +1,7 @@
 export * from './ArticleHeading';
 export * from './ArticleSidebar';
 export * from './Avatar';
+export * from './Badge';
 export * from './BlogPreview';
 export * from './Box';
 export * from './Button';

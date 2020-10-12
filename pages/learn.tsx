@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { NextSeo } from "next-seo";
-import { DataTable, HeroText, InfoBlock, Link } from "components";
+import { DataTable, Badge, HeroText, InfoBlock, Link } from "components";
+
 
 export const Learn: FC = () => {
   return (
@@ -83,42 +84,31 @@ export const Learn: FC = () => {
           </p>
           <h2>My List</h2>
           
-          <DataTable headings={["#", "title", "asdasd", "asdasdasd"]}
-                     sortable={[true, false, true]}
-                     defaultSortColumn={2}
+          <DataTable fixedColumnWidth={{ "#": 50, "Title": "1fr" }}
+                     columnContentTypes={{ "#": "numeric", Date: "numeric" }}
+                     headings={["#", "Title", "Tags", "Status", "Link", "Date"]}
+                     color={{ heading: '#1a202c', base: "#319f9c" }}
                      rows={[
                        {
-                         "#": "asdasd",
-                         title: "qweqwe",
-                         asdasd: 123,
-                         asdasdasd: "aasdasdasdasd"
+                         "#": 1,
+                         Title: "Re-build my Website with Next.js",
+                         Date: "2020-09-30",
+                         Status: <Badge progress="complete">done</Badge>,
+                         Link: <Link subtle
+                                     href="https://felixtellmann.com"
+                                     target="_blank">visit</Link>,
+                         Tags: "Next.Js, React, Serverless"
                        },
                        {
-                         "#": "213442",
-                         title: "asdasdasdasdasd",
-                         asdasd: 543,
-                         asdasdasd: "aasdasdasdasd"
-                       },
-                       {
-                         "#": <><Link href="#">qwee</Link></>,
-                         title: "asdasdasdasdasd",
-                         asdasd: 768,
-                         asdasdasd: "aasdasdasdasd"
-                       },
-                       {
-                         "#": "4vdsfv",
-                         title: "asdasdasdasdasd",
-                         asdasd: 9809,
-                         asdasdasd: "aasdasdasdasd"
+                         "#": 2,
+                         Title: "Re-build my Website with Next.js",
+                         Date: "2020-09-30",
+                         Status: "done",
+                         Tags: "Next.Js, React, Serverless"
                        }
                      ]}
-                     color={{
-                       base: "#309abc",
-                       heading: "#1a202c"
-                     }}
-                     fixedColumnWidth={{ "#": "minmax(30px, 1fr)" }}
-                     columnContentTypes={{ "#": "numeric" }}
-                     />
+                     
+          />
           
           
           Nextjs
@@ -143,8 +133,6 @@ export const Learn: FC = () => {
           es6
           react
           creating good cheatsheets
-        
-        
         </article>
       </>
   );
