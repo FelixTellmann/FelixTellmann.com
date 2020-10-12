@@ -93,7 +93,7 @@ export const Learn: FC = () => {
                          "#": 1,
                          Title: "Re-build my Website with Next.js",
                          Date: "2020-09-30",
-                         Status: <Badge progress="complete">done</Badge>,
+                         Status: <Badge status="success" progress="incomplete">Done</Badge>,
                          Link: <Link subtle
                                      href="https://felixtellmann.com"
                                      target="_blank">visit</Link>,
