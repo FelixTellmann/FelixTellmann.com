@@ -3,6 +3,7 @@ import { NextSeo } from "next-seo";
 import { DataTable, Badge, HeroText, InfoBlock, Link, Tag } from "components";
 
 
+
 export const Learn: FC = () => {
   return (
       <>
@@ -87,7 +88,7 @@ export const Learn: FC = () => {
           <DataTable fixedColumnWidth={{ "#": 50, "Title": "1fr" }}
                      columnContentTypes={{ "#": "numeric", Date: "numeric" }}
                      headings={["#", "Title", "Tags", "Status", "Link", "Date"]}
-                     color={{ heading: 'var(--color-text)', base: "#319f9c" }}
+                     color={{ heading: 'var(--color-text)', base: "var(--color-blue)" }}
                      rows={[
                        {
                          "#": 1,

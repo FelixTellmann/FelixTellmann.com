@@ -1,8 +1,9 @@
-import { CSSProperties, FC, isValidElement, useEffect, useRef, useState } from "react";
+import { CSSProperties, FC, isValidElement, useContext, useEffect, useRef, useState } from "react";
 import { DataTableHeading } from "components";
 import Color from "color";
 import JSXStyle from "styled-jsx/style";
 import _hashString from "string-hash";
+import {ThemeContext} from 'pages/_app';
 
 type RowObject = {
   [key: string]: string | number | JSX.Element;
@@ -118,28 +119,32 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
           ? headings.indexOf(defaultSortColumn)
           : (typeof defaultSortColumn === "number" ? defaultSortColumn : 0))
       : sanitizeRows(rows, headings));
-  
+  const { theme } = useContext(ThemeContext)
   useEffect(() => {
     let heading = "";
     let base = "";
+    
     if (window) {
+      setTimeout(() => {
       heading = getComputedStyle(table.current)?.getPropertyValue("--table")?.trim() || "#3182ce";
       base = getComputedStyle(table.current)?.getPropertyValue("--table-base")?.trim() || "#3182ce";
+        setToCssStyle((currentStyle) => ({
+          ...currentStyle,
+          "--table-header-border": Color(heading),
+          "--table-header-text": Color(heading).isLight()
+              ? Color(heading).negate().saturate(1).darken(0.8).grayscale().hsl().string()
+              : Color(heading).negate().saturate(1).lighten(0.8).grayscale().hsl().string(),
+          "--table-cell-1n": Color(base || heading).alpha(0.2).hsl().string(),
+          "--table-cell-2n": Color(base || heading).rotate(-30).alpha(0.15).hsl().string(),
+          "--table-cell-hover-1n": Color(base || heading).rotate(40).alpha(0.18).hsl().string(),
+          "--table-cell-hover-2n": Color(base || heading).rotate(20).alpha(0.15).hsl().string(),
+          "--table-cell-border": Color(base || heading).alpha(0.4).hsl().string()
+        }));
+      }, 0)
     }
     
-    setToCssStyle((currentStyle) => ({
-      ...currentStyle,
-      "--table-header-border": Color(heading),
-      "--table-header-text": Color(heading).isLight()
-          ? Color(heading).negate().saturate(1).darken(0.8).grayscale().hsl().string()
-          : Color(heading).negate().saturate(1).lighten(0.8).grayscale().hsl().string(),
-      "--table-cell-1n": Color(base || heading).alpha(0.25).hsl().string(),
-      "--table-cell-2n": Color(base || heading).rotate(-30).alpha(0.2).hsl().string(),
-      "--table-cell-hover-1n": Color(base || heading).rotate(40).alpha(0.23).hsl().string(),
-      "--table-cell-hover-2n": Color(base || heading).rotate(20).alpha(0.2).hsl().string(),
-      "--table-cell-border": Color(base || heading).alpha(0.35).hsl().string()
-    }));
-  }, [color]);
+    
+  }, [color, theme]);
   
   /*= =============== ColumnWidth ================ */
   const columnLength = headings.length;
@@ -273,14 +278,15 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
           margin-top: 3.2rem;
           margin-bottom: 3.2rem;
           border-radius: 4px;
-          ${typeof color === 'string' ? `--table: ${color};` : (typeof color === "object" ? `--table: ${color.heading};` : 'var(--color-text;)') }
-          ${typeof color === 'string' ? `---base: ${color};` : (typeof color === "object" ? `---base: ${color.base};` : '--table-base: #319f9c;') }
+          
           
 
           @media screen and (min-width: 964px) {
             width: 900px;
             margin-left: -100px;
           }
+          ${typeof color === 'string' ? `--table: ${color};` : (typeof color === "object" ? `--table: ${color.heading};` : 'var(--color-text;)') }
+          ${typeof color === 'string' ? `--table-base: ${color};` : (typeof color === "object" ? `--table-base: ${color.base};` : '--table-base: #319f9c;') }
         }
         th {
           position: sticky;
