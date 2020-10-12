@@ -26,6 +26,7 @@ export const Tag: FC<BadgeProps> = ({ name, status = 'default' }) => {
           user-select: none;
           color: #454f5b;
           font-size: 1.2rem;
+          cursor: pointer;
           ${status === "default" ? `background-color: #dfe3e8;` : ""}
           ${status === "info" ? `background-color: #b4e1fa;` : ""}
           ${status === "success" ? `background-color: #bbe5b3;` : ""}

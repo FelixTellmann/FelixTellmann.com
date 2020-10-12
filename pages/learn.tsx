@@ -87,13 +87,13 @@ export const Learn: FC = () => {
           <DataTable fixedColumnWidth={{ "#": 50, "Title": "1fr" }}
                      columnContentTypes={{ "#": "numeric", Date: "numeric" }}
                      headings={["#", "Title", "Tags", "Status", "Link", "Date"]}
-                     color={{ heading: '#1a202c', base: "#319f9c" }}
+                     color={{ heading: 'var(--color-text)', base: "#319f9c" }}
                      rows={[
                        {
                          "#": 1,
                          Title: "Re-build my Website with Next.js",
                          Date: "2020-09-30",
-                         Status: <Badge status="success" progress="incomplete">Done</Badge>,
+                         Status: <Badge status="success" progress="incomplete" size="small">Done</Badge>,
                          Link: <Link subtle
                                      href="https://felixtellmann.com"
                                      target="_blank">visit</Link>,

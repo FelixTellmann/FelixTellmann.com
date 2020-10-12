@@ -122,13 +122,9 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
   useEffect(() => {
     let heading = "";
     let base = "";
-    if (window && !color) {
+    if (window) {
       heading = getComputedStyle(table.current)?.getPropertyValue("--table")?.trim() || "#3182ce";
-    } else if (typeof color === `string`) {
-      heading = color;
-    } else if (typeof color === "object" && color !== null) {
-      heading = color.heading;
-      base = color.base;
+      base = getComputedStyle(table.current)?.getPropertyValue("--table-base")?.trim() || "#3182ce";
     }
     
     setToCssStyle((currentStyle) => ({
@@ -137,11 +133,11 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
       "--table-header-text": Color(heading).isLight()
           ? Color(heading).negate().saturate(1).darken(0.8).grayscale().hsl().string()
           : Color(heading).negate().saturate(1).lighten(0.8).grayscale().hsl().string(),
-      "--table-cell-1n": Color(base || heading).alpha(0.15).hsl().string(),
-      "--table-cell-2n": Color(base || heading).rotate(-30).alpha(0.1).hsl().string(),
-      "--table-cell-hover-1n": Color(base || heading).rotate(40).alpha(0.13).hsl().string(),
-      "--table-cell-hover-2n": Color(base || heading).rotate(20).alpha(0.1).hsl().string(),
-      "--table-cell-border": Color(base || heading).alpha(0.4).hsl().string()
+      "--table-cell-1n": Color(base || heading).alpha(0.25).hsl().string(),
+      "--table-cell-2n": Color(base || heading).rotate(-30).alpha(0.2).hsl().string(),
+      "--table-cell-hover-1n": Color(base || heading).rotate(40).alpha(0.23).hsl().string(),
+      "--table-cell-hover-2n": Color(base || heading).rotate(20).alpha(0.2).hsl().string(),
+      "--table-cell-border": Color(base || heading).alpha(0.35).hsl().string()
     }));
   }, [color]);
   
@@ -277,7 +273,9 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
           margin-top: 3.2rem;
           margin-bottom: 3.2rem;
           border-radius: 4px;
-          --table: #319f9c;
+          ${typeof color === 'string' ? `--table: ${color};` : (typeof color === "object" ? `--table: ${color.heading};` : 'var(--color-text;)') }
+          ${typeof color === 'string' ? `---base: ${color};` : (typeof color === "object" ? `---base: ${color.base};` : '--table-base: #319f9c;') }
+          
 
           @media screen and (min-width: 964px) {
             width: 900px;
@@ -287,12 +285,12 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
         th {
           position: sticky;
           top: 136px;
-          font-weight: 700;
           display: block;
           overflow: visible !important;
           border-top: 1px solid var(--table-header-border);
           background-color: var(--table-header-border);
           color: var(--table-header-text);
+          font-weight: 700;
 
           &:before {
             position: absolute;
@@ -365,8 +363,8 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
           border-right: 1px solid var(--table-cell-border);
           border-bottom: 1px solid var(--table-cell-border);
           background-color: var(--table-cell-1n);
-          color: var(--color-text);
           cursor: default;
+          color: var(--color-text);
         }
 
         td:nth-of-type(2n) {
