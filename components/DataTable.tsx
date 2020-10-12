@@ -89,7 +89,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
   
   /*= =============== ColumnTypes ================ */
   let columnTextDirection = "left";
-  let columnTextDirectionArray = [];
+  let columnTextDirectionArray: string[] = [];
   if (columnContentTypes) {
     if (typeof columnContentTypes === "string") {
       if (columnContentTypes === "text") columnTextDirection = "left";
@@ -102,6 +102,17 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
         if (contentType === "text") columnTextDirectionArray[index] = "left";
         if (contentType === "numeric") columnTextDirectionArray[index] = "right";
         if (contentType === "center") columnTextDirectionArray[index] = "center";
+      });
+    }
+    if (typeof columnContentTypes === 'object' && !Array.isArray(columnContentTypes)) {
+      columnTextDirectionArray = new Array(columnLength).fill("left");
+      Object.entries(columnContentTypes).forEach(([key, type]) => {
+        const cIndex = headings.indexOf(key);
+        if (cIndex !== -1) {
+          if (type === "text") columnTextDirectionArray[cIndex] = "left";
+          if (type === "numeric") columnTextDirectionArray[cIndex] = "right";
+          if (type === "center") columnTextDirectionArray[cIndex] = "center";
+        }
       });
     }
   }
@@ -141,7 +152,7 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
         </table>
         <JSXStyle id={`jsx-${hashString}`}>
           {columnTextDirectionArray.map((val, i) => {
-            return `.jsx-0001 td:nth-of-type(${i}),.jsx-0001 th:nth-of-type(${i}) {text-align: ${val};}`;
+            return `.jsx-${hashString} td:nth-of-type(${i + 1}),.jsx-${hashString} th:nth-of-type(${i + 1}) {text-align: ${val};}`;
           }).join("")}
         </JSXStyle>
         <style jsx>{`
