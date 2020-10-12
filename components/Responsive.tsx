@@ -34,5 +34,3 @@ export const Responsive: FC<ResponsiveProps> = ({ children, mobile, desktop }) =
     </>
   );
 };
-
-export default Responsive;

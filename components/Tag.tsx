@@ -2,34 +2,30 @@ import { CSSProperties, FC } from 'react';
 
 
 type BadgeProps = {
+  name: string
   status?: 'success' | 'info' | 'attention' | 'critical' | 'warning' | 'new';
   size?: 'small' | 'medium';
-  progress?: 'incomplete' | 'partially' | 'complete';
   style?: CSSProperties;
-  customColor?: string;
 };
 
-export const Badge: FC<BadgeProps> = ({ children, status = 'default', size = 'medium', progress }) => {
+export const Tag: FC<BadgeProps> = ({ name, status = 'default' }) => {
   return (
     <>
       <span>
-        {progress === 'incomplete' ? <i className="incomplete" /> : null}
-        {progress === 'partially' ? <i className="partially" /> : null}
-        {progress === 'complete' ? <i className="complete" /> : null}
-        {children}
+        {name}
       </span>
       <style jsx>{`
         span {
           height: 22px;
           display: inline-flex;
           align-items: center;
-          margin-right: 0.2rem;
+          margin-right: 0.3rem;
           padding: 0.2rem 0.8rem;
-          border: 1px solid #fff;
-          border-radius: 2rem;
+          border: 1px solid #b2b2b3;
+          border-radius: 4px;
           user-select: none;
           color: #454f5b;
-          ${size ==='small' ? 'font-size: 1.2rem;' : 'font-size: 1.3rem;'}
+          font-size: 1.2rem;
           ${status === "default" ? `background-color: #dfe3e8;` : ""}
           ${status === "info" ? `background-color: #b4e1fa;` : ""}
           ${status === "success" ? `background-color: #bbe5b3;` : ""}
@@ -37,20 +33,10 @@ export const Badge: FC<BadgeProps> = ({ children, status = 'default', size = 'me
           ${status === "warning" ? `background-color: #ffc58b;` : ""}
           ${status === "critical" ? `background-color: #fead9a;` : ""}
           ${status === "new" ? `background-color: #dfe3e8;\n font-weight: 500;\n border: none;` : ""}
-        }
-        i {
-          width: 1rem;
-          height: 1rem;
-          flex-shrink: 0;
-          margin: 0 0.4rem 0 -0.2rem;
-          border: 0.2rem solid currentColor;
-          border-radius: 50%;
-        }
-        .partially {
-          background-image: linear-gradient(0deg, currentColor, currentColor 50%, transparent 0, transparent);
-        }
-        .incomplete {
-          background-color: currentColor
+          
+          &:hover, &:focus, &:active {
+              background-color: #c3c1c1;
+          }
         }
       `}</style>
     </>

@@ -408,5 +408,3 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
       </>
   );
 };
-
-export default DataTable;

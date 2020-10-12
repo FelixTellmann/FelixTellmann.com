@@ -32,5 +32,3 @@ export const HeroText: FC<Decor & Space> = ({ children, ...props }) => {
     </>
   );
 };
-
-export default HeroText;

@@ -55,5 +55,3 @@ export const ProsCons: FC<ProsConsProps> = ({ type, title, points }) => {
     </>
   );
 };
-
-export default ProsCons;

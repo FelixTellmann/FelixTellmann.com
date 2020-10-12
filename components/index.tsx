@@ -2,6 +2,7 @@ export * from './ArticleHeading';
 export * from './ArticleSidebar';
 export * from './Avatar';
 export * from './Badge';
+export * from './Tag';
 export * from './BlogPreview';
 export * from './Box';
 export * from './Button';

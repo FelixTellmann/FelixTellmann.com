@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { NextSeo } from "next-seo";
-import { DataTable, Badge, HeroText, InfoBlock, Link } from "components";
+import { DataTable, Badge, HeroText, InfoBlock, Link, Tag } from "components";
 
 
 export const Learn: FC = () => {
@@ -104,7 +104,7 @@ export const Learn: FC = () => {
                          Title: "Re-build my Website with Next.js",
                          Date: "2020-09-30",
                          Status: "done",
-                         Tags: "Next.Js, React, Serverless"
+                         Tags: <><Tag name="Next.js"/><Tag name="React"/><Tag name="Serverless"/></>
                        }
                      ]}
                      
