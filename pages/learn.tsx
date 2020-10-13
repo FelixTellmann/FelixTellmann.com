@@ -65,18 +65,9 @@ export const Learn: FC = () => {
               '#': 1,
               Title: 'Re-build my Website with Next.js',
               Date: '2020-09-30',
-              Status: (
-                <Badge status="success" progress="complete" size="small">
-                  Done
-                </Badge>
-              ),
-              Tags: (
-                <>
-                  <Tag name="Next.js" />
-                  <Tag name="React" />
-                  <Tag name="Serverless" />
-                </>
-              )
+              Status: <Badge status="success" progress="complete" size="small">Done</Badge>,
+              Tags: <><Tag name="Next.js" /><Tag name="React" /><Tag name="Serverless" /></>
+              
             }
           ]}
         />

@@ -152,7 +152,7 @@ export default function Index() {
 
 Let's add some CSS custom properties for the theme styling.
 
-```js:index.js
+```jsx{9-15}:index.js
 ...
 <style jsx>{`
   .wrapper {
@@ -178,7 +178,7 @@ framework or plain css files, as long as the classes are matched accordingly_
 Let's also swap the colors used for the header so we use CSS properties
 across the board.
 
-```js:_app.js
+```tsx{5,13,34,37,41,45-51}:_app.js
 ...
  <style jsx global>{`
   ...
