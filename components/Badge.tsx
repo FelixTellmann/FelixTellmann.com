@@ -50,7 +50,7 @@ export const Badge: FC<BadgeProps> = ({ children, status = 'default', size = 'me
         .partially {
           background-image: linear-gradient(0deg, currentColor, currentColor 50%, transparent 0, transparent);
         }
-        .incomplete {
+        .complete {
           background-color: currentColor
         }
       `}</style>
