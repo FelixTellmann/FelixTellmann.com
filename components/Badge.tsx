@@ -1,6 +1,5 @@
 import { CSSProperties, FC } from 'react';
 
-
 type BadgeProps = {
   status?: 'success' | 'info' | 'attention' | 'critical' | 'warning' | 'new';
   size?: 'small' | 'medium';
@@ -29,14 +28,20 @@ export const Badge: FC<BadgeProps> = ({ children, status = 'default', size = 'me
           border-radius: 2rem;
           user-select: none;
           color: #454f5b;
-          ${size ==='small' ? 'font-size: 1.2rem;' : 'font-size: 1.3rem;'}
-          ${status === "default" ? `background-color: #dfe3e8;` : ""}
-          ${status === "info" ? `background-color: #b4e1fa;` : ""}
-          ${status === "success" ? `background-color: #bbe5b3;` : ""}
-          ${status === "attention" ? `background-color: #ffea8a;` : ""}
-          ${status === "warning" ? `background-color: #ffc58b;` : ""}
-          ${status === "critical" ? `background-color: #fead9a;` : ""}
-          ${status === "new" ? `background-color: #dfe3e8;\n font-weight: 500;\n border: none;` : ""}
+          ${size === 'small' ? 'font-size: 1.2rem;' : 'font-size: 1.3rem;'}
+          ${status === 'default' ? `background-color: #dfe3e8;` : ''}
+          ${status === 'info'
+            ? `background-color: #b4e1fa;`
+            : ''}
+          ${status === 'success' ? `background-color: #bbe5b3;` : ''}
+          ${status === 'attention'
+            ? `background-color: #ffea8a;`
+            : ''}
+          ${status === 'warning' ? `background-color: #ffc58b;` : ''}
+          ${status === 'critical'
+            ? `background-color: #fead9a;`
+            : ''}
+          ${status === 'new' ? `background-color: #dfe3e8;\n font-weight: 500;\n border: none;` : ''}
         }
         i {
           width: 1rem;
@@ -45,13 +50,13 @@ export const Badge: FC<BadgeProps> = ({ children, status = 'default', size = 'me
           margin: 0 0.4rem 0 -0.2rem;
           border: 0.2rem solid currentColor;
           border-radius: 50%;
-          ${size ==='small' ? 'width: 0.9rem; height: 0.9rem;' : ''}
+          ${size === 'small' ? 'width: 0.9rem; height: 0.9rem;' : ''}
         }
         .partially {
           background-image: linear-gradient(0deg, currentColor, currentColor 50%, transparent 0, transparent);
         }
         .complete {
-          background-color: currentColor
+          background-color: currentColor;
         }
       `}</style>
     </>

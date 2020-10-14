@@ -7,8 +7,12 @@ class MyDocument extends Document {
         <Head>
           <meta name="referrer" content="strict-origin-when-cross-origin" />
           <meta charSet="UTF-8" />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-JS229JV27E" />
-          <script async src="/google-analytics.js" />
+          {process.env.NODE_ENV === 'production' ? (
+            <>
+              <script async src="https://www.googletagmanager.com/gtag/js?id=G-JS229JV27E" />
+              <script async src="/google-analytics.js" />
+            </>
+          ) : null}
         </Head>
         <body>
           <script src="/colorTheme.js" />

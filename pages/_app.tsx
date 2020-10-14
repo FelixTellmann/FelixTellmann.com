@@ -8,7 +8,8 @@ import { BorderFrame, Footer, Header } from 'components';
 import 'reset-css/sass/_reset.scss';
 import 'styles/theme.scss';
 import 'styles/mdx.scss';
-import { typography, variables } from 'styles';
+
+import { typography, variables, prism } from 'styles';
 import useColorTheme from 'use-color-theme';
 
 export const ThemeContext = createContext({ theme: '' });
@@ -23,6 +24,9 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
       </style>
       <style jsx global>
         {typography}
+      </style>
+      <style jsx global>
+        {prism}
       </style>
       <style jsx global>{`
         .page {

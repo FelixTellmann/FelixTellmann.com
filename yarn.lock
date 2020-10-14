@@ -8721,6 +8721,16 @@ mdurl@^1.0.0:
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
   integrity sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
 
+mdx-prism@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/mdx-prism/-/mdx-prism-0.3.1.tgz#9d4b4087e298cbebb4954282a971ad61e334209c"
+  integrity sha512-G0EnYogSVdcVQs9dm4tJBJZYin+coZCnooLp9llaPPxExUwEA1sZEDEiKO/9T8Lbbjnl78+K7cFKG7jYTbk9fg==
+  dependencies:
+    hast-util-to-string "^1.0.0"
+    parse-numeric-range "^0.0.2"
+    refractor "^2.3.0"
+    unist-util-visit "^1.1.3"
+
 memory-fs@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
@@ -11344,10 +11354,10 @@ rehype-parse@^7.0.0:
     hast-util-from-parse5 "^6.0.0"
     parse5 "^6.0.0"
 
-rehype-prism-with-plugins@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/rehype-prism-with-plugins/-/rehype-prism-with-plugins-0.1.0.tgz#f28f69e0d3713288847458b1d5632380333050a0"
-  integrity sha512-LWQCFNKWQW5fZA1IkBWP4K1DSI9vkWkKDorFwwDyQnTpb9+MuLszKgpBxKyNPcGQGZziG6xUm/faSbp3J8ND7g==
+rehype-prism-with-plugins@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/rehype-prism-with-plugins/-/rehype-prism-with-plugins-1.1.1.tgz#b5a2cfef12328f51b83560a4f2a2b6587e83e071"
+  integrity sha512-/iJiS3N9r04ekmb/fTMib/0nB3/FbkFzOYP1lIZVPFE7Mdc3CtZrhIZHLfQ8d4/rNvr5AO88bOEutsxYDt+9uQ==
   dependencies:
     hast-util-to-string "^1.0.0"
     parse-numeric-range "^0.0.2"

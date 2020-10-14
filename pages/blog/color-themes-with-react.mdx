@@ -44,7 +44,12 @@ yarn add react react-dom next
 Next, we create the `pages` folder required for `NextJs` and create two files: `_app.js` and `index.js`.
 Let us also add some basics to make it look pretty.
 
-```jsx{10-30}:_app.js
+```jsx{10-30}:_app.tsx
+
+const styled.button`
+  color: blue;
+`
+
 export const _App = ({ pageProps, Component }) => {
   return (
     <>
