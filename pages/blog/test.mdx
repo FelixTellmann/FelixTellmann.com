@@ -12,7 +12,12 @@ image: '/images/color-themes.jpg'
 ---
 
 ```jsx{2}:_app.tsx
-const styled.button`
-  color: blue;
+const styled.css`
+  a {
+    color: red;
+    &:hover {
+      color: blue;
+    }
+  }
 `
 ```

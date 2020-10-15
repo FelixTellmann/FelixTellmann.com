@@ -20,7 +20,7 @@ export const Index: FC = () => {
           <Link href="https://reactjs.org" target="_blank" title="React" />,{' '}
           <Link href="https://www.typescriptlang.org/" target="_blank" title="Typescript" /> and{' '}
           <Link href="https://nextjs.org" target="_blank" title="Next.js" />
-          .js to create beautiful user (and developer) experiences that bring delight. I'm also currently experimenting with
+           to create beautiful user (and developer) experiences that bring delight. I'm also currently experimenting with
           Chrome Extensions & Next.js for some small side projects.
         </p>
         <h2 className="h3">Passion for technology</h2>
