@@ -212,7 +212,7 @@ export const BorderFrame: FC<BorderFrameProps> = ({ loading, duration, width }) 
         }
 
         :global(:root) {
-          --border-width: 6px;
+          --border-width: 5px;
           /*--border-color: linear-gradient(270deg, #f50a81 25.28%, #9d09db 59.7%, #f722c9 97.75%);*/
           --border-color: linear-gradient(270deg, #00bfa5 25.28%, #3182ce 59.7%, rgba(11, 197, 234, 0.67) 97.75%);
           --border-animation-delay: 2.5s;

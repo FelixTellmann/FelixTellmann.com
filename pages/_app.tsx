@@ -35,7 +35,7 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
           display: flex;
           flex-direction: column;
           margin: 0 auto;
-          padding: 0 3.2rem;
+          padding: 0 var(--padding-page);
         }
       `}</style>
 

@@ -61,8 +61,9 @@ export const Layout: FC<LayoutProps> = ({
           background: var(--color-remark-code-bg);
           white-space: pre;
         }
+
         .language-css {
-          color:var(--color-header)
+          color: var(--color-header);
         }
 
         .line {
@@ -92,6 +93,31 @@ export const Layout: FC<LayoutProps> = ({
           color: var(--color-header);
         }
 
+        .remark-code-title {
+          margin-bottom: 0;
+          padding: 0.8rem 1.6rem;
+          border: 1px solid var(--color-remark-code-title-bg);
+          background: var(--color-remark-code-title-bg);
+          color: var(--color-header);
+          font-family: SFMono-Regular, Consolas, 'Liberation Mono', 'Courier New', monospace;
+          font-size: 1.5rem;
+          margin-left: calc(var(--border-width, 5px) - var(--padding-page, 2.4rem));
+          border-radius: 0;
+          width: calc(100% + (var(--padding-page, 2.4rem) - var(--border-width, 5px)) * 2);
+          @media screen and (min-width: 600px) {
+            width: 100%;
+            margin-left: 0;
+            border-top-left-radius: 0.4rem;
+            border-top-right-radius: 0.4rem;
+          }
+
+          + pre {
+            margin-top: 0 !important;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+          }
+        }
+
         pre code {
           padding: 0;
           border: 0;
@@ -104,8 +130,7 @@ export const Layout: FC<LayoutProps> = ({
           background: none;
           color: var(--color-header);
           font-family: 'Fira Code', SFMono-Regular, Consolas, 'Liberation Mono', 'Courier New', monospace;
-          font-size: 1.4rem;
-          line-height: 2.6rem;
+
           word-spacing: normal;
           text-align: left;
           word-wrap: normal;
@@ -113,6 +138,14 @@ export const Layout: FC<LayoutProps> = ({
           tab-size: 4;
           hyphens: none;
           overflow-wrap: normal;
+          letter-spacing: -0.03em;
+          font-size: 1.3rem;
+          line-height: 2.4rem;
+          @media screen and (min-width: 600px) {
+            letter-spacing: unset;
+            font-size: 1.4rem;
+            line-height: 2.6rem;
+          }
         }
 
         /* Code blocks */
@@ -129,8 +162,15 @@ export const Layout: FC<LayoutProps> = ({
         :not(pre) > code[class*='language-'],
         pre[class*='language-'] {
           border: 1px solid var(--color-remark-code-title-bg);
-          border-radius: 0.8rem;
           background: var(--color-remark-code-bg);
+          border-radius: 0;
+          margin-left: calc(var(--border-width, 5px) - var(--padding-page, 2.4rem));
+          width: calc(100% + (var(--padding-page, 2.4rem) - var(--border-width, 5px)) * 2);
+          @media screen and (min-width: 600px) {
+            width: 100%;
+            margin-left: 0;
+            border-radius: 0.8rem;
+          }
         }
 
         /* Inline code */
@@ -224,25 +264,6 @@ export const Layout: FC<LayoutProps> = ({
           padding-left: 1.6rem;
           background-color: var(--color-button);
           box-shadow: inset 3px 0 0 0 #2a69ac;
-        }
-
-        .remark-code-title {
-          width: 100%;
-          margin-bottom: 0;
-          padding: 0.8rem 1.6rem;
-          border: 1px solid var(--color-remark-code-title-bg);
-          border-top-left-radius: 0.4rem;
-          border-top-right-radius: 0.4rem;
-          background: var(--color-remark-code-title-bg);
-          color: var(--color-header);
-          font-family: SFMono-Regular, Consolas, 'Liberation Mono', 'Courier New', monospace;
-          font-size: 1.5rem;
-
-          + pre {
-            margin-top: 0;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-          }
         }
 
         .dark-theme {
