@@ -69,6 +69,9 @@ export const Layout: FC<LayoutProps> = ({
         .line {
           border-left: 3px solid transparent;
           border-collapse: collapse;
+          max-width: 100%;
+          display: flex;
+          align-items: flex-start;
           .line {
             border: 0;
           }
@@ -83,14 +86,28 @@ export const Layout: FC<LayoutProps> = ({
             }
           }
         }
+        .line-content {
+          white-space: pre-wrap;
+          display: inline-block;
+        }
 
         .line-number {
-          width: 45px;
           opacity: 0.5;
           display: inline-flex;
-          padding: 0 1.2rem;
+          padding: 0 0.8rem;
           user-select: none;
           color: var(--color-header);
+          font-size: 1.1rem;
+          width: 30px;
+          max-width: 30px;
+          min-width: 30px;
+          @media screen and (min-width: 600px) {
+            padding: 0 1.2rem;
+            font-size: inherit;
+            width: 45px;
+            min-width: 45px;
+            max-width: 45px;
+          }
         }
 
         .remark-code-title {
@@ -113,8 +130,8 @@ export const Layout: FC<LayoutProps> = ({
 
           + pre {
             margin-top: 0 !important;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
+            border-top-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
           }
         }
 
@@ -156,6 +173,7 @@ export const Layout: FC<LayoutProps> = ({
           padding-bottom: 1.6rem;
           font-size: 1.5rem;
           white-space: nowrap;
+          padding-right: 0.5rem;
         }
 
         :not(pre) > code[class*='language-'],
@@ -232,7 +250,7 @@ export const Layout: FC<LayoutProps> = ({
         .token.keyword {
           color: #109bd6;
         }
-        
+
         .token.keyword {
           color: rgb(255, 0, 120);
           font-weight: bold;
@@ -243,7 +261,7 @@ export const Layout: FC<LayoutProps> = ({
           color: #dd4a68;
         }
         .token.function {
-          color: rgb(0, 118, 255)
+          color: rgb(0, 118, 255);
         }
 
         .token.regex,
