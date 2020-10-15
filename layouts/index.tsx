@@ -86,6 +86,7 @@ export const Layout: FC<LayoutProps> = ({
           display: inline-flex;
           padding: 0 1.2rem;
           user-select: none;
+          color: var(--color-header);
         }
 
         pre code {

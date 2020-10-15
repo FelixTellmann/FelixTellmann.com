@@ -42,12 +42,9 @@ yarn add react react-dom next
 ```
 
 Next, we create the `pages` folder required for `NextJs` and create two files: `_app.js` and `index.js`.
-Let us also add some basics to make it look pretty.
+Let us also add some basics to make it look pretty.&#8203;
 
-```jsx{10-30}:_app.tsx
-const styled.button`
-  color: blue;
-`
+```tsx:_app.tsx
 
 export const _App = ({ pageProps, Component }) => {
   return (
@@ -112,7 +109,7 @@ export const _App = ({ pageProps, Component }) => {
           background-color: var(--button-bg-hover);
           outline: none;
         }
-      `}</style>
+      `}</ style>
       <header>
         <nav>
           <button>Toggle</button>
@@ -126,17 +123,17 @@ export const _App = ({ pageProps, Component }) => {
 export default _App
 ```
 
-```jsx:index.js
+```tsx:index.js
 export default function Index() {
   return (
     <>
-      <style jsx>{`
+      <style jsx>{ `
         .wrapper {
           max-width: 760px;
           padding: 0 32px;
           margin: 0 auto;
         }
-      `}</style>
+      `}</ style>
       <main className="page">
         <div className="wrapper">
           <h1 className="intro">Hello World!</h1>
@@ -156,7 +153,7 @@ export default function Index() {
 
 Let's add some CSS custom properties for the theme styling.
 
-```jsx{9-15}:index.js
+```tsx{9-15}:index.js
 ...
 <style jsx>{`
   .wrapper {
@@ -172,7 +169,7 @@ Let's add some CSS custom properties for the theme styling.
   p {
     color: var(--text)
   }
-`}</style>
+`}</ style>
 ...
 ```
 
@@ -234,14 +231,14 @@ across the board.
     --headings: #000;
     --text: #38393e;
   }
-`}</style>
+`}</ style>
 ```
 
 ## Adding useColorTheme
 
 Add the custom hook by running `yarn add use-color-theme` in the terminal and implement it in our \_app.js file. This will make sure that the themes are available globally on each page.
 
-```js:_app.js
+```tsx:_app.js
 import useColorTheme from 'use-color-theme'
 
 export const _App = ({ pageProps, Component }) => {
@@ -274,7 +271,7 @@ export const _App = ({ pageProps, Component }) => {
           --headings: #66fcf1;
           --text: #e647ff;
         }
-      `}</style>
+      `}</ style>
       <header>
         <nav>
           <button onClick={colorTheme.toggle}>Toggle</button>
@@ -295,7 +292,7 @@ Having a look at the detail to see what's happening.
 1. We import useColorTheme and impiment it the same way we would use any
    other react hook:
 
-```js
+```tsx
 const colorTheme = useColorTheme('light-theme', {
   classNames: ['light-theme', 'dark-theme', 'funky']
 })
@@ -314,7 +311,7 @@ The 1st parameter is the initial class, which will be used if nothing else has b
 **But what if I want to change it to a specific theme?**<br />
 There's an easy solution to that as well. Let us have a look how we can implement it:
 
-```js:_app.js
+```tsx:_app.js
 ...
 <nav>
   <button onClick={() => colorTheme.set('light-theme')}>Light</button>
@@ -334,7 +331,7 @@ localStorage and only accessed during the react hydration. Luckily, there is a s
 
 We can set up a code blocking script that completes loading before anything else can be executed. Lets create a file for the script `mkdir public && cd public` and create the file with `touch colorTheme.js` and copy the below code into the file.
 
-```js:colorTheme.js
+```tsx:colorTheme.js
 // Insert this script in your index.html right after the <body> tag.
 // This will help to prevent a flash if dark mode is the default.
 
@@ -397,7 +394,7 @@ The last thing we then need to do is to load the script during page load. We wan
 `_document.js` file to load the script before the main content & after the
 `<head></head>` (check out the [docs](https://nextjs.org/docs/advanced-features/custom-document) for more info).
 
-```js:_document.js
+```tsx:_document.js
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 class _Document extends Document {

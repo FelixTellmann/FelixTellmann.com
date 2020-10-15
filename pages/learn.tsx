@@ -7,7 +7,7 @@ export const Learn: FC = () => {
     <>
       <NextSeo title="Learn in Public - Felix Tellmann" />
       <h1>
-        <HeroText fontSize={[100, 112]} mb={3}>
+        <HeroText fontSize={[88, 112]} mb={3}>
           Learn in Public
         </HeroText>
       </h1>
