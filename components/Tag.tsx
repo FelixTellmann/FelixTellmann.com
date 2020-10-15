@@ -33,7 +33,7 @@ export const Tag: FC<BadgeProps> = ({ name, status = 'default' }) => {
           ${status === "attention" ? `background-color: #ffea8a;` : ""}
           ${status === "warning" ? `background-color: #ffc58b;` : ""}
           ${status === "critical" ? `background-color: #fead9a;` : ""}
-          ${status === "new" ? `background-color: #dfe3e8;\n font-weight: 500;\n border: none;` : ""}
+          ${status === "new" ? `background-color: #dfe3e8;\n font-weight: 600;\n border: none;` : ""}
           
           &:hover, &:focus, &:active {
               background-color: #c3c1c1;

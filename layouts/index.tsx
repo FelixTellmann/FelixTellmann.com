@@ -61,6 +61,9 @@ export const Layout: FC<LayoutProps> = ({
           background: var(--color-remark-code-bg);
           white-space: pre;
         }
+        .language-css {
+          color:var(--color-header)
+        }
 
         .line {
           border-left: 3px solid transparent;
@@ -160,6 +163,9 @@ export const Layout: FC<LayoutProps> = ({
         .token.symbol,
         .token.deleted {
           color: #905;
+        }
+        .token.number {
+          color: #0871de;
         }
 
         .token.selector,

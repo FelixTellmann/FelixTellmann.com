@@ -64,7 +64,7 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
           cardType: 'summary_large_image'
         }}
       />
-      <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+      <GoogleFonts href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;600;700&display=swap" />
 
       <BreakpointProvider breakPoints={[0, 600, 900, 1200]}>
         <ThemeContext.Provider value={{ theme: colorTheme.value }}>

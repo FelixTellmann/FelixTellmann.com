@@ -41,7 +41,7 @@ export const Badge: FC<BadgeProps> = ({ children, status = 'default', size = 'me
           ${status === 'critical'
             ? `background-color: #fead9a;`
             : ''}
-          ${status === 'new' ? `background-color: #dfe3e8;\n font-weight: 500;\n border: none;` : ''}
+          ${status === 'new' ? `background-color: #dfe3e8;\n font-weight: 600;\n border: none;` : ''}
         }
         i {
           width: 1rem;
