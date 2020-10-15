@@ -130,7 +130,6 @@ export const Layout: FC<LayoutProps> = ({
           background: none;
           color: var(--color-header);
           font-family: 'Fira Code', SFMono-Regular, Consolas, 'Liberation Mono', 'Courier New', monospace;
-
           word-spacing: normal;
           text-align: left;
           word-wrap: normal;
@@ -207,6 +206,9 @@ export const Layout: FC<LayoutProps> = ({
         .token.number {
           color: #0871de;
         }
+        .token.tag {
+          color: rgb(0, 118, 255);
+        }
 
         .token.selector,
         .token.attr-name,
@@ -214,7 +216,7 @@ export const Layout: FC<LayoutProps> = ({
         .token.char,
         .token.builtin,
         .token.inserted {
-          color: #690;
+          color: rgb(2, 130, 101);
         }
 
         .token.operator,
@@ -230,16 +232,27 @@ export const Layout: FC<LayoutProps> = ({
         .token.keyword {
           color: #109bd6;
         }
+        
+        .token.keyword {
+          color: rgb(255, 0, 120);
+          font-weight: bold;
+        }
 
         .token.function,
         .token.class-name {
           color: #dd4a68;
+        }
+        .token.function {
+          color: rgb(0, 118, 255)
         }
 
         .token.regex,
         .token.important,
         .token.variable {
           color: #e90;
+        }
+        .token.variable {
+          color: #df4513;
         }
 
         .token.important,
