@@ -90,6 +90,41 @@ export const Learn: FC = () => {
               Date: '',
               Status: '',
               Tags: <><Tag name="React" /></>
+            },
+            {
+              '#': 5,
+              Title: 'Write about books i\'ve read',
+              Date: '',
+              Status: '',
+              Tags: <><Tag name="Learning" /></>
+            },
+            {
+              '#': 6,
+              Title: 'Contribute towards Next.js Open Source',
+              Date: '',
+              Status: '',
+              Tags: <><Tag name="Next.js" /><Tag name="React" /></>
+            },
+            {
+              '#': 7,
+              Title: 'Get into content marketing',
+              Date: '',
+              Status: '',
+              Tags: <><Tag name="Marketing" /></>
+            },
+            {
+              '#': 7,
+              Title: 'Switch to VS Code',
+              Date: '',
+              Status: '',
+              Tags: <></>
+            },
+            {
+              '#': 8,
+              Title: 'Create Youtube Tutorials about coding',
+              Date: '',
+              Status: '',
+              Tags: <></>
             }
           ]}
         />
