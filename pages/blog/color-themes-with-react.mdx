@@ -45,7 +45,6 @@ Next, we create the `pages` folder required for `NextJs` and create two files: `
 Let us also add some basics to make it look pretty.&#8203;
 
 ```tsx:_app.tsx
-
 export const _App = ({ pageProps, Component }) => {
   return (
     <>
@@ -245,7 +244,8 @@ export const _App = ({ pageProps, Component }) => {
   return (
     <>
       <style jsx global>{`
-        ... .light-theme {
+        ...
+        .light-theme {
           --button-bg: #e2e8f0;
           --button-bg-hover: #cdd7e5;
           --background: #fff;
@@ -414,7 +414,6 @@ export default _Document
 
 ## Result
 
-By adding the script to the `body` before any other content is loaded, we avoid the **flash** successfully. You can find the code [here](https
-://github.com/FelixTellmann/use-color-theme/tree/master/example).
+By adding the script to the `body` before any other content is loaded, we avoid the **flash** successfully. You can find the code [here](https://github.com/FelixTellmann/use-color-theme/tree/master/example).
 
 Let me know what you think of it and try and create your own color-themes.
