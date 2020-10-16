@@ -60,6 +60,8 @@ export const Learn: FC = () => {
           columnContentTypes={{ '#': 'numeric', Date: 'numeric' }}
           headings={['#', 'Title', 'Tags', 'Status', 'Link', 'Date']}
           color={{ heading: 'var(--color-text)', base: 'var(--color-blue)' }}
+          sortable={{'#': true, Status: true, Date: true}}
+          
           rows={[
             {
               '#': 1,
@@ -67,6 +69,27 @@ export const Learn: FC = () => {
               Date: '2020-09-30',
               Status: <Badge status="success" progress="complete" size="small">Done</Badge>,
               Tags: <><Tag name="Next.js" /><Tag name="React" /><Tag name="Serverless" /><Tag name="styled-jsx" /></>
+            },
+            {
+              '#': 2,
+              Title: 'Contribute to prism.js or highlight.js',
+              Date: '',
+              Status: <Badge progress="partially" size="small">in-progress</Badge>,
+              Tags: <><Tag name="CSS" /><Tag name="JavaScript" /><Tag name="NPM" /></>
+            },
+            {
+              '#': 3,
+              Title: 'Use SWR with for data fetching',
+              Date: '',
+              Status: '',
+              Tags: <><Tag name="Next.js" /><Tag name="Serverless" /></>
+            },
+            {
+              '#': 4,
+              Title: 'Take a deep dive into react hooks',
+              Date: '',
+              Status: '',
+              Tags: <><Tag name="React" /></>
             }
           ]}
         />
