@@ -8,15 +8,15 @@ import { BorderFrame, Footer, Header } from 'components';
 import 'reset-css/sass/_reset.scss';
 import 'styles/theme.scss';
 import 'styles/mdx.scss';
-
-import { typography, variables, prism } from 'styles';
+import { useRouter } from 'next/router';
+import { prism, typography, variables } from 'styles';
 import useColorTheme from 'use-color-theme';
 
 export const ThemeContext = createContext({ theme: '' });
 
 export const Root: FC<AppProps> = ({ pageProps, Component }) => {
   const colorTheme = useColorTheme('light-theme', { classNames: ['light-theme', 'dark-theme', 'blue-theme'] });
-
+  const router = useRouter();
   return (
     <>
       <style jsx global>
@@ -36,6 +36,11 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
           flex-direction: column;
           margin: 0 auto;
           padding: 0 var(--padding-page);
+        }
+        .example {
+          background: var(--color-remark-code-bg);
+          padding: 2.4rem;
+          overflow: hidden;
         }
       `}</style>
 
@@ -63,117 +68,128 @@ export const Root: FC<AppProps> = ({ pageProps, Component }) => {
           site: '@FelixTellmann',
           cardType: 'summary_large_image'
         }}
+        canonical={`https://www.felixtellmann.com/${router.pathname}`}
       />
       <GoogleFonts href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;600;700&display=swap" />
 
       <BreakpointProvider breakPoints={[0, 600, 900, 1200]}>
         <ThemeContext.Provider value={{ theme: colorTheme.value }}>
-          <BorderFrame loading={false} duration={3} width="5px" />
-          <Header
-            logo={{
-              title: 'FT',
-              href: '/'
-            }}
-            nav={[
-              {
-                title: 'Home',
-                href: '/'
-              },
-              {
-                title: 'Blog',
-                href: '/blog'
-              },
-              {
-                title: 'Learn',
-                href: '/learn'
-              },
-              {
-                title: 'About',
-                href: '/about'
-              }
-            ]}
-            toggleColor={() => colorTheme.toggle()}
-            theme={colorTheme.value}
-          />
-          <div className="page">
-            <Component {...pageProps} />
-          </div>
-          <Footer
-            socialNav={[
-              {
-                title: (
-                  <FiGithub
-                    style={{
-                      stroke: 'url(#gradient) currentColor'
-                    }}
-                  />
-                ),
-                href: 'https://github.com/FelixTellmann',
-                target: '_blank'
-              },
-              {
-                title: (
-                  <FiFacebook
-                    style={{
-                      stroke: 'url(#gradient) currentColor'
-                    }}
-                  />
-                ),
-                href: 'https://www.facebook.com/felixtellmann',
-                target: '_blank'
-              },
-              {
-                title: (
-                  <FiTwitter
-                    style={{
-                      stroke: 'url(#gradient) currentColor'
-                    }}
-                  />
-                ),
-                href: 'https://twitter.com/FelixTellmann',
-                target: '_blank'
-              },
-              {
-                title: (
-                  <FiMail
-                    style={{
-                      stroke: 'url(#gradient) currentColor'
-                    }}
-                  />
-                ),
-                href: 'mailto:hi@felixtellmann.com',
-                target: '_blank'
-              }
-            ]}
-            footerNav={[
-              {
-                title: 'visit-my-old-site',
-                href: 'https://old-tellmann-site.vercel.app/webdesign.html',
-                target: '_blank'
-              },
-              {
-                title: 'learn-in-public',
-                href: '/learn'
-              }
-              /* { title: '/uses', href: '/uses' },
-                        { title: '/photos', href: '/photos' },
-                        { title: '/newsletter', href: '/newsletter' } */
-            ]}
-          />
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            style={{
-              width: 0,
-              height: 0,
-              position: `absolute`
-            }}>
-            <linearGradient id="gradient" gradientTransform="rotate(65)">
-              <stop offset="25.28%" stopColor="var(--color-gradient-1)" />
-              <stop offset="57.7%" stopColor="var(--color-gradient-2)" />
-              <stop offset="97.75" stopColor="var(--color-gradient-3)" />
-            </linearGradient>
-          </svg>
+          {router.pathname.includes('examples/') ? (
+            <>
+              <div className="example">
+                <Component {...pageProps} />
+              </div>
+            </>
+          ) : (
+            <>
+              <BorderFrame loading={false} duration={3} width="5px" />
+              <Header
+                logo={{
+                  title: 'FT',
+                  href: '/'
+                }}
+                nav={[
+                  {
+                    title: 'Home',
+                    href: '/'
+                  },
+                  {
+                    title: 'Blog',
+                    href: '/blog'
+                  },
+                  {
+                    title: 'Learn',
+                    href: '/learn'
+                  },
+                  {
+                    title: 'About',
+                    href: '/about'
+                  }
+                ]}
+                toggleColor={() => colorTheme.toggle()}
+                theme={colorTheme.value}
+              />
+              <div className="page">
+                <Component {...pageProps} />
+              </div>
+              <Footer
+                socialNav={[
+                  {
+                    title: (
+                      <FiGithub
+                        style={{
+                          stroke: 'url(#gradient) currentColor'
+                        }}
+                      />
+                    ),
+                    href: 'https://github.com/FelixTellmann',
+                    target: '_blank'
+                  },
+                  {
+                    title: (
+                      <FiFacebook
+                        style={{
+                          stroke: 'url(#gradient) currentColor'
+                        }}
+                      />
+                    ),
+                    href: 'https://www.facebook.com/felixtellmann',
+                    target: '_blank'
+                  },
+                  {
+                    title: (
+                      <FiTwitter
+                        style={{
+                          stroke: 'url(#gradient) currentColor'
+                        }}
+                      />
+                    ),
+                    href: 'https://twitter.com/FelixTellmann',
+                    target: '_blank'
+                  },
+                  {
+                    title: (
+                      <FiMail
+                        style={{
+                          stroke: 'url(#gradient) currentColor'
+                        }}
+                      />
+                    ),
+                    href: 'mailto:hi@felixtellmann.com',
+                    target: '_blank'
+                  }
+                ]}
+                footerNav={[
+                  {
+                    title: 'visit-my-old-site',
+                    href: 'https://old-tellmann-site.vercel.app/webdesign.html',
+                    target: '_blank'
+                  },
+                  {
+                    title: 'learn-in-public',
+                    href: '/learn'
+                  }
+                  /* { title: '/uses', href: '/uses' },
+                                        { title: '/photos', href: '/photos' },
+                                        { title: '/newsletter', href: '/newsletter' } */
+                ]}
+              />
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                style={{
+                  width: 0,
+                  height: 0,
+                  position: `absolute`
+                }}>
+                <linearGradient id="gradient" gradientTransform="rotate(65)">
+                  <stop offset="25.28%" stopColor="var(--color-gradient-1)" />
+                  <stop offset="57.7%" stopColor="var(--color-gradient-2)" />
+                  <stop offset="97.75" stopColor="var(--color-gradient-3)" />
+                </linearGradient>
+              </svg>
+            </>
+          )}
         </ThemeContext.Provider>
       </BreakpointProvider>
     </>

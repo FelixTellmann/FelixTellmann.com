@@ -32,7 +32,7 @@
       }
     ]
   },
-  "ignorePatterns": ["public/**/*"],
+  "ignorePatterns": ["public/**/*", "pages/examples/**/*"],
   "settings": {
     "import/resolver": {
       "node": {

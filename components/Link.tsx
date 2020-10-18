@@ -61,18 +61,11 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
           background-position: 0 1.05em;
           background-size: 100% 24%, 0 24%;
           cursor: pointer;
-          color: var(--color-link);
           font-family: inherit;
           text-decoration: none;
-
-          transition: color 0.25s, background-color 0.25s, background 0.2s;
-          ${subtle
-            ? ''
-            : `background-image: linear-gradient(270deg, var(--color-pro-40) 25.28%, var(--color-blue-40) 59.7%, var(--color-pro-40) 97.75%), linear-gradient(270deg,var(--color-gradient-1) 25.28%,var(--color-gradient-2) 59.7%,var(--color-gradient-3) 97.75%);`}
-          ${subtle
-            ? ''
-            : `text-shadow: 0.06em 0 0 var(--color-background), -0.06em 0 0 var(--color-background), 0 0.06em 0 var(--color-background),
-            0 -0.06em var(--color-background);`} 
+          outline: none;
+          
+          ${subtle ? `color: var(--color-link);` : `color: var(--color-mdx-link);`}
           &.small {
             font-size: 1.4rem;
           }
@@ -82,7 +75,7 @@ export const Link: FC<LinkProps & Space & Layout & Decor> = ({
           }
 
           &:hover {
-            ${subtle ? `color: var(--color-link-hover); text-decoration: underline` : `background-size: 100% 24%, 100% 24%;`}
+            ${subtle ? `color: var(--color-link-hover); text-decoration: underline` : `text-decoration: underline;;`}
           }
 
           ${styleJsx}

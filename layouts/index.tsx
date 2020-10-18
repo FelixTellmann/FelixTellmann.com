@@ -2,7 +2,8 @@ import hydrate from 'next-mdx-remote/hydrate';
 import React, { FC } from 'react';
 import { ArticleJsonLd, NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import { ArticleHeading, ArticleSidebar, Box, Headings, NewsletterSignup } from 'components';
+import { ArticleHeading, ArticleSidebar, Headings, NewsletterSignup } from 'components';
+import * as components from 'components';
 
 type LayoutProps = {
   slug: string;
@@ -50,7 +51,8 @@ export const Layout: FC<LayoutProps> = ({
     canonical = `https://felixtellmann.com${router.pathname}`;
   }
 
-  const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components: { Box } }) : children;
+   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components }) : children;
+  /* const content =  hydrate(children, { components }) */
   return (
     <>
       <style jsx global>{`

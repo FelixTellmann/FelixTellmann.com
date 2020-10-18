@@ -48,6 +48,7 @@ export const InfoBlock: FC<InfoBlockProps & Space> = ({ children, type, color, s
       </div>
       <style jsx>{`
         div {
+          width: 100%;
           position: relative;
           margin: 3.6rem 0;
           padding: 2.4rem;

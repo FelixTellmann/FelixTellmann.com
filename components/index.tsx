@@ -13,6 +13,7 @@ export * from './Footer';
 export * from './Header';
 export * from './HeroText';
 export * from './Hr';
+export * from './IframeExample';
 export * from './InfoBlock';
 export * from './Input';
 export * from './IntroText';
