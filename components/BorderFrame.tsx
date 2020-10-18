@@ -9,8 +9,7 @@ type BorderFrameProps = {
 export const BorderFrame: FC<BorderFrameProps> = ({ loading, duration, width }) => {
   const [loop, setLoop] = useState(loading ? 'infinite' : 1);
   const style: any = {
-    '--border-width': `${width}`,
-    '--border-color': `var(--color-accent)`,
+    /* '--border-color': `var(--color-accent)`, */
     '--border-animation-delay': `${-duration / 2}s`,
     '--border-animation-duration': `${duration}s`,
     '--border-animation-loop': `${loop}`
@@ -212,12 +211,14 @@ export const BorderFrame: FC<BorderFrameProps> = ({ loading, duration, width }) 
         }
 
         :global(:root) {
-          --border-width: 5px;
-          /*--border-color: linear-gradient(270deg, #f50a81 25.28%, #9d09db 59.7%, #f722c9 97.75%);*/
+          --border-width: 0px;
           --border-color: linear-gradient(270deg, #00bfa5 25.28%, #3182ce 59.7%, rgba(11, 197, 234, 0.67) 97.75%);
-          --border-animation-delay: 2.5s;
-          --border-animation-duration: 5s;
+          --border-animation-delay: ${-duration / 2}s;
+          --border-animation-duration: ${duration}s;
           --border-animation-loop: infinite;
+          @media screen and (min-width: 600px) {
+            --border-width: ${width};
+          }
         }
 
         .border {
@@ -229,12 +230,15 @@ export const BorderFrame: FC<BorderFrameProps> = ({ loading, duration, width }) 
           height: 100vh;
           margin-bottom: -100vh;
           background: var(--border-color);
-          animation-name: border;
           animation-duration: var(--border-animation-duration);
           animation-timing-function: linear;
           animation-delay: var(--border-animation-delay);
           animation-iteration-count: var(--border-animation-loop);
           animation-fill-mode: both;
+          animation-name: border;
+           @media screen and (min-width: 600px) {
+            animation-name: border;
+          }
         }
       `}</style>
     </>
