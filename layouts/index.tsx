@@ -51,10 +51,64 @@ export const Layout: FC<LayoutProps> = ({
     canonical = `https://felixtellmann.com${router.pathname}`;
   }
 
-   const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components }) : children;
-  /* const content =  hydrate(children, { components }) */
+  /* const content = process.env.NODE_ENV === 'production' ? hydrate(children, { components }) : children; */
+   const content =  hydrate(children, { components })
   return (
     <>
+      <>
+        <NextSeo
+          title={`${title} – Felix Tellmann`}
+          description={excerpt}
+          canonical={canonical}
+          openGraph={{
+            type: 'article',
+            article: {
+              publishedTime: new Date(publishedAt).toISOString()
+            },
+            url: canonical,
+            title,
+            description: excerpt,
+            images: [
+              {
+                url: `https://felixtellmann.com${image}`,
+                alt: title
+              }
+            ]
+          }}
+        />
+        <ArticleJsonLd
+          authorName="Felix Tellmann"
+          dateModified={new Date(publishedAt).toISOString()}
+          datePublished={new Date(publishedAt).toISOString()}
+          description={excerpt}
+          images={[`https://felixtellmann.com${image}`]}
+          publisherLogo="/favicons/android-icon-192x192.png"
+          publisherName="Felix Tellmann"
+          title={title}
+          url={canonical}
+        />
+        {/*= =============== HEADING ================ */}
+        <ArticleHeading
+          title={title}
+          authorAvatarUrl={authorAvatarUrl}
+          author={author}
+          publishedAt={publishedAt}
+          readingTime={readingTime}
+          views={views}
+        />
+      </>
+      {/*= =============== CONTENT ================ */}
+      <article id="mdx-content" className="mdx">
+        {content}
+      </article>
+
+      {/*= =============== SIDEBAR ================ */}
+      {showHeadings > 0 && headings ? (
+        <ArticleSidebar showHeadings={showHeadings} headings={headings} showHeadingsExpanded={showHeadingsExpanded} />
+      ) : null}
+
+      {/*= =============== NEWSLETTER SIGNUP ================ */}
+      <NewsletterSignup />
       <style jsx global>{`
         code {
           padding: 0.2rem 0.6rem;
@@ -375,69 +429,8 @@ export const Layout: FC<LayoutProps> = ({
           }
         }
       `}</style>
-      <NextSeo
-        title={`${title} – Felix Tellmann`}
-        description={excerpt}
-        canonical={canonical}
-        openGraph={{
-          type: 'article',
-          article: {
-            publishedTime: new Date(publishedAt).toISOString()
-          },
-          url: canonical,
-          title,
-          description: excerpt,
-          images: [
-            {
-              url: `https://felixtellmann.com${image}`,
-              alt: title
-            }
-          ]
-        }}
-      />
-      <ArticleJsonLd
-        authorName="Felix Tellmann"
-        dateModified={new Date(publishedAt).toISOString()}
-        datePublished={new Date(publishedAt).toISOString()}
-        description={excerpt}
-        images={[`https://felixtellmann.com${image}`]}
-        publisherLogo="/favicons/android-icon-192x192.png"
-        publisherName="Felix Tellmann"
-        title={title}
-        url={canonical}
-      />
-      {/*= =============== HEADING ================ */}
-      <ArticleHeading
-        title={title}
-        authorAvatarUrl={authorAvatarUrl}
-        author={author}
-        publishedAt={publishedAt}
-        readingTime={readingTime}
-        views={views}
-      />
-
-      {/*= =============== CONTENT ================ */}
-      <article id="mdx-content" className="mdx">
-        {content}
-      </article>
-
-      {/*= =============== SIDEBAR ================ */}
-      {showHeadings > 0 && headings ? (
-        <ArticleSidebar showHeadings={showHeadings} headings={headings} showHeadingsExpanded={showHeadingsExpanded} />
-      ) : null}
-
-      {/*= =============== NEWSLETTER SIGNUP ================ */}
-      <NewsletterSignup />
     </>
   );
 };
 
 export default Layout;
-
-export const getStaticProps = ({ params: { slug } }: { params: { slug: string } }): { props: { slug: string } } => {
-  return {
-    props: {
-      slug
-    }
-  };
-};

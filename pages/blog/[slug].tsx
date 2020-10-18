@@ -6,9 +6,7 @@ import { mdxOptions, extractFrontMatter } from 'lib/mdxOptions';
 import { GetStaticProps } from 'next';
 import * as components from 'components';
 
-export default ({children, slug, frontMatter}) => {
-  return <Layout slug={slug} frontMatter={frontMatter}>{children}</Layout>
-};
+export default Layout;
 
 type Props = {
   params: {

@@ -11,7 +11,7 @@ module.exports = withPlugins(
   [
     [optimizedImages, { optimizeImagesInDev: true }],
     [SCSS],
-    [process.env.NODE_ENV === 'development' ? MdxEnhanced(mdxOptions) : MdxEnhanced ],
+    [process.env.NODE_ENV === 'development2' ? MdxEnhanced(mdxOptions) : [] ],
     [withPWA, { pwa: { dest: 'public', disable: process.env.NODE_ENV === 'development', register: true, sw: 'service-worker.js' } }]
   ],
   {

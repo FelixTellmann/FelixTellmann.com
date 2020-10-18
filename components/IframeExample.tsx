@@ -1,9 +1,9 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useRef } from "react";
 
 type IframeExampleProps = {
   src: string;
   title: string;
-  heightCalculationMethod?: string;
+  maxHeight?: string;
 };
 
 export const IframeExample: FC<IframeExampleProps> = ({ src, title, ...props }) => {
@@ -13,13 +13,6 @@ export const IframeExample: FC<IframeExampleProps> = ({ src, title, ...props }) 
     ref.current.style.height = `${ref.current.contentWindow.document.documentElement.offsetHeight}px`;
     ref.current.contentWindow.document.body.style = 'overflow:hidden;'
   };
-  
-  
-  useEffect(() => {
-    const iframe = iframeRef.current
-    
-    return () => iframe.iFrameResizer && iframe.iFrameResizer.removeListeners()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   
 
   return (

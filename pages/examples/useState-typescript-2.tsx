@@ -7,7 +7,7 @@ const Welcome: FC = () => {
       <div>
         <p>Please type in your name:</p>
         <input type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.currentTarget.value)}/>
-        <h2> {name ? `Welcome ${name}.` : null}</h2>
+        <h2 style={{margin: 0}}>Welcome {name}</h2>
       </div>
   )
 }
