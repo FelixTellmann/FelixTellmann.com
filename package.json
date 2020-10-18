@@ -48,6 +48,7 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "globby": "^11.0.1",
     "gray-matter": "^4.0.2",
+    "iframe-resizer": "^4.2.11",
     "next-compose-plugins": "^2.2.0",
     "next-google-fonts": "^1.2.1",
     "next-mdx-enhanced": "^4.0.0",
