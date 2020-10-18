@@ -66,7 +66,7 @@ export const InfoBlock: FC<InfoBlockProps & Space> = ({ children, type, color, s
           ${type === "quote" ? "--info-block-100: var(--color-turqois);" : ""}
           ${type === "pro" ? "--info-block-100: var(--color-pro);" : ""}
           ${type === "con" ? "--info-block-100: var(--color-warn);" : ""}
-          ${type === "question" ? "--info-block-100: var(--color-blue);" : ""}
+          ${type === "question" ? "--info-block-100: var(--color-primary);" : ""}
 
           :global(svg) {
             position: absolute;

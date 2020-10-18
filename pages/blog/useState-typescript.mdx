@@ -1,0 +1,43 @@
+---
+title: 'How to use the useState React hook with Typescript'
+author: 'Felix Tellmann'
+authorUrl: 'https://www.felixtellmann.co.za'
+authorAvatarUrl: 'https://avatars1.githubusercontent.com/u/22034038'
+showHeadings: 2
+showHeadingsExpanded: false
+publishedAt: '2020-10-09'
+published: false
+excerpt: 'A new superpower for Functional Components? Find out how to use the
+ useState hook and how it works with Typescript.'
+image: '/images/og-default.jpg'
+---
+
+import { InfoBlock, Link } from 'components';
+
+## Introdocution
+
+React Hooks have been around for a while now, yet they are still as awesome
+as on day one. With the amount of custom hooks developed by the community they are like a
+superpower for any developer. Pretty awesome, right?
+
+The change to React Hooks, which came out in
+[version 16.8](https://reactjs.org/docs/hooks-intro.html), has had some massive impact on
+choosing a programming paradigm, giving _Functional Programming_ a new edge.
+
+Let's find out how we can use the useState hook and how it works with Typescript.
+
+<InfoBlock type="question">
+If you are new to React Hooks, check out the <Link href="https://reactjs.org/docs/hooks-intro.html">Official Docs</Link>.
+</InfoBlock>
+
+## Anatomy of the useState hook
+
+The `useState` hook is by far the react hook I use the most often. Using the hook allows
+us to build entire apps only using Functional Components and without any supersized
+`class` based components that hold the state of the entire application.
+
+```tsx
+import React, { useState } from 'react'
+```
+
+Using the `useState()` hook, we can create state w

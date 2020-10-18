@@ -4,6 +4,7 @@ import Layout from 'layouts';
 import { getAllPostsSlug, getSinglePostData } from 'lib/getBlogPosts';
 import { mdxOptions, extractFrontMatter } from 'lib/mdxOptions';
 import { GetStaticProps } from 'next';
+import { InfoBlock, Link } from 'components';
 
 export default Layout;
 
@@ -17,12 +18,11 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params: { slug } }
   const { content, data } = matter(getSinglePostData(typeof slug === 'string' ? slug : ''));
   const extendedFrontMatter = extractFrontMatter(content);
 
-  const mdxSource = await renderToString(content.replace(/import\s+.*?\s+from\s+['"`][\w\d\-/.]+\1;?/gi, ''), {
-    // Optionally pass remark/rehype plugins
+  const mdxSource = await renderToString(content.replace(/import\s+.*?\s+from\s+(['"`])[\w\d\-/.]+\1;?/gi, ''), {
     mdxOptions,
-    scope: data
+    components: { InfoBlock, Link },
   });
-
+  
   return {
     props: {
       slug,

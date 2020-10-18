@@ -2,7 +2,7 @@ import hydrate from 'next-mdx-remote/hydrate';
 import React, { FC } from 'react';
 import { ArticleJsonLd, NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import { ArticleHeading, ArticleSidebar, NewsletterSignup, Headings, Box } from 'components';
+import { ArticleHeading, ArticleSidebar, Box, Headings, NewsletterSignup } from 'components';
 
 type LayoutProps = {
   slug: string;
@@ -58,8 +58,9 @@ export const Layout: FC<LayoutProps> = ({
           padding: 0.2rem 0.6rem;
           border: 1px solid var(--color-remark-code-title-bg);
           border-radius: 0.4rem;
-          background: var(--color-remark-code-bg);
+          background: var(--color-code-bg);
           white-space: pre;
+          color: var(--color-code);
         }
 
         .language-css {
@@ -72,20 +73,25 @@ export const Layout: FC<LayoutProps> = ({
           max-width: 100%;
           display: flex;
           align-items: flex-start;
+
           .line {
             border: 0;
           }
+
           &:hover {
             background-color: rgba(111, 126, 150, 0.07);
           }
+
           &.line-highlight {
             background: rgba(111, 126, 150, 0.07);
             border-color: var(--color-mdx-link);
+
             &:hover {
               background-color: rgba(111, 126, 150, 0.1);
             }
           }
         }
+
         .line-content {
           white-space: pre-wrap;
           display: inline-block;
@@ -221,9 +227,11 @@ export const Layout: FC<LayoutProps> = ({
         .token.deleted {
           color: #905;
         }
+
         .token.number {
           color: #0871de;
         }
+
         .token.tag {
           color: rgb(0, 118, 255);
         }
@@ -260,6 +268,7 @@ export const Layout: FC<LayoutProps> = ({
         .token.class-name {
           color: #dd4a68;
         }
+
         .token.function {
           color: rgb(0, 118, 255);
         }
@@ -269,6 +278,7 @@ export const Layout: FC<LayoutProps> = ({
         .token.variable {
           color: #e90;
         }
+
         .token.variable {
           color: #df4513;
         }
