@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { FC, useState } from "react";
 
-const Counter = () => {
-  const [number, setNumber] = useState(0)
+const Counter: FC = () => {
+  const [number, setNumber] = useState<number>(0)
   
   return (
       <div>

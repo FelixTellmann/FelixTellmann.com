@@ -5,17 +5,17 @@ authorUrl: 'https://www.felixtellmann.co.za'
 authorAvatarUrl: 'https://avatars1.githubusercontent.com/u/22034038'
 showHeadings: 2
 showHeadingsExpanded: false
-publishedAt: '2020-10-09'
-published: false
+publishedAt: '2020-01-09'
+published: true
 excerpt: 'A new superpower for Functional Components? Find out how to use the
- useState hook and how it works with Typescript.'
+  useState hook and how it works with Typescript.'
 image: '/images/og-default.jpg'
 ---
 
 ## Introdocution
 
 React Hooks have been around for a while now, yet they are still as awesome
-as on day one. With the amount of custom hooks developed by the community they are like a
+as on day one. With the number of custom hooks developed by the community, they are like a
 superpower for any developer. Pretty awesome, right?
 
 The change to React Hooks, which came out in
@@ -27,7 +27,7 @@ Let's find out how we can use the useState hook and how it works with Typescript
 import { InfoBlock, Link, IframeExample } from 'components';
 
 <InfoBlock type="question">
-If you are new to React Hooks, check out the <Link href="https://reactjs.org/docs/hooks-intro.html">Official Docs</Link>.
+  If you are new to React Hooks, check out the <Link href="https://reactjs.org/docs/hooks-intro.html">Official Docs</Link>.
 </InfoBlock>
 
 ## Anatomy of the useState hook
@@ -36,18 +36,18 @@ The `useState` hook is by far the react hook I use the most often. Using the hoo
 us to build entire apps only using Functional Components and without any supersized
 `class` based components that hold the state of the entire application.
 
+Here's how the `useState()` API works: we load the `useState` function from `react` and
+initiate it within a _Functional Component_ `const [number, setNumber] = useState(0)`
+the function takes in one argument as the _intial state_ and returns an array with two items:
+the variable containing the state and a function to set the state.
 
-Here's how the `useState()` API works.
+Here is a plain javascript example:
 
-```tsx
-import React, { useState } from 'react'
-```
-
-```tsx
-import { useState } from 'react'
+```jsx:example.jsx
+import React, { useState } from 'react';
 
 const Counter = () => {
-  const [number, setNumber] = useState(0)
+  const [number, setNumber] = useState(0);
 
   return (
     <div>
@@ -55,8 +55,47 @@ const Counter = () => {
       <button onClick={() => setNumber(number + 1)}>Increase</button>
       <button onClick={() => setNumber(number - 1)}>Decrease</button>
     </div>
+  );
+};
+```
+
+Try it out:
+
+<IframeExample src="/examples/useState-typescript-1" title="useState Example" />
+
+You can add as many useState() calls as you want. The main limitation is that the calls
+have to be made within the top level of the Functional Component. It is not possible to call
+react hooks conditionally or in a nested block.
+
+## Adding Typescript
+
+Adding types to components is a great way to handle increased complexity as a developer.
+It's like telling your future self what needs to be done where and when. In the above example,
+we wouldn't need to add a single type annotation as all the necessary types are _inferred_.
+
+<InfoBlock type="quote">
+  Type inference is the ability to automatically deduce, either partially or fully, the type of an expression at compile time. The compiler is often
+  able to infer the type of a variable or the type signature of a function, without explicit type annotations having been given.
+</InfoBlock>
+
+The most practical type we could add is the initial state. This is especially useful if there
+isn't any initial value. Here is a quick example:
+
+```tsx:example.tsx
+import { ChangeEvent, FC, useState } from "react";
+
+const Welcome: FC = () => {
+  const [name, setName] = useState<string>()
+
+  return (
+      <div>
+        <p>Please type in your name:</p>
+        <input type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.currentTarget.value)}/>
+        <h2>{name ? `Welcome ${name}.` : null}</h2>
+      </div>
   )
 }
 ```
 
-<IframeExample src="/examples/useState-typescript-1" title="useState Example" />
+<IframeExample src="/examples/useState-typescript-2" title="useState Typescript Example"/>
+
