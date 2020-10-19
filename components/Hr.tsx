@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Space, useStyledSystem } from 'use-styled-system';
+import { FC } from "react";
+import { Space, useStyledSystem } from "use-styled-system";
 
 type HrProps = {
   invisible?: boolean;
@@ -8,9 +8,9 @@ type HrProps = {
 export const Hr: FC<HrProps & Space> = ({ invisible, ...props }) => {
   const { styleJsx } = useStyledSystem(props, { Space: true });
   return (
-    <>
-      <hr />
-      <style jsx>{`
+      <>
+        <hr />
+        <style jsx>{`
         hr {
           width: 100%;
           opacity: 0.6;
@@ -18,11 +18,11 @@ export const Hr: FC<HrProps & Space> = ({ invisible, ...props }) => {
           margin-bottom: 3.2rem;
           border: 0;
           border-bottom: 0.01rem var(--color-button) solid;
-          ${invisible ? `border-bottom: 0;` : ''}
+          ${invisible ? `border-bottom: 0;` : ""}
           ${styleJsx}
         }
       `}</style>
-    </>
+      </>
   );
 };
 
