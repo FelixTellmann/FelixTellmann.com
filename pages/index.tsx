@@ -312,7 +312,6 @@ export const getStaticProps = (): { props: { postData } } => {
     };
   }).filter((item, index) => {
     if (count > 2 ) return false
-    if (process.env.NODE_ENV === "development") return true
     if (!item?.frontMatter?.published) return false
     count += 1
     return true
