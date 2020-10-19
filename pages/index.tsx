@@ -304,12 +304,19 @@ export const Index: FC<BlogProps> = ({ postData }) => {
 export default Index;
 
 export const getStaticProps = (): { props: { postData } } => {
+  let count = 0
   const postData = getAllPostsSlug().map((slug) => {
     return {
       slug,
       frontMatter: matter(getSinglePostData(slug)).data
     };
-  }).filter((item, index) => (index > 2 ? false : (process.env.NODE_ENV === "development" || item?.frontMatter?.published)));
+  }).filter((item, index) => {
+    if (count > 2 ) return false
+    if (process.env.NODE_ENV === "development") return true
+    if (!item?.frontMatter?.published) return false
+    count += 1
+    return true
+  });
   
   return { props: { postData } };
 };
