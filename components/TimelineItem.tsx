@@ -2,8 +2,8 @@ import CheckIcon from "public/icons/CheckIcon.svg";
 import { FC } from "react";
 
 export type TimelineItemProps = {
-  headline: string | JSX.Element;
-  description?: string | JSX.Element;
+  headline: string;
+  description?: string;
 };
 
 export const TimelineItem: FC<TimelineItemProps> = ({ headline, description }) => {
@@ -11,8 +11,8 @@ export const TimelineItem: FC<TimelineItemProps> = ({ headline, description }) =
       <>
         <li>
           <CheckIcon />
-          <h4 className="h6">{headline}</h4>
-          {description ? <p>{description}</p> : null}
+          <h4 className="h6" dangerouslySetInnerHTML={{__html: headline}} />
+          {description ? <p dangerouslySetInnerHTML={{__html: description}} /> : null}
         </li>
         <style jsx>{`
           li {
