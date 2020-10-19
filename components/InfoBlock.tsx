@@ -5,48 +5,48 @@ import Color from "color";
 import { Space, useStyledSystem } from "use-styled-system";
 
 type InfoBlockProps = {
-  type?: 'attention' | 'warning' | 'positive' | 'quote' | 'help' | 'pro' | 'con' | 'question';
+  type?: "attention" | "warning" | "positive" | "quote" | "help" | "pro" | "con" | "question";
   color?: string;
   style?: CSSProperties;
 };
 
 export const InfoBlock: FC<InfoBlockProps & Space> = ({ children, type, color, style = {}, ...props }) => {
   const div = useRef();
-
+  
   if (typeof color === `string` && color.length > 0) {
-    style['--info-block-100'] = color;
-    style['--info-block-40'] = Color(color).alpha(0.4).hsl().string();
-    style['--info-block-10'] = Color(color).alpha(0.4).hsl().string();
+    style["--info-block-100"] = color;
+    style["--info-block-40"] = Color(color).alpha(0.4).hsl().string();
+    style["--info-block-10"] = Color(color).alpha(0.4).hsl().string();
   }
-
+  
   const [toCssStyle, setToCssStyle] = useState(style);
-
+  
   useEffect(() => {
     if (window && !color) {
-      const colorValue = getComputedStyle(div.current)?.getPropertyValue('--info-block-100')?.trim() || '#000';
+      const colorValue = getComputedStyle(div.current)?.getPropertyValue("--info-block-100")?.trim() || "#000";
       setToCssStyle((currentStyle) => ({
         ...currentStyle,
-        '--info-block-40': Color(colorValue).alpha(0.4).hsl().string(),
-        '--info-block-10': Color(colorValue).alpha(0.1).hsl().string()
+        "--info-block-40": Color(colorValue).alpha(0.4).hsl().string(),
+        "--info-block-10": Color(colorValue).alpha(0.1).hsl().string()
       }));
     }
   }, [type, color]);
-
+  
   const { styleJsx } = useStyledSystem(props, { Space: true });
-
+  
   return (
-    <>
-      <div ref={div} style={toCssStyle}>
-        {type === 'attention' ? <FiAlertCircle /> : null}
-        {type === 'warning' ? <FiXCircle /> : null}
-        {type === 'positive' ? <FiCheckCircle /> : null}
-        {type === 'quote' ? <QuoteIcon /> : null}
-        {type === 'pro' ? <FiPlusCircle /> : null}
-        {type === 'con' ? <FiMinusCircle /> : null}
-        {type === 'question' ? <FiHelpCircle /> : null}
-        {children}
-      </div>
-      <style jsx>{`
+      <>
+        <div ref={div} style={toCssStyle}>
+          {type === "attention" ? <FiAlertCircle /> : null}
+          {type === "warning" ? <FiXCircle /> : null}
+          {type === "positive" ? <FiCheckCircle /> : null}
+          {type === "quote" ? <QuoteIcon /> : null}
+          {type === "pro" ? <FiPlusCircle /> : null}
+          {type === "con" ? <FiMinusCircle /> : null}
+          {type === "question" ? <FiHelpCircle /> : null}
+          {children}
+        </div>
+        <style jsx>{`
         div {
           width: 100%;
           position: relative;
@@ -84,6 +84,6 @@ export const InfoBlock: FC<InfoBlockProps & Space> = ({ children, type, color, s
           ${styleJsx}
         }
       `}</style>
-    </>
+      </>
   );
 };

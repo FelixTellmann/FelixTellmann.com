@@ -3,7 +3,7 @@ import { DataTableHeading } from "components";
 import Color from "color";
 import JSXStyle from "styled-jsx/style";
 import _hashString from "string-hash";
-import {ThemeContext} from 'pages/_app';
+import { ThemeContext } from "pages/_app";
 
 type RowObject = {
   [key: string]: string | number | JSX.Element;
@@ -115,34 +115,35 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
   const [toCssStyle, setToCssStyle] = useState(style);
   const [tableHeadings, setTableHeadings] = useState(initializeHeadings(headings, defaultSortDirection, defaultSortColumn, sortable));
   const [tableRows, setTableRows] = useState<RowArray[]>(sortable
-      ? updateDirection(sanitizeRows(rows, headings), defaultSortDirection, typeof defaultSortColumn === "string"
-          ? headings.indexOf(defaultSortColumn)
-          : (typeof defaultSortColumn === "number" ? defaultSortColumn : 0))
-      : sanitizeRows(rows, headings));
-  const { theme } = useContext(ThemeContext)
+                                                         ? updateDirection(sanitizeRows(rows, headings), defaultSortDirection, typeof defaultSortColumn === "string"
+                                                                                                                               ? headings.indexOf(defaultSortColumn)
+                                                                                                                               : (typeof defaultSortColumn === "number"
+                                                                                                                                  ? defaultSortColumn
+                                                                                                                                  : 0))
+                                                         : sanitizeRows(rows, headings));
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     let heading = "";
     let base = "";
     
     if (window) {
       setTimeout(() => {
-      heading = getComputedStyle(table.current)?.getPropertyValue("--table")?.trim() || "#3182ce";
-      base = getComputedStyle(table.current)?.getPropertyValue("--table-base")?.trim() || "#3182ce";
+        heading = getComputedStyle(table.current)?.getPropertyValue("--table")?.trim() || "#3182ce";
+        base = getComputedStyle(table.current)?.getPropertyValue("--table-base")?.trim() || "#3182ce";
         setToCssStyle((currentStyle) => ({
           ...currentStyle,
           "--table-header-border": Color(heading),
           "--table-header-text": Color(heading).isLight()
-              ? Color(heading).negate().saturate(1).darken(0.8).grayscale().hsl().string()
-              : Color(heading).negate().saturate(1).lighten(0.8).grayscale().hsl().string(),
+                                 ? Color(heading).negate().saturate(1).darken(0.8).grayscale().hsl().string()
+                                 : Color(heading).negate().saturate(1).lighten(0.8).grayscale().hsl().string(),
           "--table-cell-1n": Color(base || heading).alpha(0.2).hsl().string(),
           "--table-cell-2n": Color(base || heading).rotate(-30).alpha(0.15).hsl().string(),
           "--table-cell-hover-1n": Color(base || heading).rotate(40).alpha(0.18).hsl().string(),
           "--table-cell-hover-2n": Color(base || heading).rotate(20).alpha(0.15).hsl().string(),
           "--table-cell-border": Color(base || heading).alpha(0.4).hsl().string()
         }));
-      }, 0)
+      }, 0);
     }
-    
     
   }, [color, theme]);
   
@@ -155,8 +156,8 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
       const array: string[] = new Array(columnLength).fill("auto");
       fixedColumnWidth.forEach(
           (width, index) => width && (typeof width === "string"
-              ? (array[index] = width)
-              : (array[index] = `${width.toString()}px`))
+                                      ? (array[index] = width)
+                                      : (array[index] = `${width.toString()}px`))
       );
       array.length = columnLength;
       columnWidth = array.join(" ");
@@ -213,9 +214,11 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
   
   const onSort = (e) => {
     const { active, direction, index } = e.currentTarget.dataset;
-    const sortDirection = active === "true" ? (direction === "ascending"
-        ? "descending"
-        : "ascending") : "ascending";
+    const sortDirection = active === "true"
+                          ? (direction === "ascending"
+                             ? "descending"
+                             : "ascending")
+                          : "ascending";
     setTableHeadings((prevTableHeadings) => {
       return prevTableHeadings.map((heading, i) => {
         return {
@@ -231,11 +234,12 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
   useEffect(() => {
     setTableHeadings(initializeHeadings(headings, defaultSortDirection, defaultSortColumn, sortable));
     setTableRows(sortable
-        ? updateDirection(sanitizeRows(rows, headings), defaultSortDirection,
-            typeof defaultSortColumn === "string"
-                ? headings.indexOf(defaultSortColumn)
-                : (typeof defaultSortColumn === "number" ? defaultSortColumn : 0))
-        : sanitizeRows(rows, headings));
+                 ? updateDirection(sanitizeRows(rows, headings), defaultSortDirection, typeof defaultSortColumn === "string"
+                                                                                       ? headings.indexOf(defaultSortColumn)
+                                                                                       : typeof defaultSortColumn === "number"
+                                                                                         ? defaultSortColumn
+                                                                                         : 0)
+                 : sanitizeRows(rows, headings));
   }, [headings, defaultSortColumn, defaultSortDirection, sortable, rows]);
   
   return (
@@ -285,8 +289,16 @@ export const DataTable: FC<DataTableProps> = ({ headings, rows = [], color, styl
             width: 900px;
             margin-left: -100px;
           }
-          ${typeof color === 'string' ? `--table: ${color};` : (typeof color === "object" ? `--table: ${color.heading};` : 'var(--color-text;)') }
-          ${typeof color === 'string' ? `--table-base: ${color};` : (typeof color === "object" ? `--table-base: ${color.base};` : '--table-base: #319f9c;') }
+          ${typeof color === "string"
+            ? `--table: ${color};`
+            : (typeof color === "object"
+               ? `--table: ${color.heading};`
+               : "var(--color-text;)")}
+          ${typeof color === "string"
+            ? `--table-base: ${color};`
+            : (typeof color === "object"
+               ? `--table-base: ${color.base};`
+               : "--table-base: #319f9c;")}
         }
         th {
           position: sticky;

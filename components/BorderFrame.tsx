@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from "react";
 
 type BorderFrameProps = {
   loading: boolean;
@@ -7,26 +7,26 @@ type BorderFrameProps = {
 };
 
 export const BorderFrame: FC<BorderFrameProps> = ({ loading, duration, width }) => {
-  const [loop, setLoop] = useState(loading ? 'infinite' : 1);
+  const [loop, setLoop] = useState(loading ? "infinite" : 1);
   const style: any = {
     /* '--border-color': `var(--color-accent)`, */
-    '--border-animation-delay': `${-duration / 2}s`,
-    '--border-animation-duration': `${duration}s`,
-    '--border-animation-loop': `${loop}`
+    "--border-animation-delay": `${-duration / 2}s`,
+    "--border-animation-duration": `${duration}s`,
+    "--border-animation-loop": `${loop}`
   };
-
+  
   const updateLoadingStopper = (e) => {
     if (!loading) {
       setLoop(e.elapsedTime / duration);
     }
   };
-
-  useEffect(() => setLoop(loading ? 'infinite' : loop), [loading, loop]);
-
+  
+  useEffect(() => setLoop(loading ? "infinite" : loop), [loading, loop]);
+  
   return (
-    <>
-      <div style={style} className="border" onAnimationIteration={updateLoadingStopper} />
-      <style jsx>{`
+      <>
+        <div style={style} className="border" onAnimationIteration={updateLoadingStopper} />
+        <style jsx>{`
         @keyframes border {
           0% {
             /*================ Full Border ================*/
@@ -241,6 +241,6 @@ export const BorderFrame: FC<BorderFrameProps> = ({ loading, duration, width }) 
           }
         }
       `}</style>
-    </>
+      </>
   );
 };

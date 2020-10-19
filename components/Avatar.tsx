@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { useStyledSystem } from 'use-styled-system';
-import { SizeProperties } from 'use-styled-system/dist';
-import { WidthProperty } from 'csstype';
+import { FC } from "react";
+import { useStyledSystem } from "use-styled-system";
+import { SizeProperties } from "use-styled-system/dist";
+import { WidthProperty } from "csstype";
 
 type AvatarProps = {
   src: string;
@@ -10,22 +10,17 @@ type AvatarProps = {
   size: WidthProperty<string | number>;
 };
 
-export const Avatar: FC<AvatarProps & SizeProperties> = ({ src, alt, initials = '', ...props }) => {
+export const Avatar: FC<AvatarProps & SizeProperties> = ({ src, alt, initials = "", ...props }) => {
   
-  const { styleJsx} = useStyledSystem(props, { Size: true });
-
+  const { styleJsx } = useStyledSystem(props, { Size: true });
+  
   return (
-    <>
-      <picture>
-        <img src={src} alt={alt} />
-        <i>
-          {initials
-            .split(' ')
-            .map((i) => i.charAt(0))
-            .join('')}
-        </i>
-      </picture>
-      <style jsx>{`
+      <>
+        <picture>
+          <img src={src} alt={alt} />
+          <i>{initials.split(" ").map((i) => i.charAt(0)).join("")}</i>
+        </picture>
+        <style jsx>{`
         picture {
           position: relative;
           display: inline-flex;
@@ -55,7 +50,7 @@ export const Avatar: FC<AvatarProps & SizeProperties> = ({ src, alt, initials = 
           z-index: 1;
         }
       `}</style>
-    </>
+      </>
   );
 };
 

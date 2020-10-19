@@ -13,10 +13,10 @@ export const Hr: FC<HrProps & Space> = ({ invisible, ...props }) => {
         <style jsx>{`
         hr {
           width: 100%;
-          opacity: 0.6;
+          border: 0;
           margin-top: 3.2rem;
           margin-bottom: 3.2rem;
-          border: 0;
+          opacity: 0.6;
           border-bottom: 0.01rem var(--color-button) solid;
           ${invisible ? `border-bottom: 0;` : ""}
           ${styleJsx}

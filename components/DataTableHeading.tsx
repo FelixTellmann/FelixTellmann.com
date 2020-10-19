@@ -20,11 +20,12 @@ export const DataTableHeading: FC<DataTableSortHeadingProps> = ({ children, isSo
          data-active={active}
          data-direction={sortDirection}
          data-index={index}>
-      {isSortable ? <>
-        {sortDirection === "ascending" ? <FaCaretDown /> : null}
-        {sortDirection === "descending" ? <FaCaretUp /> : null}
-        {children}
-      </> : children}
+      {isSortable
+       ? <>
+         {sortDirection === "ascending" ? <FaCaretDown /> : null}
+         {sortDirection === "descending" ? <FaCaretUp /> : null}
+         {children}      </>
+       : children}
     </div>
     
     <style jsx>{`

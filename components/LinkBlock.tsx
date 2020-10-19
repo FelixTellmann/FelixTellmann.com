@@ -1,5 +1,5 @@
-import { AnchorHTMLAttributes, CSSProperties, FC } from 'react';
-import Link from 'next/link';
+import Link from "next/link";
+import { AnchorHTMLAttributes, CSSProperties, FC } from "react";
 import { Decor, Space, useStyledSystem } from "use-styled-system";
 
 type LinkBlockProps = {
@@ -19,24 +19,24 @@ export const LinkBlock: FC<LinkBlockProps & AnchorHTMLAttributes<any> & Space & 
     Decor: true,
     Space: true
   });
-
+  
   return (
-    <>
-      <Link href={href}>
-        <a target={target} rel={target === '_blank' ? 'noopener noreferrer' : ''} className={className} {...nonCssProps}>
-          {children}
-        </a>
-      </Link>
-      <style jsx>{`
-        a {
-          display: block;
-          outline: none;
-          cursor: pointer;
-          color: inherit;
-          text-decoration: none;
-          ${styleJsx}
-        }
+      <>
+        <Link href={href}>
+          <a target={target} rel={target === "_blank" ? "noopener noreferrer" : ""} className={className} {...nonCssProps}>
+            {children}
+          </a>
+        </Link>
+        <style jsx>{`
+          a {
+            display: block;
+            outline: none;
+            cursor: pointer;
+            color: inherit;
+            text-decoration: none;
+            ${styleJsx}
+          }
       `}</style>
-    </>
+      </>
   );
 };
