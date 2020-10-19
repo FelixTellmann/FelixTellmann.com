@@ -7,9 +7,84 @@ showHeadings: 2
 showHeadingsExpanded: false
 publishedAt: '2020-01-15'
 published: false
-excerpt: 'Check out how the useCallback hook works and how to supercharge it with Typescript.'
+excerpt: 'Check out how the useEffect hook works and how to supercharge it with Typescript.'
 image: '/images/og-default.jpg'
 ---
 
-## Introdocution
+One key feature of Hooks is allowing functional components to have access to the react lifecycle.
+In the class-based way of creating `stateful` components, you have access to the `componentDidMount`,
+`componentWillMount`, `componentDidUpdate`, and `componentWillUnmount ` events. The events are super useful to add
+things like eventListeners to the DOM, make API calls, and to fine-tune performance to ensure
+that only components that need to render, actually render.
 
+
+import { IframeExample, InfoBlock, Link } from 'components';
+
+<InfoBlock type="question">
+  If you are new to React Hooks, check out
+  the <Link href="https://reactjs.org/docs/hooks-intro.html">Official Docs</Link>.
+</InfoBlock>
+
+With Hooks, we get the **`useEffect()`** API which allows you access to the React Lifecycle.
+
+The `useEffect` function is triggered when the component is first rendered, and after that on
+every re-render or update to props & state. You can also set (and should set) the useEffect
+hook to only run conditionally, based on specific changes to improve performance and avoid
+memory leaks and unnecessary render calls. In terms of the React Lifecycle, the `useEffect`
+hook runs after the DOM is loaded, which is great in comparison to accessing the lifecycle
+in class components, which can block the UI from being rendered.
+
+Additionally, there are also the `useMutationEffect` and `useLayoutEffect` hooks which give
+us even more precise access into the React lifecycle and I will get more into detail in another post.
+
+## How to: useEffect()
+
+Let's have a look at the example in plain javascript below
+
+```tsx{6-15}
+import { useEffect, useState } from "react";
+
+const MousePosition = () => {
+  const [{x, y}, setCoordinates] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const onMouseMove = (e) => {
+      setCoordinates({ x: e.clientX, y: e.clientY });
+    };
+
+    if (window) {
+      document.addEventListener("mousemove", onMouseMove);
+    }
+    return () => { document.removeEventListener("mousemove", onMouseMove) }
+  }, []);
+
+  return <>
+    <div>
+      Your cursor coordinates are X: {x}, and Y: {y}
+    </div>
+  </>;
+};
+```
+
+First, we load the `useEffect` hook from `react`, and then we initiate it in the component.
+The hook requires a callback function and an optional array which include the dependencies.
+The **callback function** is run after the UI is rendered and the DOM is loaded. Depending on
+your environment and if you use Server Side Rendering, it is still a good idea to check if
+the `window` object has been instantiated to avoid errors during build time.
+
+In the above example we use the `useEffect` hook to create an eventListener for `mousemove`
+to track a global event. The `return () => { document.removeEventListener("mousemove", onMouseMove) }`
+part runs on `componentWillUnmount` and allows you to clean up the eventListener once it is
+not needed anymore.
+
+You can see that the hook also has an empty `array` as a second argument. The array contains
+any conditional dependencies that should trigger the effect to run again. An empty array
+means the effect only runs once after the first render and never again until dismounted.
+
+Here is the code in action, just move your cursor over the box:
+<IframeExample src="/examples/useEffect-typescript-1" title="useState Example" />
+
+## Typescript needed?
+
+The beauty about using typescript in your dev environment comes once again through type inference
+and types provided by `@types/react` which gives you some amazing hints, right as you need them.
