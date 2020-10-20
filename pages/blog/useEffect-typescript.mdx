@@ -1,5 +1,5 @@
 ---
-title: 'Managing side effects in React with the useEffect hook'
+title: 'Exploring the React useEffect hook'
 author: 'Felix Tellmann'
 authorUrl: 'https://www.felixtellmann.co.za'
 authorAvatarUrl: 'https://avatars1.githubusercontent.com/u/22034038'
@@ -7,7 +7,7 @@ showHeadings: 2
 showHeadingsExpanded: false
 publishedAt: '2020-01-15'
 published: true
-excerpt: 'Check out how the useEffect hook works and how to supercharge it with Typescript.'
+excerpt: 'Check out how the useEffect hook works.'
 image: '/images/og-default.jpg'
 ---
 
@@ -73,8 +73,12 @@ your environment and if you use Server Side Rendering, it is still a good idea t
 the `window` object has been instantiated to avoid errors during build time.
 
 In the above example we use the `useEffect` hook to create an eventListener for `mousemove`
-to track a global event. The `return () => { document.removeEventListener("mousemove", onMouseMove) }`
-part runs on `componentWillUnmount` and allows you to clean up the eventListener once it is
+to track a global event.
+
+```tsx
+return () => { document.removeEventListener("mousemove", onMouseMove) }
+```
+Lastly, the return part runs on `componentWillUnmount` and allows you to clean up the eventListener once it is
 not needed anymore.
 
 You can see that the hook also has an empty `array` as a second argument. The array contains

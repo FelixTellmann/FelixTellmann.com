@@ -95,11 +95,11 @@ export const Layout: FC<LayoutProps> = ({ children, slug, frontMatter: { title, 
         <NewsletterSignup />
         <style jsx global>{`
           code {
-            padding: 0.2rem 0.6rem;
+            padding: 0.1rem 0.6rem;
             border: 1px solid var(--color-remark-code-title-bg);
             border-radius: 0.4rem;
             background: var(--color-code-bg);
-            white-space: pre;
+            white-space: pre-wrap;
             color: var(--color-code);
           }
 
