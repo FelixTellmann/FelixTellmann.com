@@ -3579,7 +3579,7 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-camelcase-css@2.0.1:
+camelcase-css@2.0.1, camelcase-css@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/camelcase-css/-/camelcase-css-2.0.1.tgz#ee978f6947914cc30c6b44741b6ed1df7f043fd5"
   integrity sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==
@@ -10225,6 +10225,14 @@ postcss-html@^0.36.0:
   dependencies:
     htmlparser2 "^3.10.0"
 
+postcss-js@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-js/-/postcss-js-3.0.1.tgz#e467efdce80ca02e072c60b42e0b35ad2f950a94"
+  integrity sha512-m1DgECmEbOK9JhGkdctaP9ZRVheJuEnkk2eb/d3K+5uN10C3S004Ng6Hat4Aha7PsLt824x0xwrT7rVwGRVLHg==
+  dependencies:
+    camelcase-css "^2.0.1"
+    postcss "^8.1.0"
+
 postcss-less@^1.1.0:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/postcss-less/-/postcss-less-1.1.5.tgz#a6f0ce180cf3797eeee1d4adc0e9e6d6db665609"
@@ -10691,7 +10699,7 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^8.1.2:
+postcss@^8.1.0, postcss@^8.1.2:
   version "8.1.2"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.1.2.tgz#9731fcaa4f7b0bef47121821bdae9eeb609a324c"
   integrity sha512-mToqEVFq8jF9TFhlIK4HhE34zknFJuNTgqtsr60vUvrWn+9TIYugCwiV1JZRxCuOrej2jjstun1bn4Bc7/1HkA==
@@ -13950,10 +13958,10 @@ use-persisted-state@^0.3.0:
   dependencies:
     "@use-it/event-listener" "^0.1.2"
 
-use-styled-system@^2.2.20:
-  version "2.2.20"
-  resolved "https://registry.yarnpkg.com/use-styled-system/-/use-styled-system-2.2.20.tgz#cc2845499da8531ed043586c959d3d7062e344d1"
-  integrity sha512-9Ty6Q7unvOgViUr/R0oeYWlUB0ExFgciwGaoUIFFkzBfxLuRO1hyHhnFKK8QLmnUOcqqHlXN2zWMEX2zHEdY3g==
+use-styled-system@^2.2.31:
+  version "2.2.31"
+  resolved "https://registry.yarnpkg.com/use-styled-system/-/use-styled-system-2.2.31.tgz#ba96937db1219bec9aa6c7a757d460d4eace0e9a"
+  integrity sha512-Lu7kCqYWlOodV/ndMx9Y7U172x12vgxyWozBRkqNgBUH1cSEMpx4HpM91uNEmQPghneOe7trUBQqs3Mp5PgGig==
   dependencies:
     "@babel/core" "^7.11.6"
     "@babel/preset-env" "^7.11.5"
@@ -13970,6 +13978,7 @@ use-styled-system@^2.2.20:
     jest-dom "^4.0.0"
     microbundle "^0.12.3"
     postcss "^8.1.2"
+    postcss-js "^3.0.1"
     react "^16.13.1"
     react-dom "^16.13.1"
     react-testing-library "^8.0.1"
