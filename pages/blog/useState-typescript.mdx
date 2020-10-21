@@ -24,10 +24,13 @@ choosing a programming paradigm, giving _Functional Programming_ a new edge.
 
 Let's find out how we can use the useState hook and how it works with Typescript.
 
-import { InfoBlock, Link, IframeExample } from 'components';
+
+
+import { IframeExample, InfoBlock, Link } from 'components';
 
 <InfoBlock type="question">
-  If you are new to React Hooks, check out the <Link href="https://reactjs.org/docs/hooks-intro.html">Official Docs</Link>.
+  If you are new to React Hooks, check out
+  the <Link href="https://reactjs.org/docs/hooks-intro.html">Official Docs</Link>.
 </InfoBlock>
 
 ## Anatomy of the useState hook
@@ -61,7 +64,7 @@ const Counter = () => {
 
 Try it out:
 
-<IframeExample src="/examples/useState-typescript-1" title="useState Example"/>
+<IframeExample src="/examples/useState-typescript-1" title="useState Example" />
 
 You can add as many useState() calls as you want. The main limitation is that the calls
 have to be made within the top level of the Functional Component. It is not possible to call
@@ -74,8 +77,10 @@ It's like telling your future self what needs to be done where and when. In the 
 we wouldn't need to add a single type annotation as all the necessary types are _inferred_.
 
 <InfoBlock type="quote">
-  Type inference is the ability to automatically deduce, either partially or fully, the type of an expression at compile time. The compiler is often
-  able to infer the type of a variable or the type signature of a function, without explicit type annotations having been given.
+  Type inference is the ability to automatically deduce, either partially or fully, the
+  type of an expression at compile time. The compiler is often
+  able to infer the type of a variable or the type signature of a function, without
+  explicit type annotations having been given.
 </InfoBlock>
 
 The most practical type we could add is the initial state. This is especially useful if there
@@ -97,5 +102,6 @@ const Welcome: FC = () => {
 }
 ```
 
-<IframeExample src="/examples/useState-typescript-2" title="useState Typescript Example"/>
+<IframeExample src="/examples/useState-typescript-2"
+               title="useState Typescript Example" />
 
