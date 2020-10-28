@@ -18,7 +18,7 @@
     "@types/styled-jsx": "^2.2.8",
     "csstype": "2.6.12",
     "mdx-prism": "^0.3.1",
-    "next": "9.5.5",
+    "next": "^10.0.0",
     "next-pwa": "^3.1.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -82,6 +82,6 @@
     "stylelint-scss": "^3.18.0",
     "url-loader": "^4.1.0",
     "use-color-theme": "^1.0.4",
-    "use-styled-system": "^2.2.32"
+    "use-styled-system": "2.2.32"
   }
 }

@@ -1,108 +1,42 @@
-Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js install
 
-PATH: 
-  C:\Program Files\cmder\bin;C:\Program Files\cmder\vendor\bin;C:\Development\FelixTellmann.com\node_modules\.bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Users\Felix\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\JetBrains\apps\PhpStorm\ch-0\202.6948.87\bin;C:\Users\Felix\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\cmder
 
-Yarn version: 
-  1.22.5
-
-Node version: 
-  12.18.2
-
-Platform: 
-  win32 x64
-
-Trace: 
-  Error: connect ETIMEDOUT 104.16.24.35:443
-      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1141:16)
-
-npm manifest: 
-  {
-    "name": "felixtellmann-com",
-    "version": "1.2.3",
-    "repository": "https://github.com/FelixTellmann/FelixTellmann.com.git",
-    "author": "FelixTellmann <felix@tellmann.co.za>",
-    "license": "MIT",
-    "scripts": {
-      "dev": "next",
-      "build": "next build",
-      "start": "next start",
-      "export": "next build && next export",
-      "lint": "eslint .",
-      "lint:fix": "eslint . --fix"
-    },
-    "dependencies": {
-      "@types/node": "^14.10.3",
-      "@types/react": "^16.9.49",
-      "@types/styled-jsx": "^2.2.8",
-      "csstype": "2.6.12",
-      "next": "^v9.5.6-canary.0",
-      "next-pwa": "^3.1.5",
-      "react": "^16.13.1",
-      "react-dom": "^16.13.1",
-      "typescript": "^4.0.2"
-    },
-    "devDependencies": {
-      "@jsdevtools/rehype-toc": "^3.0.2",
-      "@mapbox/stylelint-processor-arbitrary-tags": "^0.3.0",
-      "@mdx-js/loader": "^1.6.18",
-      "@next/mdx": "^9.5.3",
-      "@typescript-eslint/eslint-plugin": "^4.4.0",
-      "@typescript-eslint/parser": "^4.4.0",
-      "@zeit/next-sass": "^1.0.1",
-      "babel-eslint": "^10.1.0",
-      "babel-plugin-inline-react-svg": "^1.1.1",
-      "babel-plugin-module-resolver": "^4.0.0",
-      "color": "^3.1.3",
-      "date-fns": "^2.16.1",
-      "eslint": "^7.10.0",
-      "eslint-config-airbnb": "^18.2.0",
-      "eslint-config-airbnb-typescript": "^11.0.0",
-      "eslint-config-prettier": "^6.12.0",
-      "eslint-plugin-import": "^2.22.1",
-      "eslint-plugin-jsx-a11y": "^6.3.1",
-      "eslint-plugin-prettier": "^3.1.4",
-      "eslint-plugin-react": "^7.21.3",
-      "eslint-plugin-react-hooks": "^4.1.2",
-      "globby": "^11.0.1",
-      "gray-matter": "^4.0.2",
-      "next-compose-plugins": "^2.2.0",
-      "next-google-fonts": "^1.2.1",
-      "next-mdx-enhanced": "^4.0.0",
-      "next-mdx-remote": "^1.0.0",
-      "next-optimized-images": "^3.0.0-canary.10",
-      "next-seo": "^4.11.0",
-      "node-sass": "^4.14.1",
-      "prettier": "^2.1.2",
-      "prettier-eslint": "^11.0.0",
-      "prettier-stylelint": "^0.4.2",
-      "prismjs-styled-jsx": "^0.0.1",
-      "react-icons": "^3.11.0",
-      "reading-time": "^1.2.0",
-      "rehype-prism-enhanced": "^2.0.6",
-      "remark-autolink-headings": "^6.0.1",
-      "remark-code-titles": "^0.1.1",
-      "remark-slug": "^6.0.0",
-      "reset-css": "^5.0.1",
-      "sass-loader": "^10.0.2",
-      "sass-resources-loader": "^2.1.0",
-      "string-hash": "^1.1.3",
-      "styled-jsx": "^3.3.0",
-      "styled-jsx-plugin-sass": "^1.0.0",
-      "stylelint": "^13.7.2",
-      "stylelint-config-sass-guidelines": "^7.1.0",
-      "stylelint-order": "^4.1.0",
-      "stylelint-prettier": "^1.1.2",
-      "stylelint-scss": "^3.18.0",
-      "url-loader": "^4.1.0",
-      "use-color-theme": "^1.0.4",
-      "use-styled-system": "^2.2.15"
-    }
-  }
-
-yarn manifest: 
-  No manifest
-
-Lockfile: 
-  No lockfile
+    "@testing-library/jest-dom": "^5.9.0",
+    "@testing-library/react": "^10.2.1",
+    "@types/chrome": "0.0.114",
+    "@types/jest": "^26.0.0",
+    "@types/mysql": "^2.15.13",
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.36",
+    "@types/react-transition-group": "^4.4.0",
+    "@types/styled-jsx": "^2.2.8",
+    "@zeit/next-sass": "^1.0.1",
+    "alias-quokka-plugin": "^0.1.0",
+    "babel-alias-quokka-plugin": "^1.0.9",
+    "babel-jest": "^26.0.1",
+    "babel-plugin-inline-react-svg": "^1.1.1",
+    "beautiful-react-hooks": "^0.25.2",
+    "copy-to-clipboard": "^3.3.1",
+    "dotenv": "^8.2.0",
+    "global": "^4.4.0",
+    "highlight.js": "^10.0.3",
+    "identity-obj-proxy": "^3.0.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "jest": "^26.0.1",
+    "mysql2": "^2.1.0",
+    "next": "^9.4.4",
+    "node-gyp": "^7.0.0",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
+    "react-reveal": "^1.2.2",
+    "react-test-renderer": "^16.13.1",
+    "sass-loader": "^9.0.2",
+    "sass-resources-loader": "^2.0.3",
+    "styled-jsx-plugin-sass": "^1.0.0",
+    "ts-jest": "^26.1.0",
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typed.js": "^2.0.11",
+    "typescript": "^3.9.5",
+    "url-loader": "^4.1.0"
