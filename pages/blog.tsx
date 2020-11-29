@@ -37,9 +37,10 @@ export const Blog: FC<BlogProps> = ({ postData }) => {
     const values = sanitize(event.currentTarget.value)
       .split(' ')
       .filter((i) => i.length > 2);
+    const matcher = new RegExp(`(${values.join('|')})`, 'g');
     const wordCount = values.length;
 
-    const matcher = new RegExp(`(${values.join('|')})`, 'g');
+    
     let totalMatchCount = 0;
     setFilteredPostData(
       postData

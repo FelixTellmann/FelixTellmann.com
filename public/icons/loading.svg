@@ -11,7 +11,8 @@
   <circle cx="0" cy="0" r="6" fill="currentColor">
     <animateTransform attributeName="transform" type="scale" begin="-0.125s" calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1" values="0;1;0" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite"></animateTransform>
   </circle>
-</g><g transform="translate(80 1)">
+</g>
+  <g transform="translate(80 1)">
   <circle cx="0" cy="0" r="6" fill="currentColor">
     <animateTransform attributeName="transform" type="scale" begin="0s" calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1" values="0;1;0" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite"></animateTransform>
   </circle>
