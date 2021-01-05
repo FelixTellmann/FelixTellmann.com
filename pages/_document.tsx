@@ -5,6 +5,13 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link
+            rel="preload"
+            href="/fonts/inter-var-latin.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
           <meta name="referrer" content="strict-origin-when-cross-origin" />
           <meta charSet="UTF-8" />
           {process.env.NODE_ENV === 'production' ? (
