@@ -110,8 +110,8 @@ export const getStaticProps = (): { props: { postData } } => {
     })
     .filter((item) => process.env.NODE_ENV === "development" || item?.frontMatter?.published)
     .sort((a, b) => {
-      if (new Date(a?.frontMatter?.publishedAt) > new Date(b?.frontMatter?.publishedAt)) return 1;
-      if (new Date(a?.frontMatter?.publishedAt) < new Date(b?.frontMatter?.publishedAt)) return -1;
+      if (new Date(a?.frontMatter?.publishedAt) < new Date(b?.frontMatter?.publishedAt)) return 1;
+      if (new Date(a?.frontMatter?.publishedAt) > new Date(b?.frontMatter?.publishedAt)) return -1;
       return 0;
     });
 
