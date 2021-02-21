@@ -47,7 +47,10 @@ export const Index: FC<BlogProps> = ({ postData }) => {
           headline: `Restaurant v2.0`,
           description: `Upgraded the concept to the fit market environment & changed the name from <u style="white-space: nowrap">The Burger Exchange</u> to <u style="white-space: nowrap">The Exchange</u> and shifted focus to also include a variety of woodfired grills. 🥩🔥`
         },
-        { headline: `Visited Namibia`, description: `Fulfilled a lifetime dream to 4x4 drive and camp in Namibia with the best friends.` }
+        {
+          headline: `Visited Namibia`,
+          description: `Fulfilled a lifetime dream to 4x4 drive and camp in Namibia with the best friends.`
+        }
       ]
     }
   ];
@@ -230,74 +233,78 @@ export const Index: FC<BlogProps> = ({ postData }) => {
     }
   ];
   return (<> {/*= =============== INTRO ================ */}
-        <h1>
-          <HeroText>
-            <Responsive desktop>Hello</Responsive>
-            <Responsive mobile>Hi</Responsive>
-          </HeroText>
-          I'm Felix Tellmann
-        </h1>
-        <p>
-          I'm a freelancing web developer, writer and entrepreneur living in Cape Town. I enjoy creating things that live on the
-          internet, whether that be websites, applications, or anything in between. My goal is to always build products that provide
-          real value to its users.
-        </p>
-        <Hr invisible height="10vh" maxHeight={64} />
-        
-        {/*= =============== BLOG POSTS ================ */}
-        <h2>Recent Posts</h2>
-        {postData
-         ? postData.map(({ slug, frontMatter: { title, excerpt } }) => (
-                <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />
-            ))
-         : null}
-        <Hr invisible mt={2} />
-        
-        {/* TODO - ADD Skills Section */}
-        
-        {/*= =============== PROJECTS ================ */}
-        <h2>Projects</h2>
-        <LinkBlock href="https://github.com/FelixTellmann/use-styled-system" target="_blank">
-          <Card
-              icon={<FiHexagon />}
-              title="use-styled-system"
-              description={
-                <>
-                  A custom React Hook to help you implement <em>styled system</em> props in combination with styled-jsx for your
-                  application.
-                </>
-              }
-              hover
-          />
-        </LinkBlock>
-        <LinkBlock href="https://github.com/FelixTellmann/use-color-theme" target="_blank">
-          <Card
-              icon={<HiOutlineColorSwatch />}
-              title="use-color-theme"
-              hover
-              description={
-                <>
-                  A custom React Hook to help you implement a "theming" classes for your application. The hook allows you to add as
-                  many color themes as you wish.
-                </>
-              }
-          />
-        </LinkBlock>
-        {/* TODO: Add Project for Sudoku solver with simple presentation & hosting via Vercel */}
-        {/* <LinkBlock href="https://github.com/FelixTellmann/use-color-theme" target="_blank">
+      <h1>
+        <HeroText>
+          <Responsive desktop>Hello</Responsive>
+          <Responsive mobile>Hi</Responsive>
+        </HeroText>
+        I'm Felix Tellmann
+      </h1>
+      <p>
+        I'm a freelancing web developer, writer and entrepreneur living in Cape Town. I enjoy creating things that live
+        on the
+        internet, whether that be websites, applications, or anything in between. My goal is to always build products
+        that provide
+        real value to its users.
+      </p>
+      <Hr invisible height="10vh" maxHeight={64} />
+
+      {/*= =============== BLOG POSTS ================ */}
+      <h2>Recent Posts</h2>
+      {postData
+       ? postData.map(({ slug, frontMatter: { title, excerpt } }) => (
+          <BlogPreview key={slug} slug={slug} title={title} excerpt={excerpt} />
+        ))
+       : null}
+      <Hr invisible mt={2} />
+
+      {/* TODO - ADD Skills Section */}
+
+      {/*= =============== PROJECTS ================ */}
+      <h2>Projects</h2>
+      <LinkBlock href="https://github.com/FelixTellmann/use-styled-system" target="_blank">
+        <Card
+          icon={<FiHexagon />}
+          title="use-styled-system"
+          description={
+            <>
+              A custom React Hook to help you implement <em>styled system</em> props in combination with styled-jsx for
+              your
+              application.
+            </>
+          }
+          hover
+        />
+      </LinkBlock>
+      <LinkBlock href="https://github.com/FelixTellmann/use-color-theme" target="_blank">
+        <Card
+          icon={<HiOutlineColorSwatch />}
+          title="use-color-theme"
+          hover
+          description={
+            <>
+              A custom React Hook to help you implement a "theming" classes for your application. The hook allows you to
+              add as
+              many color themes as you wish.
+            </>
+          }
+        />
+      </LinkBlock>
+      {/* TODO: Add Project for Sudoku solver with simple presentation & hosting via Vercel */}
+      {/* <LinkBlock href="https://github.com/FelixTellmann/use-color-theme" target="_blank">
  <Card icon={<HiOutlineColorSwatch />}
  title="use-color-theme"
  description={<>A custom React Hook to help you implement a "theming" classes for your application. The hook allows you to add as many color themes as you wish.</>}
  hover />
  </LinkBlock> */}
-        <Hr invisible />
-        
-        {/*= =============== TIMELINE ================ */}
-        <Timeline heading="When and where" preview={TIMELINE_CURRENT} data={[...TIMELINE_CURRENT, ...TIMELINE_PAST]} />
-        <Hr invisible />
-        {/*= =============== NEWSLETTER SIGNUP ================ */}
-        <NewsletterSignup />
-      </>
+      <Hr invisible />
+
+      {/*= =============== TIMELINE ================ */}
+      <Timeline heading="When and where" preview={TIMELINE_CURRENT} data={[...TIMELINE_CURRENT, ...TIMELINE_PAST]} />
+      <Hr invisible />
+      {/*= =============== NEWSLETTER SIGNUP ================ */}
+      <NewsletterSignup />
+    </>
   );
 };
 
@@ -311,11 +318,17 @@ export const getStaticProps = (): { props: { postData } } => {
       frontMatter: matter(getSinglePostData(slug)).data
     };
   }).filter((item, index) => {
-    if (count > 2) return false;
-    if (!item?.frontMatter?.published) return false;
-    count += 1;
-    return true;
-  });
-  
+      if (count > 2) return false;
+      if (!item?.frontMatter?.published) return false;
+      count += 1;
+      return true;
+    })
+    .sort((a, b) => {
+      if (new Date(a?.frontMatter?.publishedAt) < new Date(b?.frontMatter?.publishedAt)) return 1;
+      if (new Date(a?.frontMatter?.publishedAt) > new Date(b?.frontMatter?.publishedAt)) return -1;
+      return 0;
+    });
+
+
   return { props: { postData } };
 };
